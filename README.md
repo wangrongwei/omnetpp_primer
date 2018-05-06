@@ -15,6 +15,6 @@
 
 <div align="center">
 
-<img src="D:\王荣巍\图片\qe.jpg" height="130" width="200" >
+<img src="img/qe.jpg" height="130" width="200" >
 
  </div>
