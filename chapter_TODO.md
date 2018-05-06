@@ -1,17 +1,17 @@
-##一 待完善
+## 一 待完善
 
 - [1] 如何加快节点间消息的传输？
 - [2] 在一个复合模块下，如何访问同一级的其他模块？
 - [3] 如何得到某一个模块引用的ned路径？   
 
-##二 详细内容
+## 二 详细内容
 
 ### 1 在节点之间传输消息的时候，如何加快消息的传输速度？
 当节点数量较大的时候，需要较快的实现消息传送的效果。
 
 
 
-###2 通过父模块取出同一级其他模块
+### 2 通过父模块取出同一级其他模块
 
 ```c
 cModule *parent = getParentModule();
@@ -28,7 +28,7 @@ pRCBuffer = check_and_cast<RCBuffer *>(psubmodRC);
 
 ```
 
-###3 如何得到一个简单模块的引用的ned路径？
+### 3 如何得到一个简单模块的引用的ned路径？
 
 ```c
 cModule *parent = getParentModule();
@@ -50,7 +50,7 @@ else if (strcmp(name, "SimpleNetwork.Switch.SwitchPort") == 0){
 
 ```
 
-###4 探测该节点node的拓扑：
+### 4 探测该节点node的拓扑：
 ```c
 /*
  * 探测交换机网络的拓扑
