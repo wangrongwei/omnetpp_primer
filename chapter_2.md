@@ -37,3 +37,69 @@
  </div>
 
 图片可真不好截，三张图片大小不一，以后再完善吧。以上三张图标识的三个文件是OMNeT++团队提供给开发者的基本帮助文档，作者在写这个文档的时候，自我认为都还没有把这些文档翻完，慢慢的，觉得这些资料本身已经够用了......作者会在后续的文档中，描述一下OMNeT++提供给我们的地图。
+
+
+
+# 2.3 INET库
+
+## 2.3.1 INET库的介绍
+&#160; &#160; &#160; &#160; 从一个初学者的角度，当安装OMNeT++后，大多数的情况下是需要安装INET库的，这个集成库包含了丰富的仿真模型，多数时候，读者如果设计一个网络仿真程序，有不想重新编写代码，这时候，可以在INET下寻找是否有满足要求的example，包括的网络有：
+
+- adhoc
+- aodv
+- ethernet
+- ipv6
+
+等等，上面列举出的只是其中经常用到的一小部分，但是这也存在读者的不同研究背景，可能其中涉及的还不算很全。目前，作者，对于INET的使用较浅薄，水平还停留在调用INET库中的ned文件中的节点类型，或者其他诸如移动模型的水平上。在该小节，作者先为读者描述一下如何在OMNeT++下快速的使用INET库和目前作者的经常使用的技巧。
+
+
+## 2.3.2 INET库的安装
+&#160; &#160; &#160; &#160;通常有两种方法安装INET，在安装之前，首先需要到:
+[https://inet.omnetpp.org]()
+下载合适的版本，由于前面的OMNeT++使用的5.2的版本，这里我们可以选择**inet-3.6.2**，下载结束以后，将inet解压到omnetpp的安装路径下的samples文件下，此时inet文件的路径可能是：
+**xxx/omnetpp-5.2/samples/inet**
+(解压INET-3.6.2文件后只有一个inet文件)。接下来，我们需要：
+- 方法一：命令窗口安装INET
+
+&#160; &#160; &#160; &#160;其实，如果需要为omnetpp安装新的插件或者库，都可以通过命令行的形式进行安装，甚至，你可以在命令行的环境下对编写好的网络进行编译和运行。
+&#160; &#160; &#160; &#160;作者编写这个学习手册的原则，就是为读者提供一个学习omnetpp的地图，而不是一般详细字典，可能作者的水平还远远没有达到写一本学习omnetpp的大全。首先，安装这个INET库，我们到inet文件下看看有什么有用的文件没有，当然是先看看**README.md**了，这个文件提示我们安装请看：**INSTALL**，下面是这个INSTALL的英文：
+```
+If you are building from command line:
+--------------------------------------
+3. Change to the INET directory.
+
+4. Type "make makefiles". This should generate the makefiles for you automatically.
+
+5. Type "make" to build the inet executable (debug version). Use "make MODE=release"
+   to build release version.
+
+6. You can run specific examples by changing into the example's directory and executing "./run"
+
+```
+当然，你可以选择**mingwenv.cmd**命令窗口，输入以上指令进行编译安装。
+
+
+- 方法二：OMNeT++窗口安装
+
+&#160; &#160; &#160; &#160;一样的，在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个IDE的使用方式就是将INET库使用omnetpp打开，当然此时库文件inet已经在**samples**文件下，我们需要做的就是打开omnet IDE，然后导入整个inet工程。
+```
+If you are using the IDE:
+-------------------------
+3. Open the OMNeT++ IDE and choose the workspace where you have extracted the inet directory.
+   The extracted directory must be a subdirectory of the workspace dir.
+
+4. Import the project using: File | Import | General | Existing projects into Workspace.
+   Then select the workspace dir as the root directory, and be sure NOT to check the
+   "Copy projects into workspace" box. Click Finish.
+
+5. Open the project (if already not open) and wait until the indexer finishes.
+   Now you can build the project by pressing CTRL-B (Project | Build all)
+
+6. To run an example from the IDE open the example's directory in the Project Explorer view,
+   find the corresponding omnetpp.ini file. Right click on it and select Run As / Simulation.
+   This should create a Launch Configuration for this example.
+
+If the build was successful, you may try running the demo simulations.
+Change into examples/ and type "./rundemo".
+
+```
