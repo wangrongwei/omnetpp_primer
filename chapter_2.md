@@ -76,7 +76,27 @@ If you are building from command line:
 6. You can run specific examples by changing into the example's directory and executing "./run"
 
 ```
-当然，你可以选择**mingwenv.cmd**命令窗口，输入以上指令进行编译安装。
+当然，你可以选择**mingwenv.cmd**命令窗口，输入以上指令进行编译安装。上面的英文安装较为简洁，下面是作者使用命令窗口安装的过程：
+
+- [1] 在安装INET库之前，应先确保OMNeT++已经安装成功。进入到OMNeT++安装路径，找到**mingwenv.cmd**文件，双击执行，进入下图：
+
+<div align="center">
+<img src="img/chapter2/cmd.png" height="130" width="200" >
+<img src="img/chapter2/cmd2.png" height="130" width="200" >
+ </div>
+
+- [2] 接下来，使用命令：**cd samples/inet**，进入到samples下的inet，另可使用ls命令查看当前inet文件下各子文件。
+
+- [3] 然后，执行**make makefiles**命令生成编译整个inet库的makefile文件，结束以后输入命令**make**。到这来，使用命令窗口编译inet库就结束了。
+- [4] 最后需要在OMNeT++ IDE中Project Explore窗口空白处右击, 如图，使用Import功能导入已经编译好的inet库。
+
+<div align="center">
+<img src="img/chapter2/import.png" height="130" width="200" >
+<img src="img/chapter2/import2.png" height="130" width="200" >
+<img src="img/chapter2/import3.png" height="130" width="200" >
+
+ </div>
+
 
 
 - 方法二：OMNeT++窗口安装

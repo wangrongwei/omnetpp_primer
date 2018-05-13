@@ -1,42 +1,5 @@
-# 错误记录
-&#160; &#160; &#160; &#160; 在写这个文档的时候，由于准备资料不是很全，所有选择在此处备注进行无人机网络的设计过程中的各种配置错误，以后再加入到前面的笔记中。
+# 6.1 仿真结果分析
 
-## 6.1 在模块加入移动模块之后，仿真出现nan错误
-### 问题描述：
->对于某些
+&#160; &#160; &#160; &#160;OMNeT++有诸多工具对网络代码中统计的标量和矢量进行数据分析。
 
-加入移动模块以后，编译过程没有出错，但是当执行仿真程序的时候，出现一些nan错误提示。
-需要在仿真配置文件加入：
-
-```c
-**.constraintAreaMinX = 0m
-**.constraintAreaMinY = 0m
-**.constraintAreaMinZ = 0m
-**.constraintAreaMaxX = 5000m
-**.constraintAreaMaxY = 5000m
-**.constraintAreaMaxZ = 0m
-
-```
-
-移动模块配置：
-
-```c
-**.UAV[*].mobilityType = "MassMobility"#"RectangleMobility"#"MassMobility"
-**.UAV[*].mobility.initFromDisplayString = true
-**.UAV[*].mobility.changeInterval = truncnormal(2s, 0.5s)
-**.UAV[*].mobility.changeAngleBy = normal(0deg, 30deg)
-**.UAV[*].mobility.speed = truncnormal(250mps, 20mps)
-**.UAV[*].mobility.updateInterval = 100ms
-
-```
-
-## 6.2 模块内部的消息传输慢
-### 问题描述：
->在仿真大量的节点的时候，当节点内部消息只在节点内部模块之间传输的时候，节点内部的消息传输很慢，感觉总是被总是被节点外部的消息打断了，
-
-## 6.2 工程的例如cModule之类的类不能高亮显示？
-### 问题描述：
-> 原工程是可以高亮显示的，但是由于我在备份这个程序的时候可能方式不对，我采用的是在文件资源管理器的窗口复制原工程文件夹，没有在软件的窗口进行rename，可能是这个原因造成的。
-
-### 解决办法：
-在软件的窗口，对工程进行rename就行，编译一次，cMdoule等等关键词就可以高亮了。
+&#160; &#160; &#160; &#160;本章以一个AFDX网络的RC和BE消息的仿真结果为前提，依赖OMNeT++自带的工具集对这些结果进行分析，重点主要放在如何设置需要统计的标量和矢量？如何对最后的仿真结果进行操作得到我们想要的散点图、直方图等其他便于分析的数据图形。
