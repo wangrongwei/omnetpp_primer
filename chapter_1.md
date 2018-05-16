@@ -1,3 +1,76 @@
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+&nbsp;
+&nbsp;
+
+&nbsp;
+&nbsp;
+
+&nbsp;
+
+
+
+&nbsp;
+
+<div align="center">
+
+<img src="img/omnetpp-2.png" height="150" width="600" >
+
+ </div>
+
+
+
+
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+ <div align="center">
+
+ <img src="img/bookIndia.png" height="150" width="150" >
+
+  </div>
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
+ &nbsp;
+
 # 1.1 OMNeT++简介
 &#160; &#160; &#160; &#160;OMNeT++，一个基于eclipse开发套件的开源网络仿真工具，目前主要在高校实验室进行一些网络仿真测试，对一些算法进行对比，它可以供使用者进行完成以下开发：
 - **C/C++开发**
