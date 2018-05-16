@@ -87,3 +87,16 @@ void Router::TopoFind()
 }
 
 ```
+### 5 cMessage类相关的函数
+
+```c
+
+cMessage *bagReset;
+
+// bagReset->isScheduled() == 1 : 该消息已经传输完成
+// bagReset->isScheduled() == 0 : 该消息不在传输状态
+if (!bagReset->isScheduled()){
+        scheduleAt(simTime(), bagReset);
+}
+
+```
