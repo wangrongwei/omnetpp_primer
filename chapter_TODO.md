@@ -4,6 +4,8 @@
 - [2] 在一个复合模块下，如何访问同一级的其他模块？
 - [3] 如何得到某一个模块引用的ned路径？   
 - [4] 如何使用cTopology类遍历网络的拓扑来初始化路由表?
+- [5] 如何在omnet上使用OpenSceneGraph
+
 
 ## 二 详细内容
 
@@ -100,3 +102,8 @@ if (!bagReset->isScheduled()){
 }
 
 ```
+
+### 6 如何使用OpenSceneGraph
+其实在omnet中是可以直接使用OpenSceneGraph的，可怜的我尝试了安装了一下午，才知道omnet已经支持OpenSceneGraph了，以后补充这一点可以看：
+
+>file:///D:/omnetpp-5.2/doc/manual/index.html#sec:graphics:opp-api-for-osg
