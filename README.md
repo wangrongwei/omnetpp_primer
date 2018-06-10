@@ -34,7 +34,6 @@
 # 联系方式
 
 -   [**email**] wangrongwei2014@gmail.com
--   [**weibo**] [https://weibo.com/5557944077]()
 -   [**QQ**] 1312553554
 
 <div align="center">
