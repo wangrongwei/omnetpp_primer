@@ -123,3 +123,42 @@ Change into examples/ and type "./rundemo".
 
 ```
 &#160; &#160; &#160; &#160;根据上面的步骤，需要点击：**File | Import | General | Existing projects into Workspace** ，导入inet整个工程文件，对整个工程进行编译即可。
+
+
+# 2.4 常规使用
+
+## 2.4.1 导入工程
+&#160; &#160; &#160; &#160;其实作者觉得还是有必要把这一小节的内容加入其中，考虑了一下，这个软件的有些操作还是不太一样，可能初学者自己去找需要花大量的时间。</br>
+&#160; &#160; &#160; &#160;在学习如何导入工程前，先观察一张图：
+
+<div align="center">
+
+<img src="img/图2-4-1.png" height="400" width="700" >
+
+<b>图2-4-1 IDE视图</b>
+
+</div>
+
+&#160; &#160; &#160; &#160;图2-4-1中，左边窗口为**Project Explorer**，在软件安装首次打开**IDE**时，**Project Explorer**中已经默认有相关的**samples**目录下的工程，如果开发者想要打开已有的工程，需要在**Project Explorer**窗口空白处右击鼠标，进行**Import | General | Existing Projects into Workspace**，最后选择工程文件即可，不需要任何设置直接**finish**即可。其中相关的中间过程如下：
+
+<div align="center">
+
+<img src="img/图2-4-2.png" height="600" width="700" >
+
+<b>图2-4-2 点击Import后视图</b>
+
+</div>
+
+<div align="center">
+
+<img src="img/图2-4-3.png" height="700" width="600" >
+
+<b>图2-4-3 点击Existing Projects into Workspace后视图</b>
+
+</div>
+
+&#160; &#160; &#160; &#160;前面已经描述了相关过程，需要注意的是保证工程文件**不要放在有中文名的路径**下，如果包括的中文路径，在后期编译工程时，可能在**ned**文件下出现大量错误，无法识别**ned**文件路径。
+
+
+
+## 2.4.2 程序执行与调试
