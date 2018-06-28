@@ -38,7 +38,7 @@
 # 下载地址
 
 &#160; &#160; &#160; &#160;本书不定时更新，欢迎到
-[https://github.com/wangrongwei/omnetpp_primer](<>)
+[https://github.com/wangrongwei/omnetpp_primer](<https://github.com/wangrongwei/omnetpp_primer>)
 下载最新版本。</br>
 # 联系方式
 
