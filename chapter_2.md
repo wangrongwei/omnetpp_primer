@@ -29,7 +29,7 @@
 
 <div align="center">
 
-<img src="img/chapter2/doc.png" height="500" width="700" >
+<img src="img/chapter2/doc.png" height="520" width="700" >
 
 <b>图2-4-1 doc目录</b>
 
