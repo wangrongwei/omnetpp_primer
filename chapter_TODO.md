@@ -107,3 +107,52 @@ if (!bagReset->isScheduled()){
 其实在omnet中是可以直接使用OpenSceneGraph的，可怜的我尝试了安装了一下午，才知道omnet已经支持OpenSceneGraph了，以后补充这一点可以看：
 
 >file:///D:/omnetpp-5.2/doc/manual/index.html#sec:graphics:opp-api-for-osg
+
+
+### 使用send发送一个消息如何看这个消息是否发送完，然后再使用send函数
+
+send(pk, "line$o");
+
+```c
+
+simtime_t endTransmission =  gate("line$o")->getTransmissionChannel()->getTransmissionFinishTime()+ETHERNETFRAMEGAP;
+scheduleAt(endTransmission, endTransmissionEvent);
+
+
+然后再handlemessage函数里边：
+if (dynamic_cast<MessageAssist *>(msg)){
+    if (endTransmissionEvent->isScheduled()){
+         delete msg;
+    }
+    else{
+         scheduleMessage();
+         delete msg;
+    }
+}
+
+```
+检测好不好使。      
+
+
+
+### 7 如何检测一个信道上是否有消息传输
+
+```c
+cPacket *pkt = ...; // packet to be transmitted
+cChannel *txChannel = gate("out")->getTransmissionChannel();
+simtime_t txFinishTime = txChannel->getTransmissionFinishTime();
+if (txFinishTime <= simTime())
+{
+    // channel free; send out packet immediately
+    send(pkt, "out");
+}
+else
+{
+    // store packet and schedule timer; when the timer expires,
+    // the packet should be removed from the queue and sent out
+    txQueue.insert(pkt);
+    scheduleAt(txFinishTime, endTxMsg);
+}
+
+```
+上面的代码可以检测当一个信道上消息传输完成以后再传输其他消息。需要注意的是当<b>txFinishTime</b>为<b>-1</b>时，说明该门没有消息传输，可以直接发送。
