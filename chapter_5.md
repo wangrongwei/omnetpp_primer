@@ -148,10 +148,100 @@ for(cModule::SubmoduleIterator iter(getParentModule()); !iter.end(); iter++){
 ```
 &#160; &#160; &#160; &#160;上面的代码段涉及到了<b>OMNeT++</b>下的<b>SubmoduleIterator</b>迭代器，该迭代器在较多的库中都有使用，比如：<b>INET</b>，当然这种方式可以经过简单的修改也可以对简单的模块进行访问。在上面的代码段中，<b>getParentModule()</b>指明是当前模块的父模块，该代码目的就是在当前简单模块中，得到同一父模块下的<b>ES</b>复合模块的<b>cpu/mem</b>两个参数。
 
+## 5.2.4 技巧四：遍历所有节点
+&#160; &#160; &#160; &#160;在有些场景下，我们需要遍历所有节点，甚至是复合节点内部的模块，代码示例如下：
 
-## 5.2.4 技巧四：如何得到某一个模块引用的ned路径
+```c
+/*
+ * 在所有节点中寻找一个ID 等于当前模块的headId号的模块
+ */
+void Node::doNext()
+{
+    cModule *parent = getParentModule();
+    cModule *mod,*Head,*midmod;
+
+    //网络中的所有节点都遍历一次，包括复合模块下的子模块
+    for(int i=1;i<=cSimulation::getActiveSimulation()->getLastComponentId();i++){
+        int number_of_Bees = cSimulation::getActiveSimulation()->getLastComponentId();
+        cSimulation *simobj = cSimulation::getActiveSimulation();
+        //这里需要优化
+        mod = cSimulation::getActiveSimulation()->getModule(i);
+        if(strcmp(mod->getName(),"CenController") == 0){
+            //如果遍历到一个模块名为CenController的节点
+            continue;
+        }
+        else{
+            int j=0;
+            while(1){
+                string modname = cSimulation::getActiveSimulation()->getModule(i)->getName();
+                midmod=cSimulation::getActiveSimulation()->getModule(i);
+                Head=midmod->getSubmodule(this->clustername.c_str(),j)->getSubmodule("Wireless");
+                if(((Node*)Head)->myId == this->headId){
+                    //找到簇头节点,退出while循环
+                    break;
+                }
+                j++;
+            }
+            // 在到满足条件的Head节点，开始执行相关操作
+            ...
+            ...
+            ...
+            break;
+        }
+    }
+}
+
+```
+&#160; &#160; &#160; &#160;在上面的代码段中，可能有些诸如<b>“Wireless”</b>相关的过程与作者源代码本身的模块相关，本例只提供一种可参考的代码，具体运用于读者自己的项目中还需要做相关的移植。为了让读者更快的掌握这种方法，下面就代码段中的重要片段做一个简单的分析：
+- **for(int i=1;i<=cSimulation::getActiveSimulation()->getLastComponentId();i++)**</br>
+
+&#160; &#160; &#160; &#160;这一句<b>for</b>循环遍历当前网络场景中的模块，只遍历仿真场景中的节点，不包括节点内部的模块，下面用一个网络拓扑文件说明：
+
+```c
+network simplenet
+{
+    parameters:
+        ...
+        ...
+    submodules:
+
+        node1[x]: typeA {
+            parameters:
+                ...
+        }
+
+        node2[y]: typeB{
+            parameters:
+                ...
+        }
+
+        node3[z]: typeD {
+            parameters:
+                ...
+        }
+
+    connections allowunconnected:
+		...
+                ...
+}
+
+```
+对于上述网络拓扑，使用上面的<b>for</b>循环只能遍历<b>node1/node2/node3</b>，对于它们内部的子模块不在其内。当最终需要寻找的模块是其中一个的子模块，需要先遍历当父模块，然后使用<b>getSubmodule</b>函数遍历子模块。
+
+- <b>midmod = cSimulation::getActiveSimulation()->getModule(i)</b>
+
+&#160; &#160; &#160; &#160;紧接着上面的<b>for</b>循环，得到第i个模块的地址，如果该模块在网络中描述是用向量的方式需要使用：
+$$getSubmodule(“node_name”,j)$$
+即可得到<b>node_name[j]</b>所代表的模块。
+
+- <b>getSubmodule("modname")</b>
+
+&#160; &#160; &#160; &#160;该接口似乎使用频率较高，如何得到一个复合模块的指针，即可通过该接口得到内部子模块的指针，然后访问相关数据。
 
 
-## 5.2.5 技巧五：如何使用cTopology类遍历拓扑初始化路由表
+## 5.2.5 技巧五：如何得到某一个模块引用的ned路径
 
-## 5.2.6 技巧六：如何使用OpenSceneGraph
+
+## 5.2.6 技巧六：如何使用cTopology类遍历拓扑初始化路由表
+
+## 5.2.7 技巧七：如何使用OpenSceneGraph
