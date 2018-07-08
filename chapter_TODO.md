@@ -31,6 +31,57 @@ pRCBuffer = check_and_cast<RCBuffer *>(psubmodRC);
 
 ```
 
+### 2.1 访问所有节点
+
+```c
+
+void Node::doNext()
+{
+    char dis[50];
+    cModule* parent = getParentModule();
+    cModule* mod,*UAVHead,*UAVmod;
+
+    cGate* gOut;
+    cGate* gIn;
+
+    //显示蓝色
+    sprintf(dis,"p=%f,%f;i=device/drone4_64",this->xpos,this->ypos);
+    parent->setDisplayString(dis);
+
+    //testmod = cSimulation::getActiveSimulation()->getModule(1)->getSubmodule("UAVA",j)->getSubmodule("WirelessMod");
+    //网络中的所有节点都初始化
+    for(int i=1;i<=cSimulation::getActiveSimulation()->getLastComponentId();i++){
+
+        int number_of_Bees = cSimulation::getActiveSimulation()->getLastComponentId();
+
+        cSimulation *simobj = cSimulation::getActiveSimulation();
+        //这里需要优化
+        mod=cSimulation::getActiveSimulation()->getModule(i);
+        if(strcmp(mod->getName(),"CenController") == 0){
+            continue;
+        }
+        else{
+            int j=0;
+            while(1){
+                string modname = cSimulation::getActiveSimulation()->getModule(i)->getName();
+
+                UAVHead = cSimulation::getActiveSimulation()->getModule(i)->getSubmodule(this->clustername.c_str(),j)->getSubmodule("WirelessMod");
+                if(((Node*)UAVHead)->myId == this->headId){
+                    //找到簇头节点,退出while循环
+                    break;
+                }
+                j++;
+            }
+            //定一个时间，啥时候将这个id，pop出容器
+            break;
+        }
+    }
+}
+
+```
+
+
+
 ### 3 如何得到一个简单模块的引用的ned路径？
 
 ```c
