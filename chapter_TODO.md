@@ -170,7 +170,7 @@ simtime_t endTransmission =  gate("line$o")->getTransmissionChannel()->getTransm
 scheduleAt(endTransmission, endTransmissionEvent);
 
 
-然后再handlemessage函数里边：
+然后在handlemessage函数里边：
 if (dynamic_cast<MessageAssist *>(msg)){
     if (endTransmissionEvent->isScheduled()){
          delete msg;
