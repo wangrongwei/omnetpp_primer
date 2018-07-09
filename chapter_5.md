@@ -1,6 +1,6 @@
 # 5.1 经验之谈
 
-&#160; &#160; &#160; &#160;欢迎读者来到第四章的学习，本章作者打算从工程应用的角度，结合作者现有的仿真经验分享一些技巧，用套路二字来形容也不为过。</br>
+&#160; &#160; &#160; &#160;欢迎读者来到第五章的学习，本章作者打算从工程应用的角度，结合作者现有的仿真经验分享一些技巧，用套路二字来形容也不为过。</br>
 &#160; &#160; &#160; &#160;本章涉及的内容包括信道模型应用、节点分布相关、节点之间如何建立通信以及门向量的相关设置，同时也会涉及以上代码相关的说明，简而言之，本章采用情景分析的方法进行说明。最终也许读者会发现本章好多内容可以在<b>OMNeT++</b>社区提供的<b>Simulation Manual</b>手册中发现，所以推荐读者
 后续再阅读<b>Simulation Manual</b>手册进行深度研究。
 
@@ -317,6 +317,7 @@ void Router::TopoFind()
 *    -  void unweightedMultiShortestPathsTo(Node *target);
 *    -  void weightedMultiShortestPathsTo(Node *target);
 */
+
 //@{
 
 /**
@@ -338,10 +339,24 @@ virtual void calculateWeightedSingleShortestPathsTo(Node *target);
 
 - [3] **topo->getNode(i)->getModule()->par("address");**
 
-&#160; &#160; &#160; &#160;这里比较重要的便是<b>“address”</b>形参，在以太网中相当于**IP**地址。
+&#160; &#160; &#160; &#160;这里比较重要的便是<b>“address”</b>形参，在以太网中相当于**IP**地址，最终得到的<b>rtable[]</b>表其索引就是目的地址的<b>address</b>，索引对应的值就是该节点的门，从该门出去到目的节点路径最短。
 
 ## 5.2.7 技巧七：如何使用OpenSceneGraph
 
-&#160; &#160; &#160; &#160;其实在<b>OMNeT++</b>中是可以直接使用<b>OpenSceneGraph</b>的，可怜的我尝试了安装了一下午，才知道<b>OMNet++</b>已经支持<b>OpenSceneGraph</b>了，以后补充这一点可以看：
+&#160; &#160; &#160; &#160;其实在<b>OMNeT++</b>中是可以直接使用<b>OpenSceneGraph</b>的，可怜的作者尝试了安装了一下午，才知道<b>OMNet++</b>已经支持<b>OpenSceneGraph</b>了，以后补充这一点可以看：
 
->omnetpp-5.2/doc/manual/index.html#sec:graphics:opp-api-for-osg
+>omnetpp-5.2/doc/manual/index.html#sec:graphics:opp-api-for-osg </br>
+
+&#160; &#160; &#160; &#160; <b>samples</b>里已经有支持三维显示的仿真程序了，读者可自行运行看。
+
+
+## 5.2.8 技巧八：如何多次利用同一个<b>msg</b>
+
+&#160; &#160; &#160; &#160;在<b>OMNeT++</b>中，凡是使用<b>scheduleAt</b>调度的消息属于<b>Self-Messages</b>，其作用是用在模块本身调度事件使用的。有时需要利用同一个msg，但是中间必须使用<b>cancelEvent</b>函数取消掉上次，如下片段：
+```c
+//cMessage *msg
+if (msg->isScheduled())
+    cancelEvent(msg);
+scheduleAt(simTime() + delay, msg);
+```
+&#160; &#160; &#160; &#160;该代码段没有什么特别大的功能，主要是重复利用已经定义好的<b>msg</b>变量。
