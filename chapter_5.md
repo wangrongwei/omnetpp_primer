@@ -240,8 +240,108 @@ $$getSubmodule(“node_name”,j)$$
 
 
 ## 5.2.5 技巧五：如何得到某一个模块引用的ned路径
+&#160; &#160; &#160; &#160;为什么需要在一个程序中得到该<b>".ned"</b>引用的路径呢？因为在<b>OMNeT++</b>中，我们在设计一个复合模块的内部结构时，可以直接采用图形的方式编辑，相当于我们可以直接拖动设计好的简单模块到复合模块中，而有些简单模块在不同的复合模块中其功能还有所不同，因此在为该简单模块编写<b>.cc</b>文件时，我们需要检测一下当前本模块在什么模块下使用的，比如是在端系统还是交换机。得到一个模块的引用路径，其实就是一个接口函数的事，如下代码段：
+
+```c
+cModule *parent = getParentModule();
+const char *name = parent->getNedTypeName();
+
+if (strcmp(name, "SimpleNetwork.Node.SimpleNode") == 0){
+    cGate *outgate = gate("line$o");
+    cChannel *chan = outgate->findTransmissionChannel();
+    linkspeed = chan->getNominalDatarate();
+
+}
+else if (strcmp(name, "SimpleNetwork.Switch.SwitchPort") == 0){
+    //int id = parent->findGate("line$o");
+    cGate *outgate = parent->gate("line$o");
+    cChannel *chan = outgate->findTransmissionChannel();
+    linkspeed = chan->getNominalDatarate();
+}
+
+```
+&#160; &#160; &#160; &#160;该接口函数便是<b>getNedTypeName</b>，得到完整的路径后，使用<b>c</b>库函数<b>strcmp</b>进行判断即可。
 
 
 ## 5.2.6 技巧六：如何使用cTopology类遍历拓扑初始化路由表
+&#160; &#160; &#160; &#160;这是个好东西，其实在<b>OMNeT++</b>中其实提供的大量的接口函数，只是在不知道的前提下写相似的功能函数比较麻烦，这个接口函数完美解决我们寻找路由的门问题，在使用<b>send</b>函数传输消息的时候只要知道我们传输的目的节点便可，直接利用一个路由表即可，代码示例如下：
+
+```c
+/*
+ * 探测交换机网络的拓扑
+ */
+void Router::TopoFind()
+{
+    cTopology *topo = new cTopology("topo");
+
+    topo->extractByNedTypeName(cStringTokenizer("SimpleNetwork.Node.SimpleNode SimpleNetwork.Switch.SimpleSwitch").asVector());
+
+    EV << "cTopology found " << topo->getNumNodes() << " nodes\n";
+
+    //得到表示本节点的对象
+    cTopology::Node *thisNode = topo->getNodeFor(getParentModule());
+
+    // find and store next hops
+    for (int i = 0; i < topo->getNumNodes(); i++){
+        if (topo->getNode(i) == thisNode)
+            continue; // skip ourselves
+        //采用迪杰斯特拉算法计算到节点i的最短距离
+        topo->calculateUnweightedSingleShortestPathsTo(topo->getNode(i));
+        //本节点与外界连接的通道
+        if (thisNode->getNumPaths() == 0)
+            continue; // not connected
+
+        cGate *parentModuleGate = thisNode->getPath(0)->getLocalGate();
+        int gateIndex = parentModuleGate->getIndex();
+        int address = topo->getNode(i)->getModule()->par("address");
+        rtable[address] = gateIndex;
+        EV << "  towards address " << address << " gateIndex is " << gateIndex  << endl;
+    }
+    delete topo;
+}
+
+```
+该函数有三个比较重要的步骤：
+- [1] **extractByNedTypeName**
+
+&#160; &#160; &#160; &#160;为了得到一个路由表，我们需要指明需要遍历的节点类型。该函数便是指明遍历哪些节点。
+
+- [2] **calculateUnweightedSingleShortestPathsTo**
+
+&#160; &#160; &#160; &#160;得到路由表也涉及到路由算法的选择，在**ctopology.h**文件中有以下两个路由算法可供选择：
+
+```c
+/** @name Algorithms to find shortest paths. */
+/*
+* To be implemented:
+*    -  void unweightedMultiShortestPathsTo(Node *target);
+*    -  void weightedMultiShortestPathsTo(Node *target);
+*/
+//@{
+
+/**
+* Apply the Dijkstra algorithm to find all shortest paths to the given
+* graph node. The paths found can be extracted via Node's methods.
+*/
+virtual void calculateUnweightedSingleShortestPathsTo(Node *target);
+
+/**
+* Apply the Dijkstra algorithm to find all shortest paths to the given
+* graph node. The paths found can be extracted via Node's methods.
+* Uses weights in nodes and links.
+*/
+virtual void calculateWeightedSingleShortestPathsTo(Node *target);
+
+```
+代入参数就是目的节点地址，其他内容读者可自行探索。
+
+
+- [3] **topo->getNode(i)->getModule()->par("address");**
+
+&#160; &#160; &#160; &#160;这里比较重要的便是<b>“address”</b>形参，在以太网中相当于**IP**地址。
 
 ## 5.2.7 技巧七：如何使用OpenSceneGraph
+
+&#160; &#160; &#160; &#160;其实在<b>OMNeT++</b>中是可以直接使用<b>OpenSceneGraph</b>的，可怜的我尝试了安装了一下午，才知道<b>OMNet++</b>已经支持<b>OpenSceneGraph</b>了，以后补充这一点可以看：
+
+>omnetpp-5.2/doc/manual/index.html#sec:graphics:opp-api-for-osg
