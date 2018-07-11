@@ -5,7 +5,7 @@
 - [3] 如何得到某一个模块引用的ned路径？   
 - [4] 如何使用cTopology类遍历网络的拓扑来初始化路由表?
 - [5] 如何在omnet上使用OpenSceneGraph
-
+- [6] 如何从仿真场景读取节点的坐标
 
 ## 二 详细内容
 
@@ -207,3 +207,16 @@ else
 
 ```
 上面的代码可以检测当一个信道上消息传输完成以后再传输其他消息。需要注意的是当<b>txFinishTime</b>为<b>-1</b>时，说明该门没有消息传输，可以直接发送。
+
+### 8 如何从仿真场景读取节点坐标
+
+```c
+//按照最开始的网络拓扑（按圆形分布），得到每一个节点的坐标
+this->xpos = atof(parentdispStr.getTagArg("p", 0));
+this->ypos = atof(parentdispStr.getTagArg("p", 1));
+
+coord_X.setDoubleValue(this->xpos); //将仿真界面上的xpos改变
+coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
+
+```
+但是这个坐标读取的是显示的节点的坐标，但是这个显示是仿真设计时的界面，与仿真程序执行以后的界面不一样。
