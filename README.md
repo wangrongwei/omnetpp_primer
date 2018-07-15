@@ -9,9 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wangrongwei/OMNeTpp_Manual/stargazers"><img src="https://img.shields.io/github/stars/wangrongwei/OMNeTpp_Manual.svg?style=flat&label=Star"></a>
-  <a href="https://github.com/wangrongwei/OMNeTpp_Manual/fork"><img src="https://img.shields.io/github/forks/wangrongwei/OMNeTpp_Manual.svg?style=flat&label=Fork"></a>
-  <a href="https://github.com/wangrongwei/OMNeTpp_Manual/watchers"><img src="https://img.shields.io/github/watchers/wangrongwei/OMNeTpp_Manual.svg?style=flat&label=Watch"></a>
+  <a href="https://github.com/wangrongwei/omnetpp_primer/stargazers"><img src="https://img.shields.io/github/stars/wangrongwei/omnetpp_primer.svg?style=flat&label=Star"></a>
+  <a href="https://github.com/wangrongwei/omnetpp_primer/fork"><img src="https://img.shields.io/github/forks/wangrongwei/omnetpp_primer.svg?style=flat&label=Fork"></a>
+  <a href="https://github.com/wangrongwei/omnetpp_primer/watchers"><img src="https://img.shields.io/github/watchers/wangrongwei/omnetpp_primer.svg?style=flat&label=Watch"></a>
 
 </p>
 

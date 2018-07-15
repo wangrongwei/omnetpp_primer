@@ -6,6 +6,10 @@
 - [4] 如何使用cTopology类遍历网络的拓扑来初始化路由表?
 - [5] 如何在omnet上使用OpenSceneGraph
 - [6] 如何从仿真场景读取节点的坐标
+- [7] 使用sendDirect()函数
+- [8] 复合模块初始化时，先初始化节点的顺序
+- [9] 在initialize()中初始化类成员数组与在其他函数中的不同
+
 
 ## 二 详细内容
 
@@ -211,7 +215,8 @@ else
 ### 8 如何从仿真场景读取节点坐标
 
 ```c
-//按照最开始的网络拓扑（按圆形分布），得到每一个节点的坐标
+
+// 按照最开始的网络拓扑（按圆形分布），得到每一个节点的坐标
 this->xpos = atof(parentdispStr.getTagArg("p", 0));
 this->ypos = atof(parentdispStr.getTagArg("p", 1));
 
@@ -220,3 +225,16 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 
 ```
 但是这个坐标读取的是显示的节点的坐标，但是这个显示是仿真设计时的界面，与仿真程序执行以后的界面不一样。
+
+
+### 9 sendDirect函数
+```c
+cout<<"now, i doing debug!"<<endl;
+cModule *UAVx = cSimulation::getActiveSimulation()->getModule(1)->getSubmodule(this->clustername.c_str(),idtoindex[toUAVc->getUavAddr(i)]);//->getSubmodule("WirelessMod");
+sendDirect(toUAVc,UAVx,"uavgate$i",this->myId);
+
+```
+
+### 10 在initialize()中初始化类成员数组与在其他函数中的不同
+对于一个简单节点对象对于的类，类成员中包括数组成员，问题就是在其他自定义成员函数中初始化这个数组后，在其他自定义成员函数中访问，其值还是变成我在构造函数中初始化的值，不是我在成员函数中初始化后的值。
+但是如果我将这个函数的赋值操作放在initialize函数中，那么似乎就达到了我想要的效果，原因未知。
