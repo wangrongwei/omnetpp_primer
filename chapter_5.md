@@ -90,9 +90,50 @@ else
 
 - 提一提<b>sendDirect</b>函数
 ```c
-sendDirect(pkg,mod,"gate$i",index);
+sendDirect(cMessage *msg, cModule *mod, int gateId)
+sendDirect(cMessage *msg, cModule *mod, const char *gateName, int index=-1)
+sendDirect(cMessage *msg, cGate *gate)
+
+sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
+           cModule *mod, int gateId)
+sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
+           cModule *mod, const char *gateName, int index=-1)
+sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
+           cGate *gate)
+
 ```
-&#160; &#160; &#160; &#160;对于其他<b>send</b>类似的函数都是有线的传输方式，需要我们将节点连接才能发送消息，那么如何实现无线的发送方式呢？这个也正是<b>OMNeT++</b>中<b>wireless</b>仿真程序中使用的函数，该函数的参数与其他<b>send</b>函数不同，它需要指定目的节点，以及目的节点的门。相关详细可以阅读<b>INET</b>库代码，后续需要补充的是如何设置无线信道的参数。
+&#160; &#160; &#160; &#160;对于其他<b>send</b>类似的函数都是有线的传输方式，需要我们将节点连接才能发送消息，那么如何实现无线的发送方式呢？这个也正是<b>OMNeT++</b>中<b>wireless</b>仿真程序中使用的函数，该函数的参数与其他<b>send</b>函数不同，它需要指定目的节点，以及目的节点的门。相关详细可以阅读<b>INET</b>库代码。</br>
+&#160; &#160; &#160; &#160;这里有一个问题，当采用前三个函数进行消息传输时，传输的效果为一个圆点，如图**5-1**所示：
+<div align="center">
+
+<img src="img/chapter5/图-红点.png" height="280" width="430" >
+
+<b>图5-1 普通传输效果图</b>
+
+</div>
+&#160; &#160; &#160; &#160;如果在设计网络时，需要将包传输效果设置成图<b>5-2</b>所示，对于有线连接和无线连接的两个节点方法不同，对于有线连接的<b>send</b>函数无法在函数的参数上设置。需要在网络拓扑连接时设置好信道，如代码段<b>5-1</b>所示：
+
+```c
+channel Channel extends DatarateChannel
+{
+    delay = default(uniform(20ns, 100ns));
+    datarate = default(2000Mbps);
+}
+
+```
+&#160; &#160; &#160; &#160;对于无线连接的<b>sendDirect</b>函数，要想达到相同的效果，就没有设置<b>channel</b>一说了，在使用<b>sendDirect</b>函数时，有三个重载函数包括有两个参数<b>simtime_t propagationDelay/simtime_t duration</b>，一个是传播延时时间和持续时间，通过设置这两个参数可以达到图<b>5-2</b>的效果。
+
+
+<div align="center">
+
+<img src="img/chapter5/图-帧长图.png" height="280" width="430" >
+
+<b>图5-2 设置传输延迟和持续时间</b>
+
+</div>
+
+
+
 
 
 ## 5.2.3 技巧三：如何访问同一级的其他模块
