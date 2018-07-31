@@ -38,7 +38,7 @@
 # 下载地址
 
 &#160; &#160; &#160; &#160;本书不定时更新，欢迎读者到
-[https://github.com/wangrongwei/omnetpp_primer/pdf](<https://github.com/wangrongwei/omnetpp_primer/pdf>)
+[https://github.com/wangrongwei/omnetpp_primer/pdf](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)
 下载最新的omnetppp-zh.pdf（目前的pdf还存在不完美的地方，尤其是其中的文字无法复制，后期希望能找到解决办法）。</br>
 
 
