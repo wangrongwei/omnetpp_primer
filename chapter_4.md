@@ -1,7 +1,6 @@
 # 4.1 循规蹈矩
+
 &#160; &#160; &#160; &#160;在完成第五章后，考虑需要在之前加一章节关于<b>OMNeT++</b>类说明，在这个仿真软件中，主要使用的语言是<b>C++</b>，因此大多数数据类型是类或者结构，本章还是走老路线，注释这些数据类型，对类成员函数进行说明，可能与第五章有些重复的地方，但是其五章更多的偏向于实际应用。
-
-
 
 # 4.2 类说明
 
@@ -371,25 +370,23 @@ class SIM_API cModule : public cComponent //implies noncopyable
     // 移动该模块到另一个父模块下，一般用于移动场景。规则较复杂，可到原头文件查看使用说明
     virtual void changeParentTo(cModule *mod);
 };
-
-
 ```
 
 &#160; &#160; &#160; &#160;**cModule**是<b>OMNeT++</b>中用于代表一个模块的对象实体，如果读者在编写网络仿真代码时，这个模块可以是简单模块或者复合模块，当需要得到这个模块相关属性是可考虑到这个**cModule**类里边找找，说不定有意外的惊喜，也许有现成的函数实现你需要的功能。下面将这个类原型解剖看看：
 
+-   **迭代器：GateIterator**
 
-- **迭代器：GateIterator**
 ```c
 usage：
 for (cModule::GateIterator it(module); !it.end(); ++it) {
         cGate *gate = *it;
         ...
 }
-
 ```
+
 该迭代器可用于遍历模块**module**的门向量，得到该门可用于其他作用。
 
-- **迭代器：SubmoduleIterator**
+-   **迭代器：SubmoduleIterator**
 
 ```c
 usage:
@@ -398,9 +395,10 @@ for (cModule::SubmoduleIterator it(module); !it.end(); ++it) {
         ...
 }
 ```
+
 对于一个复合模块，包括多个简单模块或者复合模块，可使用该迭代器进行遍历操作，在第五章涉及到这个迭代器的使用。
 
-- **迭代器：ChannelIterator**
+-   **迭代器：ChannelIterator**
 
 ```c
 usage:
@@ -408,11 +406,12 @@ for (cModule::ChannelIterator it(module); !it.end(); ++it) {
         cChannel *channel = *it;
         ...
 }
-
 ```
+
 可用于遍历该模块的所有的信道。
 
 ## 4.2.2 cPar
+
 &#160; &#160; &#160; &#160;<b>cPar</b>同样是我们设置网络时不可避免的类，通过<b>cPar</b>得到节点在网络拓扑文件和配置文件中设置的参数，浏览完<b>cPar</b>所有成员函数，可以看出<b>cPar</b>基本提供了网络设计者想要的所有数据转换接口。
 
 ```c
@@ -811,10 +810,7 @@ class SIM_API cPar : public cObject
     // 与xmlVlaue()等同。注意：返回对象树的生命周期被限制了，具体看xmlValue说明。
     operator cXMLElement *() const  {return xmlValue();}
 };
-
-
 ```
-
 
 ## 4.2.3 cGate
 
