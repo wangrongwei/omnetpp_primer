@@ -1,16 +1,17 @@
 
-*.aux
-*.bbl
-*.bcf
-*.blg
-*.idx
-*.ilg
-*.ind
-*.log
-*.maf
-*.mtc
-*.mtc*
-*.bak
+latexbook/*.aux
+latexbook/*.bbl
+latexbook/*.bcf
+latexbook/*.blg
+latexbook/*.idx
+latexbook*.ilg
+latexbook/*.ind
+latexbook/*.log
+latexbook/*.maf
+latexbook/*.mtc
+latexbook/*.mtc*
+latexbook/*.bak
+latexbook/*.xml
 
 
 
