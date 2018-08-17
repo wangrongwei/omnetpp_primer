@@ -1,0 +1,59 @@
+\documentclass{tstextbook}
+
+%\usepackage{ctexart}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+
+%设置列表间距
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=3pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=3pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=3pt}
+
+%首行缩进
+\setlength{\parindent}{2em}
+
+\begin{document}
+
+\tsbook{omnetpp primer}
+       {花满心时亦满楼lollipop}
+       {Cover Designer}
+       {2018}
+       {xxxxx}{xxx--xx--xxxx--xx--x}{0.0}
+       {北航}
+       {City}
+
+
+%---------------------------------------------------------------------------
+% Chapters
+%---------------------------------------------------------------------------
+%---------------------------------------------------------------------------
+\include{chapter1}
+
+%---------------------------------------------------------------------------
+\include{chapter2}
+
+%---------------------------------------------------------------------------
+\include{chapter3}
+
+%---------------------------------------------------------------------------
+\include{chapter4}
+
+%---------------------------------------------------------------------------
+\include{chapter5}
+
+%---------------------------------------------------------------------------
+% Bibliography
+%---------------------------------------------------------------------------
+
+\addcontentsline{toc}{chapter}{\textcolor{tssteelblue}{Literature}}
+\printbibliography{}
+
+%---------------------------------------------------------------------------
+% Index
+%---------------------------------------------------------------------------
+
+\printindex
+
+\end{document}
