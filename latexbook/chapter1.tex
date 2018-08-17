@@ -1,0 +1,154 @@
+%---------------------------------------------------------------------------
+\chapter{OMNeT++}
+
+\begin{summary}
+OMNeT++是一个网络仿真工具，支持以太网、无线网等协议仿真，同时提供友好的仿真界面以及3D显示。
+\\
+\end{summary}
+
+\section{OMNeT++简介}
+
+OMNeT++，一个基于eclipse开发套件的开源网络仿真工具，目前主要在高校实验室进行一些网络仿真测试，对一些算法进行对比，它可以供使用者进行完成以下开发：
+\begin{itemize}
+\item C/C++开发;
+\item 网络仿真程序设计。
+\end{itemize}
+毫无疑问，基于<b>eclipse</b>的开发工具肯定能支持普通的<b>C/C++</b>工程。
+另外，在<b>OMNeT++</b>上网络仿真设计领域的优势在于，它是一个开源的项目，对大量的网络模型都提供代码支持。但是问题在于国内的确没有什么社区支持，出现问题只能自己解决，其实对于开源的项目大多存在这种问题，往往开源的项目，使用起来难度较大，开源项目往往比那些商业的软件开发难度较大，支持也较少，开源可不代表简单。</br>
+<b>OMNeT++</b>对初学者能力要求高，它假定使用者对编程有一定了解的，对eclipse开发环境也是特别熟悉的，另外这是一个网络仿真的软件，需要你对计算机网络有足够的认识，它提供了大量现有各种网络的仿真例子，如果你对网络认识足够强，那么这个软件你用起来会感到特别顺手。
+\\
+\section{我的初衷}
+
+这是一个计划，计划在2018年写一个OMNeT++编程指导手册。
+
+\begin{definition}
+  由于我在学习使用\bm{$OMNeT++$}的过程中，遇到很多问题，虽然在安装的过程中，没有遇到什么阻碍，如果只是简单的想仿真自带的例子，估计就只需要修改仿真程序配置文件，在加上能分析仿真结果就行，但是想要完全自己写一个仿真程序，这些是完全不够的，这方面可以上YouTobe上搜索，一堆OMNeT++仿真的程序，基本都是自己开发的，而在国内，各论文上的OMNeT++仿真应该是自己写的，但是基本不会提供源代码。\newline
+  我在后面的网络设计过程中，遇到很多疑问，每遇到一个问题都是花了两三个小时才解决，其中一些问题，也就是设置问题。特此总结一下我在OMNeT++里边踩的坑。
+\end{definition}
+
+\begin{remark}
+  A remark may be in order here. This definition is concerned with
+  \emph{rational} Cauchy sequences. We will later encounter a similar
+  definition of \emph{real} Cauchy sequences.
+\end{remark}
+
+\begin{example}[Solving the equation $x^2 = 2$]
+  Consider the equation $x^2 = 2$. It is easy to prove that this
+  equation does not have any rational solutions. However, consider
+  the following iteration formula:
+  \begin{equation}
+    x_n = \frac{x_{n-1} + 2 / x_{n - 1}}{2},
+  \end{equation}
+  where $n = 1,2,3,\ldots$ and $x_0 = 1$. The resulting sequence of
+  rational numbers quickly approaches a number in the vicinity of
+  $x = 1.4142135623731$:
+  \begin{displaymath}
+    \begin{array}{rclcl}
+      x_0 &=& 1 \\
+      x_{1} &=& (x_{0} + 2 / x_{0}) / 2 &=& 1.5 \\
+      x_{2} &=& (x_{1} + 2 / x_{1}) / 2 &\approx& 1.4166666666667 \\
+      x_{3} &=& (x_{2} + 2 / x_{2}) / 2 &\approx& 1.4142156862745 \\
+      x_{4} &=& (x_{3} + 2 / x_{3}) / 2 &\approx& 1.4142135623747 \\
+      x_{5} &=& (x_{4} + 2 / x_{4}) / 2 &\approx& 1.4142135623731 \\
+      x_{6} &=& (x_{5} + 2 / x_{5}) / 2 &\approx& 1.4142135623731 \\
+      x_{7} &=& (x_{6} + 2 / x_{6}) / 2 &\approx& 1.4142135623731 \\
+      x_{8} &=& (x_{7} + 2 / x_{7}) / 2 &\approx& 1.4142135623731 \\
+      x_{9} &=& (x_{8} + 2 / x_{8}) / 2 &\approx& 1.4142135623731 \\
+      x_{10} &=& (x_{9} + 2 / x_{9}) / 2 &\approx& 1.4142135623731
+    \end{array}
+  \end{displaymath}
+  We will later see that this iteration, or any other equivalent
+  iteration, defines the real number $\sqrt{2}$.
+\end{example}
+
+\section{目录}
+
+Now let's move on to the definition of the real number system. This
+may be defined in a multitude of ways, one of which is to think about
+a real number as a rational Cauchy sequence, or rather the equivalence
+class of Cauchy sequences ``converging to'' that number.
+
+\begin{definition}[The real numbers $\mathbb{R}$]
+  \label{def:realnumbers}
+  \index{real numbers}
+  The real numbers $\mathbb{R}$ is the set of all equivalence classes
+  of rational Cauchy sequences.
+\end{definition}
+
+Now that this is settled, lets prove the completeness of the real
+number system.
+
+\begin{theorem}[The completeness of the real numbers]
+  \label{th:realnumberscomplete}
+  \index{completeness of the real numbers}
+  Let $(x_n)_{n=0}^{\infty}$ be a sequence of real numbers.
+  Then $(x_n)_{n=0}^{\infty}$ is convergent if and only if
+  it is also a real Cauchy sequence.
+  \end{theorem}
+\begin{proof}
+  Write $x_m = [(x_{mn})_{n=0}^{\infty}]$ where
+  $x_{mn}$ is the $n$th number in a rational Cauchy sequence
+  representing the real number $x_m$. And so on\ldots.
+\end{proof}
+
+For further reading, there are several excellent works that one could
+cite, such as \cite{Tao2006,Turing1936}.
+
+\section*{Exercises}
+
+\begin{exercise}
+  Let $A = \{1, 2, 3\}$ and $B = \{2, 3, 4\}$.
+  Determine the following sets. \\
+  (a) $A \cup B$ \quad
+  (b) $A \cap B$ \quad
+  (c) $A \setminus B$ \quad
+  (d) $A \times B$
+\end{exercise}
+
+\begin{exercise}
+  Let $A = \{1, 3, 5, 7, 9\}$ and $B = \{2, 4, 6, 8, 10\}$.
+  Determine the following sets. \\
+  (a) $A \cup B$ \quad
+  (b) $A \cap B$ \quad
+  (c) $A \setminus B$ \quad
+  (d) $A \times B$
+\end{exercise}
+
+\begin{exercise}
+  Let $A = \{1, 2, 3\}$, $B = \{2, 3, 4\}$ and $C = \{3, 4, 5\}$.
+  Determine the following sets. \\
+  (a) $A \cup B \cup C$ \quad
+  (b) $A \cap B \cap C$ \quad
+  (c) $(B \setminus A) \cap C$ \quad
+  (d) $(A \times B) \times C$
+\end{exercise}
+
+\section*{Problem}
+
+\begin{problem}
+  Interpret the following set definition (Russell's paradox) and discuss
+  whether $X \in X$ or $X \notin X$:
+  \begin{equation}
+    X = \{x \mid x \notin x\}.
+  \end{equation}
+\end{problem}
+
+\section*{Computer exercises}
+
+\begin{programming}
+  Write a program that generates the sequence $(x_n)_{n=0}^{100}$
+  for $x_n = n$.
+\end{programming}
+
+\begin{programming}
+  Write a program that generates the odd numbers between $1$ and $100$.
+\end{programming}
+
+\begin{programming}
+  Write a program that computes the sum $\sum_{n=0}^{100} x_n$
+  for $x_n = n$.
+\end{programming}
+
+%---------------------------------------------------------------------------
+
+

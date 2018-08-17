@@ -1,0 +1,75 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Tao2006}{book}{}
+      \name{author}{1}{}{%
+        {{hash=4cea0d7ce90ed017dfa21b4cee6c72e9}{%
+           family={Tao},
+           familyi={T\bibinitperiod},
+           given={Terence},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Hindustan Book Agency}%
+      }
+      \strng{namehash}{4cea0d7ce90ed017dfa21b4cee6c72e9}
+      \strng{fullhash}{4cea0d7ce90ed017dfa21b4cee6c72e9}
+      \strng{bibnamehash}{4cea0d7ce90ed017dfa21b4cee6c72e9}
+      \strng{authorbibnamehash}{4cea0d7ce90ed017dfa21b4cee6c72e9}
+      \strng{authornamehash}{4cea0d7ce90ed017dfa21b4cee6c72e9}
+      \strng{authorfullhash}{4cea0d7ce90ed017dfa21b4cee6c72e9}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Analysis}
+      \field{volume}{1}
+      \field{year}{2006}
+    \endentry
+    \entry{Turing1936}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d6d9f41ce7ab57b0d45edbe153331923}{%
+           family={Turing},
+           familyi={T\bibinitperiod},
+           given={Alan},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d6d9f41ce7ab57b0d45edbe153331923}
+      \strng{fullhash}{d6d9f41ce7ab57b0d45edbe153331923}
+      \strng{bibnamehash}{d6d9f41ce7ab57b0d45edbe153331923}
+      \strng{authorbibnamehash}{d6d9f41ce7ab57b0d45edbe153331923}
+      \strng{authornamehash}{d6d9f41ce7ab57b0d45edbe153331923}
+      \strng{authorfullhash}{d6d9f41ce7ab57b0d45edbe153331923}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the London Mathematical Society}
+      \field{title}{On computable numbers, with an application to the Ent\-scheidungsproblem}
+      \field{volume}{42}
+      \field{year}{1936--7}
+      \field{pages}{230\bibrangedash 265}
+      \range{pages}{36}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
