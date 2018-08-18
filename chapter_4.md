@@ -1249,3 +1249,15 @@ class SIM_API cGate : public cObject, noncopyable
 &#160; &#160; &#160; &#160;
 ## 4.2.5 cExpression
 &#160; &#160; &#160; &#160;
+
+# 4.3 虚函数
+
+## 4.3.1 initialize函数
+
+
+## 4.3.1 handleMessage函数
+
+
+## 4.3.1 refreshDisplay函数
+
+## 4.3.1 finish函数

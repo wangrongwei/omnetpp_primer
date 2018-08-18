@@ -26,128 +26,20 @@ OMNeT++，一个基于eclipse开发套件的开源网络仿真工具，目前主
   我在后面的网络设计过程中，遇到很多疑问，每遇到一个问题都是花了两三个小时才解决，其中一些问题，也就是设置问题。特此总结一下我在OMNeT++里边踩的坑。
 \end{definition}
 
-\begin{remark}
-  A remark may be in order here. This definition is concerned with
-  \emph{rational} Cauchy sequences. We will later encounter a similar
-  definition of \emph{real} Cauchy sequences.
-\end{remark}
-
-\begin{example}[Solving the equation $x^2 = 2$]
-  Consider the equation $x^2 = 2$. It is easy to prove that this
-  equation does not have any rational solutions. However, consider
-  the following iteration formula:
-  \begin{equation}
-    x_n = \frac{x_{n-1} + 2 / x_{n - 1}}{2},
-  \end{equation}
-  where $n = 1,2,3,\ldots$ and $x_0 = 1$. The resulting sequence of
-  rational numbers quickly approaches a number in the vicinity of
-  $x = 1.4142135623731$:
-  \begin{displaymath}
-    \begin{array}{rclcl}
-      x_0 &=& 1 \\
-      x_{1} &=& (x_{0} + 2 / x_{0}) / 2 &=& 1.5 \\
-      x_{2} &=& (x_{1} + 2 / x_{1}) / 2 &\approx& 1.4166666666667 \\
-      x_{3} &=& (x_{2} + 2 / x_{2}) / 2 &\approx& 1.4142156862745 \\
-      x_{4} &=& (x_{3} + 2 / x_{3}) / 2 &\approx& 1.4142135623747 \\
-      x_{5} &=& (x_{4} + 2 / x_{4}) / 2 &\approx& 1.4142135623731 \\
-      x_{6} &=& (x_{5} + 2 / x_{5}) / 2 &\approx& 1.4142135623731 \\
-      x_{7} &=& (x_{6} + 2 / x_{6}) / 2 &\approx& 1.4142135623731 \\
-      x_{8} &=& (x_{7} + 2 / x_{7}) / 2 &\approx& 1.4142135623731 \\
-      x_{9} &=& (x_{8} + 2 / x_{8}) / 2 &\approx& 1.4142135623731 \\
-      x_{10} &=& (x_{9} + 2 / x_{9}) / 2 &\approx& 1.4142135623731
-    \end{array}
-  \end{displaymath}
-  We will later see that this iteration, or any other equivalent
-  iteration, defines the real number $\sqrt{2}$.
-\end{example}
 
 \section{目录}
 
-Now let's move on to the definition of the real number system. This
-may be defined in a multitude of ways, one of which is to think about
-a real number as a rational Cauchy sequence, or rather the equivalence
-class of Cauchy sequences ``converging to'' that number.
+本手册与现有的那两本书风格不同，我希望读者通过此手册可以快速的上手OMNeT++，快速的掌握OMNeT++提供的各种接口，目前包括以下内容：
 
-\begin{definition}[The real numbers $\mathbb{R}$]
-  \label{def:realnumbers}
-  \index{real numbers}
-  The real numbers $\mathbb{R}$ is the set of all equivalence classes
-  of rational Cauchy sequences.
-\end{definition}
-
-Now that this is settled, lets prove the completeness of the real
-number system.
-
-\begin{theorem}[The completeness of the real numbers]
-  \label{th:realnumberscomplete}
-  \index{completeness of the real numbers}
-  Let $(x_n)_{n=0}^{\infty}$ be a sequence of real numbers.
-  Then $(x_n)_{n=0}^{\infty}$ is convergent if and only if
-  it is also a real Cauchy sequence.
-  \end{theorem}
-\begin{proof}
-  Write $x_m = [(x_{mn})_{n=0}^{\infty}]$ where
-  $x_{mn}$ is the $n$th number in a rational Cauchy sequence
-  representing the real number $x_m$. And so on\ldots.
-\end{proof}
-
-For further reading, there are several excellent works that one could
-cite, such as \cite{Tao2006,Turing1936}.
-
-\section*{Exercises}
-
-\begin{exercise}
-  Let $A = \{1, 2, 3\}$ and $B = \{2, 3, 4\}$.
-  Determine the following sets. \\
-  (a) $A \cup B$ \quad
-  (b) $A \cap B$ \quad
-  (c) $A \setminus B$ \quad
-  (d) $A \times B$
-\end{exercise}
-
-\begin{exercise}
-  Let $A = \{1, 3, 5, 7, 9\}$ and $B = \{2, 4, 6, 8, 10\}$.
-  Determine the following sets. \\
-  (a) $A \cup B$ \quad
-  (b) $A \cap B$ \quad
-  (c) $A \setminus B$ \quad
-  (d) $A \times B$
-\end{exercise}
-
-\begin{exercise}
-  Let $A = \{1, 2, 3\}$, $B = \{2, 3, 4\}$ and $C = \{3, 4, 5\}$.
-  Determine the following sets. \\
-  (a) $A \cup B \cup C$ \quad
-  (b) $A \cap B \cap C$ \quad
-  (c) $(B \setminus A) \cap C$ \quad
-  (d) $(A \times B) \times C$
-\end{exercise}
-
-\section*{Problem}
-
-\begin{problem}
-  Interpret the following set definition (Russell's paradox) and discuss
-  whether $X \in X$ or $X \notin X$:
-  \begin{equation}
-    X = \{x \mid x \notin x\}.
-  \end{equation}
-\end{problem}
-
-\section*{Computer exercises}
-
-\begin{programming}
-  Write a program that generates the sequence $(x_n)_{n=0}^{100}$
-  for $x_n = n$.
-\end{programming}
-
-\begin{programming}
-  Write a program that generates the odd numbers between $1$ and $100$.
-\end{programming}
-
-\begin{programming}
-  Write a program that computes the sum $\sum_{n=0}^{100} x_n$
-  for $x_n = n$.
-\end{programming}
+\begin{itemize}
+	\item OMNeT++的安装
+	\item INET库的安装 INET库的基本使用
+	\item OMNeT++个性化设置
+	\item OMNeT++工程设计技巧
+	\item cModule | cPar | cGate | cTopology相关类使用
+	\item 仿真结果分析
+	\item 仿真错误记录
+\end{itemize}
 
 %---------------------------------------------------------------------------
 
