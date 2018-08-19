@@ -163,11 +163,16 @@ contents={\includegraphics[width=\paperwidth,height=\paperheight]{omnetppp-zh_co
 {\addvspace{14pt}\large\sffamily\bfseries}
 {\color{tssteelblue}\contentslabel[\Large\thecontentslabel]{2.25cm}}{}
 {\color{tssteelblue}\normalsize\sffamily\bfseries
- \;\titlerule*[.5pc]{.}\;\thecontentspage}
+ \;\titlerule*[0.5pc]{.}\;\thecontentspage}
 
 \titlecontents{section}[0cm]
-{\addvspace{6pt}\sffamily\bfseries}
-{\contentslabel[\thecontentslabel]{1.25cm}}{}
+{\addvspace{5pt}\sffamily\bfseries}
+{\contentslabel[\thecontentslabel]{1cm}}{}
+{\sffamily\hfill\color{black}\thecontentspage}[]
+
+\titlecontents{subsection}[1cm]
+{\addvspace{5pt}\sffamily\bfseries}
+{\contentslabel[\thecontentslabel]{1cm}}{}
 {\sffamily\hfill\color{black}\thecontentspage}[]
 
 % Front matter
