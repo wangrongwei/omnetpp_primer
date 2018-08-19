@@ -26,6 +26,7 @@
 \end{itemize}
 
 \subsection{图文并茂}
+
 其实这一部分没有说明必要，姑且就当作者无聊，还是想写写，我的原则就是坚持把故事讲得透彻明白，有些时候，在阅读别人博客的时候，老是会有很多疑问，其实博主以为读者懂，但读者的专业背景不一样，导致可能很简单的问题，还得下边留个言......好了，我们还是回到本节的话题上。\\
 以下三张图：
 \begin{figure}	
@@ -34,7 +35,7 @@
 	\caption{doc目录}\label{fig:1a}		
 \end{figure}
 
-上图文件是<b>OMNeT++</b>团队提供给开发者的基本帮助文档，我在写这个文档的时候，自我觉得还没有把这些文档都翻开看一遍，查阅这些文档久了，就会慢慢觉得这些资料本身已经够用了......我会在后续的文档中，描述一下<b>OMNeT++</b>提供给我们的地图。
+上图文件是<b>OMNeT++</b>团队提供给开发者的基本帮助文档，我在写这个文档的时候，自我觉得还没有把这些文档都翻开看一遍，查阅这些文档久了，就会慢慢觉得这些资料本身已经够用了......我会在后续的文档中，描述一下<b>OMNeT++</b>提供给我们的地图。\\
 
 \section{INET库}
 
@@ -48,7 +49,7 @@
 \item ipv6
 \end{itemize}
 
-等等，上面列举出的只是其中经常用到的一小部分，但是这也存在读者的不同研究背景，可能其中涉及的还不算很全。目前，我对于INET的使用较浅薄，水平还停留在调用INET库中的ned文件中的节点类型，或者其他诸如移动模型的水平上。在该小节，作者先为读者描述一下如何在<b>OMNeT++</b>下快速的使用INET库和目前我经常使用的技巧。\\
+等等，上面列举出的只是其中经常用到的一小部分，但是这也存在读者的不同研究背景，可能其中涉及的还不算很全。目前，我对于INET的使用较浅薄，水平还停留在调用INET库中的ned文件中的节点类型，或者其他诸如移动模型的水平上。在该小节，我先为读者描述一下如何在<b>OMNeT++</b>下快速的使用INET库和目前我经常使用的技巧。\\
 
 \subsection{INET库的安装}
 通常有两种方法安装INET，在安装之前，首先需要到:
@@ -58,12 +59,11 @@
 
 \begin{itemize}
 	\item 命令窗口安装INET
-	一样的，在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个IDE的使用方式就是将INET库使用<b>OMNeT++</b>打开，当然此时库文件inet已经在**samples**文件下，我们需要做的就是打开<b>OMNeT++ IDE</b> ，然后导入整个inet工程。
+	
+一样的，在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个IDE的使用方式就是将INET库使用<b>OMNeT++</b>打开，当然此时库文件inet已经在**samples**文件下，我们需要做的就是打开<b>OMNeT++ IDE</b> ，然后导入整个inet工程。
 		
 \begin{definition}
-```
 If you are using the IDE:\\
--------------------------\\
 3. Open the OMNeT++ IDE and choose the workspace where you have extracted the inet directory.\\
 The extracted directory must be a subdirectory of the workspace dir.
 
@@ -80,11 +80,32 @@ This should create a Launch Configuration for this example.
 
 If the build was successful, you may try running the demo simulations.
 Change into examples/ and type "./rundemo".
-
 \end{definition}
-		
-		
+			
 	\item OMNeT++窗口安装	
+	
+一样的，在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个IDE的使用方式就是将INET库使用<b>OMNeT++</b>打开，当然此时库文件inet已经在**samples**文件下，我们需要做的就是打开<b>OMNeT++ IDE</b> ，然后导入整个inet工程。
+\begin{definition}
+	If you are using the IDE:\\
+	3. Open the OMNeT++ IDE and choose the workspace where you have extracted the inet directory.
+	The extracted directory must be a subdirectory of the workspace dir.
+	
+	4. Import the project using: File | Import | General | Existing projects into Workspace.
+	Then select the workspace dir as the root directory, and be sure NOT to check the
+	"Copy projects into workspace" box. Click Finish.
+	
+	5. Open the project (if already not open) and wait until the indexer finishes.
+	Now you can build the project by pressing CTRL-B (Project | Build all)
+	
+	6. To run an example from the IDE open the example's directory in the Project Explorer view,
+	find the corresponding omnetpp.ini file. Right click on it and select Run As / Simulation.
+	This should create a Launch Configuration for this example.
+	
+	If the build was successful, you may try running the demo simulations.
+	Change into examples/ and type "./rundemo".
+\end{definition}
+根据上面的步骤，需要点击：File | Import | General | Existing projects into Workspace，导入inet整个工程文件，对整个工程进行编译即可。\\
+	
 \end{itemize}
 
 
