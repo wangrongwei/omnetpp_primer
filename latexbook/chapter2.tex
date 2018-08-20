@@ -110,6 +110,80 @@ Change into examples/ and type "./rundemo".
 
 
 \section{常规操作}
+\subsection{导入工程}
+其实我觉得还是有必要把这一小节的内容加入其中，考虑了一下，这个软件的有些操作还是不太一样，可能初学者自己去找需要花大量的时间。
+
+在学习如何导入工程前，先观察一张图：
+
+\begin{figure}	
+	\centering
+	\includegraphics[width=\textwidth]{../img/chapter2/IDE}
+	\caption{IDE视图}\label{fig:1a}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{../img/chapter2/click_import}
+	\caption{点击Import后视图}\label{fig:1a}	
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{../img/chapter2/ExistingProjects}
+	\caption{点击Existing Projects into Workspace后视图}\label{fig:1a}
+\end{figure}
+
+	
+前面已经描述了相关过程，需要注意的是保证工程文件**不要放在有中文名的路径**下，如果包括的中文路径，在后期编译工程时，可能在**ned**文件下出现大量错误，无法识别**ned**文件路径。\\ \\
+
+\subsection{程序执行与调试}
+
+导入了工程，如何执行程序和调试还是很重要的，尤其是对于<b>OMNeT++</b>工程，在**omnetpp**工程下有三种文件：**ned 、cpp和ini**，下面是这三种文件的介绍：
+
+\begin{itemize}
+	\item ned：网络拓扑描述文件、简单节点模型和复合节点模型；
+	\item cpp：cpp文件为描述简单节点编程，定义简单节点各种行为；
+	\item ini：ned文件中相关参数的配置，在ned文件中一般会设置诸如节点数量的变量，一般有默认值，但是为了修改方便，可以在ini文件里边直接配置修改；
+	\item msg：消息描述文件，会被oppmsgc转化成*m.cc或者h文件。
+\end{itemize}
+
+
+为了更好的说明以上三种文件在一个工作里边的关系，下面展示一张图：
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{../img/chapter2/compile_exec}
+	\caption{编译与执行仿真流程}\label{fig:1a}
+\end{figure}
+
+这张图还是比较重要的，尤其是当你发现你的ned或者ini文件不启作用的时候，可以根据上面的仿真程序流程思考一下找到bug所在。再这张图中，可以看出**Simulation program**就是我们工程生成的可执行文件**exe**，也许你会发现在我们执行程序的时候有两种选择：
+
+\begin{itemize}
+	\item Local C/C++ Application
+	\item OMNeT++ Simulation
+\end{itemize}
+
+这两种方式执行仿真程序有何不同了，结合**图2-4-4**，选择第一种执行方式其实就是执行的**Simulation program**，但是这种执行方式运行的仿真程序没有加入**ned**文件和**ini**配置文件，因此就是模型节点参数没有配置好或者就没有配置。第二种执行方式就比较完整了，其模型加入了**ned**文件和**ini**配置文件。其他类似问题读者可自行揣测。
+
+前面介绍这么多，还是直接进入主题，我们执行OMNeT++工程大致有三种方式：
+\begin{itemize}
+	\item 直接右击工程文件->**RUN as**->**Local C/C++ Application** 或者**OMNeT++ Simulation**；
+	\item 选中描述网络的**ned**文件，右击执行上面一样的操作；
+	\item 选择配置网络参数的**omnetppp.ini**文件，右击执行上面一样的操作。
+\end{itemize}
+
+对于上面执行工程的后两种方式一般都是可以的，但是对于第一种方式来说，需要执行**exe**文件直接在工程目录下，不能在工程目录的子文件中，否则就只能选择后面两种执行方式。
+
+关于OMNeT++工程如何调试不再说明，其调试的方式与程序执行的方式相似，同时与其他程序的调试一样使用**gdb**调试，其中设置断点、单步调试或者进入函数内部等基本一样，以及添加观察变量。
+
+
+
+
+
+
+
+
+
 
 
 
