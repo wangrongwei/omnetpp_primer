@@ -430,3 +430,25 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 
 ```
 需要再次提示的是这个坐标读取的是显示的节点的坐标，与节点在仿真场景上显示的位置可能没有关系。
+
+## 5.2.11 如何调用INET中的类
+&#160; &#160; &#160; &#160;有时候在仿真程序中有种需求：
+>需要在一个仿真程序中调用其他库中的函数，例如需要使用<b>INET</b>中相关类，那这时候的逻辑是什么？
+
+&#160; &#160; &#160; &#160;与在某一个工程下需要<b>import INET</b>中的NED模型，我们需要在工程的属性中<b>Project References</b>中勾上我们需要<b>import</b>的库，然后在工程的ned文件中添加ned模型路径。同时当我们设置了工程<b>Project References</b>，当编译该工程时，将会链接<b>Project References</b>中勾上的工程编译生成的库文件，其中涉及以下编译设置：
+```c
+// macros needed for building Windows DLLs
+#if defined(_WIN32)
+#  define OPP_DLLEXPORT  __declspec(dllexport)
+#  define OPP_DLLIMPORT  __declspec(dllimport)
+#else
+#  define OPP_DLLIMPORT
+#  define OPP_DLLEXPORT
+#endif
+
+```
+&#160; &#160; &#160; &#160;以上摘取自INET开源库中<b>platdefs.h</b>文件，其中比较重要的是当编译INET库时，编译默认选项会使用<b>__declspec(dllexport)</b>，当另一个仿真工程（使用了INET库中的类）编译时，将会以<b>__declspec(dllimport)</b>，因此工程不需要设置其他编译选项，但是需要将诸如<b>INET</b>编译生成的<b>.dll</b>或者<b>.a</b>拷贝一份到该工程目录下。
+
+- 注意：
+
+&#160; &#160; &#160; &#160;如果以上关系都满足了，再出现在链接工程的错误可能其其他导致的。
