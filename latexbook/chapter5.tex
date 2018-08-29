@@ -1,10 +1,56 @@
 \chapter{OMNeT++设计经验}
 
 \begin{summary}
-kkk\\
+欢迎读者来到第五章的学习，本章我打算从工程应用的角度，结合现有的仿真经验分享一些技巧，用套路二字来形容也不为过。
+本章涉及的内容包括信道模型应用、节点分布相关、节点之间如何建立通信以及门向量的相关设置，同时也会涉及以上代码相关的说明，简而言之，本章采用情景分析的方法进行说明。也许你会发现本章好多内容可以在<b>OMNeT++</b>社区提供的<b>Simulation Manual</b>手册中发现，所以推荐读者后续再阅读<b>Simulation Manual</b>手册进行深度研究。\\ \\
 \end{summary}
 
 \section{经验之谈}
+\subsection{技巧一：信道模型很重要}
+据说理想的运放可以摧毁整个地球，那么是不是理想的充电宝是不是充不满电，偏题了，那么理想的信道呢？
+当初我初次使用<b>OMNeT++</b>时，遇到一个问题：
+
+\begin{remark}
+在节点之间传输消息的时候，如何加快消息的传输速度？当节点数量较大的时候，需要较快的实现消息传送的效果。
+\end{remark}
+
+有此疑问是在运行社区提供的相关工程时发现在他们的的仿真场景中，两个节点似乎可以同时发送消息出去，给人一种并行运行的感觉，让我不得不怀疑是不是需要调用并行接口才能达到这种效果，并且也发现他们的仿真程序运行时间特别小，换句话说就是接近现实的时间级，而我的仿真程序中两个节点传输一个消息都到秒级了，问题很大。</br>
+
+最后发现这个问题与信道模型有关，也与下一小节的<b>send</b>函数相关。在<b>OMNeT++</b>中仿真的时候，如果没有添加信道模型，消息在两个节点之间传输线就是理想的信道模型，这个仿真信道会影响什么呢？\\
+
+
+\begin{itemize}
+	\item 仿真结果
+	\item 仿真现象
+\end{itemize}
+
+影响仿真结果好理解，仿真现象呢，那我们来看看仿真模型：
+
+\begin{lstseting}
+	channel Channel extends DatarateChannel
+	{
+		delay = default(uniform(20ns, 100ns));
+		datarate = default(1000Mbps);
+	}
+\end{lstseting}
+
+以上代码是一个简单的信道模型，将这个信道加入到传输线上将会有意想不到的效果。
+
+\subsection{技巧二：send函数有套路}
+\subsection{技巧三：如何访问同一级其他模块}
+\subsection{技巧四：遍历所有模块}
+\subsection{技巧五：如何得到摸一个模块引用的ned路径}
+
+\subsection{技巧六：使用cTopology类遍历拓扑初始化路由表}
+
+\subsection{技巧七：如何使用OpenSceneGraph}
+\subsection{技巧八：如何多次利用同一个msg}
+
+\subsection{技巧九：initialize函数的不同}
+\subsection{技巧十：如何从仿真场景读取节点坐标}\\
+\subsection{技巧十一：如何调用INET中的类}
+
+
 
 
 \section{设计技巧}
