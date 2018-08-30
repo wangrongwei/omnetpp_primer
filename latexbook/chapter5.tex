@@ -2,22 +2,21 @@
 
 \begin{summary}
 欢迎读者来到第五章的学习，本章我打算从工程应用的角度，结合现有的仿真经验分享一些技巧，用套路二字来形容也不为过。
-本章涉及的内容包括信道模型应用、节点分布相关、节点之间如何建立通信以及门向量的相关设置，同时也会涉及以上代码相关的说明，简而言之，本章采用情景分析的方法进行说明。也许你会发现本章好多内容可以在<b>OMNeT++</b>社区提供的<b>Simulation Manual</b>手册中发现，所以推荐读者后续再阅读<b>Simulation Manual</b>手册进行深度研究。\\ \\
+本章涉及的内容包括信道模型应用、节点分布相关、节点之间如何建立通信以及门向量的相关设置，同时也会涉及以上代码相关的说明，简而言之，本章采用情景分析的方法进行说明。也许你会发现本章好多内容可以在OMNeT++社区提供的Simulation Manual手册中发现，所以推荐读者后续再阅读Simulation Manual手册进行深度研究。\\ \\
 \end{summary}
 
 \section{经验之谈}
 \subsection{技巧一：信道模型很重要}
 据说理想的运放可以摧毁整个地球，那么是不是理想的充电宝是不是充不满电，偏题了，那么理想的信道呢？
-当初我初次使用<b>OMNeT++</b>时，遇到一个问题：
+当初我初次使用OMNeT++时，遇到一个问题：
 
 \begin{remark}
 在节点之间传输消息的时候，如何加快消息的传输速度？当节点数量较大的时候，需要较快的实现消息传送的效果。
 \end{remark}
 
-有此疑问是在运行社区提供的相关工程时发现在他们的的仿真场景中，两个节点似乎可以同时发送消息出去，给人一种并行运行的感觉，让我不得不怀疑是不是需要调用并行接口才能达到这种效果，并且也发现他们的仿真程序运行时间特别小，换句话说就是接近现实的时间级，而我的仿真程序中两个节点传输一个消息都到秒级了，问题很大。</br>
+有此疑问是在运行社区提供的相关工程时发现在他们的的仿真场景中，两个节点似乎可以同时发送消息出去，给人一种并行运行的感觉，让我不得不怀疑是不是需要调用并行接口才能达到这种效果，并且也发现他们的仿真程序运行时间特别小，换句话说就是接近现实的时间级，而我的仿真程序中两个节点传输一个消息都到秒级了，问题很大。
 
-最后发现这个问题与信道模型有关，也与下一小节的<b>send</b>函数相关。在<b>OMNeT++</b>中仿真的时候，如果没有添加信道模型，消息在两个节点之间传输线就是理想的信道模型，这个仿真信道会影响什么呢？\\
-
+最后发现这个问题与信道模型有关，也与下一小节的send函数相关。在OMNeT++中仿真的时候，如果没有添加信道模型，消息在两个节点之间传输线就是理想的信道模型，这个仿真信道会影响什么呢？\\
 
 \begin{itemize}
 	\item 仿真结果
@@ -26,17 +25,59 @@
 
 影响仿真结果好理解，仿真现象呢，那我们来看看仿真模型：
 
-\begin{lstseting}
-	channel Channel extends DatarateChannel
-	{
-		delay = default(uniform(20ns, 100ns));
-		datarate = default(1000Mbps);
-	}
-\end{lstseting}
+\begin{lstlisting}
+channel Channel extends DatarateChannel
+{
+	delay = default(uniform(20ns, 100ns));
+	datarate = default(1000Mbps);
+}
+\end{lstlisting}
 
-以上代码是一个简单的信道模型，将这个信道加入到传输线上将会有意想不到的效果。
+以上代码是一个简单的信道模型，将这个信道加入到传输线上将会有意想不到的效果。\\
 
 \subsection{技巧二：send函数有套路}
+不知道读者有时候有没有感觉到send函数很麻烦，send函数用于两个模块之间的消息传输，但是当我们需要发送多条消息的时候，我们不能使用for循环直接就上，其主要原因就上我们使用send函数发送的消息还没有到达目的节点，此时我们不能使用send函数发送下一条消息，那么怎么办呢？这里有两种方案：
+
+\begin{itemize}
+	\item 利用scheduleAt函数 
+	
+\begin{lstlisting}
+void Node::handleMessage(cMessage* msg)
+{
+	if(msg->isSelfMessage()){
+		if(msg->getKind() == SMSG_INIT){
+			...
+			...
+			cMessage* cloudMsg = new cMessage("hello");
+			cloudMsg->setKind(SMSG_INIT);//设置节点类型
+			//调度一个事件，发送消息给自己
+			scheduleAt(simTime()+0.01,cloudMsg);
+		}
+	}
+}
+\end{lstlisting}
+	
+通过使用scheduleAt函数使仿真时间走动，完成上一个消息的完成，这里补充一点，如果读者想使用延时来等待消息传输完成是不可行的，因为使用这种方法仿真时间是不会走动的。例如下面一段代码：
+
+\begin{lstlisting}
+time1 = simTime();
+func();
+time2 = simTime();
+\end{lstlisting}
+在上面这段代码中我们的使用func函数想使时间走动，但是实验结果告诉我们：
+$time1==time2$，经过多次多个地方验证，发现在OMNeT++中如果不调用与仿真时间相关的函数，仿真时间是不会走动的，与上面的实验现象是一致的。因此为了实现仿真时间的走动，我们可以采用上面scheduleAt函数自我调度一个时间然后再发送下一个消息。
+	\item 一定要采用send函数呢？\\
+上述采用scheduleAt的方法太麻烦，需要new一个消息，然后还需要定义一个SMSG\_INIT，另外无端增多handleMessage函数内容，这种方法的确不是特别简洁。这里再分享另一种方法：	
+	
+	
+	
+	\item 
+	
+\end{itemize}
+
+
+
+
 \subsection{技巧三：如何访问同一级其他模块}
 \subsection{技巧四：遍历所有模块}
 \subsection{技巧五：如何得到摸一个模块引用的ned路径}
@@ -47,7 +88,7 @@
 \subsection{技巧八：如何多次利用同一个msg}
 
 \subsection{技巧九：initialize函数的不同}
-\subsection{技巧十：如何从仿真场景读取节点坐标}\\
+\subsection{技巧十：如何从仿真场景读取节点坐标}
 \subsection{技巧十一：如何调用INET中的类}
 
 
