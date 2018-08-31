@@ -39,7 +39,7 @@ channel Channel extends DatarateChannel
 不知道读者有时候有没有感觉到send函数很麻烦，send函数用于两个模块之间的消息传输，但是当我们需要发送多条消息的时候，我们不能使用for循环直接就上，其主要原因就上我们使用send函数发送的消息还没有到达目的节点，此时我们不能使用send函数发送下一条消息，那么怎么办呢？这里有两种方案：
 
 \begin{itemize}
-	\item 利用scheduleAt函数 
+	\item 利用scheduleAt函数
 	
 \begin{lstlisting}
 void Node::handleMessage(cMessage* msg)
@@ -49,8 +49,8 @@ void Node::handleMessage(cMessage* msg)
 			...
 			...
 			cMessage* cloudMsg = new cMessage("hello");
-			cloudMsg->setKind(SMSG_INIT);//设置节点类型
-			//调度一个事件，发送消息给自己
+			cloudMsg->setKind(SMSG_INIT);
+			
 			scheduleAt(simTime()+0.01,cloudMsg);
 		}
 	}
@@ -71,7 +71,7 @@ $time1==time2$，经过多次多个地方验证，发现在OMNeT++中如果不�
 	
 	
 	
-	\item 
+	\item
 	
 \end{itemize}
 
