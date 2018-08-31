@@ -102,7 +102,7 @@
 
 <div align="center">
 
-<img src="img/chapter3/图3-3-2.png" height="700" width="650" >
+<img src="img/chapter3/picture3-3-2.png" height="700" width="650" >
 
 <font color="#00000" face="黑体">其他设置界面</font>
 
