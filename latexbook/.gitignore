@@ -4,17 +4,20 @@ latexbook/*.bbl
 latexbook/*.bcf
 latexbook/*.blg
 latexbook/*.idx
-latexbook*.ilg
+latexbook/*.ilg
 latexbook/*.ind
 latexbook/*.log
 latexbook/*.maf
 latexbook/*.mtc
 latexbook/*.mtc*
 latexbook/*.bak
-latexbook/*.xml
+latexbook/*.run.xml
 latexbook/*.gz
-latexbook/*synctex.*
+latexbook/*.synctex.gz
 latexbook/*.bib
+
+
+
 
 
 
