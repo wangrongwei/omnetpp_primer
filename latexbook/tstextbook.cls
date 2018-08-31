@@ -159,21 +159,21 @@ contents={\includegraphics[width=\paperwidth,height=\paperheight]{omnetppp-zh_co
 \RequirePackage{titletoc}
 \setcounter{tocdepth}{2}
 
-\titlecontents{chapter}[0cm]
+\titlecontents{chapter}[2.5cm]
 {\addvspace{14pt}\large\sffamily\bfseries}
 {\color{tssteelblue}\contentslabel[\Large\thecontentslabel]{2.25cm}}{}
 {\color{tssteelblue}\normalsize\sffamily\bfseries
  \;\titlerule*[0.5pc]{.}\;\thecontentspage}
 
-\titlecontents{section}[0cm]
+\titlecontents{section}[2.5cm]
 {\addvspace{5pt}\sffamily\bfseries}
 {\contentslabel[\thecontentslabel]{1cm}}{}
-{\sffamily\hfill\color{black}\thecontentspage}[]
+{\sffamily\color{black}\;\titlerule*[0.5pc]{.}\;\thecontentspage}[]
 
-\titlecontents{subsection}[1cm]
+\titlecontents{subsection}[3.5cm]
 {\addvspace{5pt}\sffamily\bfseries}
 {\contentslabel[\thecontentslabel]{1cm}}{}
-{\sffamily\hfill\color{black}\thecontentspage}[]
+{\sffamily\color{black}\;\titlerule*[0.5pc]{.}\;\thecontentspage}[]
 
 % Front matter
 %--------------------------------------------------------------------------
