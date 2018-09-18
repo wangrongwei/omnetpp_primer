@@ -12,6 +12,7 @@ latexbook/*.mtc
 latexbook/*.mtc*
 latexbook/*.bak
 latexbook/*.run.xml
+
 latexbook/*.gz
 latexbook/*.synctex.gz
 latexbook/*.bib
