@@ -53,7 +53,7 @@
 
 | 贡献者 | 贡献内容 |
 | ------ | -------- |
-| @花满心时亦满楼lollipop | 编写第一、二到七部分以及其他一些文章，并完善 pdf 格式排版|
+| @Zackary | 编写第一、二到七部分以及其他一些文章，并完善 pdf 格式排版|
 | @Kmtalexwang | 维护omnetppp_zh.pdf的LaTeX排版 |
 | @Stephenhua| 添加appendix中网络性能初版|
 | @Ericsyoung| 维护chapter_6.md仿真结果分析|
