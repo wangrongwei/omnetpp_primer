@@ -1,52 +1,3 @@
-
-&nbsp;
-&nbsp;
-&nbsp;
-
-&nbsp;
-&nbsp;
-
-<div align="center">
-
-<img src="img/omnetpp-2.png" height="150" width="600" >
-
- </div>
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
- <div align="center">
-
- <img src="img/bookIndia.png" height="150" width="150" >
-
-  </div>
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
- &nbsp;
-
-
- &nbsp;
-
- &nbsp;
-
 # 1.1 OMNeT++简介
 &#160; &#160; &#160; &#160;<b>OMNeT++</b>，一个基于<b>eclipse</b>开发套件的开源网络仿真工具，目前主要在高校实验室进行一些网络仿真测试，对一些算法进行对比，它可以供使用者进行完成以下开发：</br>
 - **C/C++开发**
@@ -64,7 +15,7 @@
 # 1.2 OMNeT++开源库
 &#160; &#160; &#160; &#160;下面简单介绍一下几种常见的开源库。
 
-- [ ] <b>INET</b>
+- INET
 
 由 Simucraft 公司主持开发，用于仿真有线及无线网络。
 
@@ -86,7 +37,7 @@
 
 - 官网：http://inet.omnetpp.org
 
-- [ ] <b>INETMANET</b>
+- INETMANET
 
 由 Simucraft 公司主持开发，用于仿真无线、有线网络，在INET 的基础上增加了大量的 MANET 协议，INETMANET= INET+MANET，在INET的基础上增加：
 
@@ -104,7 +55,7 @@
 
 - 官网：http://inet.omnetpp.org
 
-- [ ] <b>Mobility Framework</b>
+- Mobility Framework
 
 - 由 Simucraft 公司主持开发
 
@@ -114,7 +65,7 @@
 
 - 官网：http://mobility-fw.sourceforge.net/hp/index.html
 
-- [ ] <b>SensorSimulator</b>
+- SensorSimulator
 
 - 美国路易斯安娜州立大学开发
 
@@ -122,7 +73,7 @@
 
 - 官网：http://csc.lsu.edu/sensor_web/
 
-- [ ] <b>Castalia</b>
+- Castalia
 
 - 澳大利亚国家信息技术中心（NICTA）开发
 
@@ -146,7 +97,7 @@
 
 - 官网：https://github.com/boulis/Castalia
 
-- [ ] <b>OverSim</b>
+- OverSim
 
 - 德国德国卡尔斯鲁厄大学开发
 
