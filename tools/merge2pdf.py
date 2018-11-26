@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 '''
    #文件名：pdfmerge.py
    本脚本用来合并pdf文件，输出的pdf文件按输入的pdf文件名生成书签
    使用示例如下：
-   python3 merge2pdf.py -p "D:\git\omnetppp_primer\pdf" -o "omnetpp_primer-zh.pdf" -b True'
+   windows: python3 merge2pdf.py -p "D:\git\omnetppp_primer\pdf" -o "omnetpp_primer-zh.pdf" -b True'
 
+   linux: ./merge2pdf.py -p "../pdf/" -o "./omnetpp_primer-zh.pdf" -b True
    示例说明：
    要合并的pdf文件所在的路径： D:\pdf-files
    合并后的pdf文件的输出文件名：merged-out.pdf
@@ -33,6 +34,8 @@ def mergefiles(path, output_filename, import_bookmarks=False):
     # 默认情况下原始文件的书签不会导入，使用import_bookmarks=True可以将原文件所带的书签也导入到输出的pdf文件中
     merger = PdfFileMerger()
     filelist = getfilenames(filepath=path, file_ext='.pdf')
+    filelist.sort()
+
     if len(filelist) == 0:
         print("当前目录及子目录下不存在pdf文件")
         sys.exit()
