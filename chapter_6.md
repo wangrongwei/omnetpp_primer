@@ -160,7 +160,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/map.png" height="700" width="500" >
+<img src="img/chapter6/map_1.png" width="600" >
 
 <b>图6-16 常用符号</b>
 
