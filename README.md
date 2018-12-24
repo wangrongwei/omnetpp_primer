@@ -16,7 +16,9 @@
 </p>
 
 
+
 # 文档说明
+
 
 &#160; &#160; &#160; &#160;<b>omnetppp-zh.pdf</b>记录了我在设计无人机蜂群网络仿真过程中，从初学<b>OMNeT++</b>软件到能灵活使用各种接口所遇到的各种问题，苦于当初无处找到详细的<b>OMNeT++</b>工程开发资料，尤其是针对实际功能实现的代码说明资料基本没有。我在阅读大量的网络仿真程序后，慢慢的对这个软件的各种接口和配置才熟悉，同时也从官方提供的手册中提取出较为常用的接口进行说明，最后将我熟悉的套路总结成文档回馈开源。</br>
 &#160; &#160; &#160; &#160;由于我水平有限，难免会存在理解错误的地方，欢迎读者发邮件指出，如果您有其他宝贵的建议，也欢迎发邮件交流，希望这个文档能切切实实帮助到<b>OMNeT++</b>初学者。</br>
@@ -64,3 +66,11 @@
 
 # 授权许可
 GNU FDL 1.3 （GNU 自由文档许可证）
+
+
+[travis-image]: https://api.travis-ci.org/wangrongwei/omnetpp_primer.svg
+[travis-url]: https://travis-ci.org/wangrongwei/omnetpp_primer
+[npm-image]: https://img.shields.io/npm/v/omnetpp_primer.svg
+[npm-url]: https://npmjs.org/package/omnetpp_primer
+[downloads-image]: https://img.shields.io/npm/dm/omnetpp_primer.svg
+[downloads-url]: https://npmjs.org/package/omnetpp_primer
