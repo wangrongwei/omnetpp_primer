@@ -38,6 +38,17 @@
 
 
 
+# 工程目录
+
+- dirtree：工程目录树文件，陈列了当前工程各目录下子文件结构
+- img：omnetpp_primer_zh文档所需图片
+- latexbook：omnetpp_primer_zh文档LaTex排版（目前未排版完）
+- markdown-pdf：omnetpp_primer_zh文档Markdown版本（文字还需修改再精炼）
+- pdf：omnetpp_primer_zh文档pdf格式
+- tools：生成pdf相关工具（目前还在修改中，希望改成支持make命令）
+
+
+
 # 下载地址
 
 &#160; &#160; &#160; &#160;本书不定时更新，欢迎到
