@@ -42,7 +42,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-1.png" height="400" width="700" >
+<img src="../img/chapter6/6-1.png" height="400" width="700" >
 
 <b>图6-1 doc目录</b>
 </div>
@@ -50,7 +50,7 @@ cLongHistogram: \result\xxx.sca
 &#160; &#160; &#160; &#160;如图所示，<b>Project Explorer</b>中选中的文件就是我们的仿真结果。之后双击打开就可以查看里面的内容，这里我选择打开了<b>vec</b>文件。
 <div align="center">
 
-<img src="img/chapter6/6-2.png" height="500" width="500" >
+<img src="../img/chapter6/6-2.png" height="500" width="500" >
 
 <b>图6-2 doc目录</b>
 </div>
@@ -58,7 +58,7 @@ cLongHistogram: \result\xxx.sca
 然后会让我们建立新的分析文件。点击finish即可
 <div align="center">
 
-<img src="img/chapter6/6-3.png" height="400" width="650" >
+<img src="../img/chapter6/6-3.png" height="400" width="650" >
 
 <b>图6-3 doc目录</b>
 </div>
@@ -67,14 +67,14 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-4.png" height="300" width="500" >
+<img src="../img/chapter6/6-4.png" height="300" width="500" >
 
 <b>图6-4 doc目录</b>
 </div>
 
 <div align="center">
 
-<img src="img/chapter6/6-5.png" height="400" width="700" >
+<img src="../img/chapter6/6-5.png" height="400" width="700" >
 
 <b>图6-5 doc目录</b>
 </div>
@@ -83,7 +83,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-6.png" height="300" width="600" >
+<img src="../img/chapter6/6-6.png" height="300" width="600" >
 
 <b>图6-6 doc目录</b>
 </div>
@@ -92,7 +92,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-7.png" height="300" width="600" >
+<img src="../img/chapter6/6-7.png" height="300" width="600" >
 
 <b>图6-7 doc目录</b>
 </div>
@@ -101,14 +101,14 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-8.png" height="300" width="600" >
+<img src="../img/chapter6/6-8.png" height="300" width="600" >
 
 <b>图6-8 doc目录</b>
 </div>
 
 <div align="center">
 
-<img src="img/chapter6/6-9.png" height="300" width="600" >
+<img src="../img/chapter6/6-9.png" height="300" width="600" >
 
 <b>图6-9 doc目录</b>
 </div>
@@ -121,7 +121,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-10.png" height="300" width="600" >
+<img src="../img/chapter6/6-10.png" height="300" width="600" >
 
 <b>图6-10 doc目录</b>
 </div>
@@ -131,7 +131,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-11.png" height="350" width="600" >
+<img src="../img/chapter6/6-11.png" height="350" width="600" >
 
 <b>图5-11 doc目录</b>
 </div>
@@ -141,7 +141,7 @@ cLongHistogram: \result\xxx.sca
 ## 6.4 事件日志文件的使用
 &#160; &#160; &#160; &#160;事件日志文件（EventLog）所记录的内容包括用户仿真过程中各个模块发送的消息细节以及提示发送和消息接收的细节。在Tkenv界面进行仿真前，点击“Enable recording on/off”按钮，即可对仿真过程中的事件进行记录。
 
-![avatar](./img/chapter6/6-12.png)
+![avatar](./../img/chapter6/6-12.png)
 
 &#160; &#160; &#160; &#160;默认情况下，相应工程的result文件夹中会出现一个后缀为“.elog”的文件，即我们本次仿真记录所得的时间日志文件。这里需要特别注意的是，记录的数据数量会直接决定elog文件的大小，不仅会影响仿真的速度，还可能在仿真结束后，omnetpp无法打开过大的日志文件，导致闪退，严重时甚至出现过黑屏等情况。因此建议在使用时不要记录过长的时间或过多无用的内容。
 ### 6.4.1 序列图
@@ -149,7 +149,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/6-15.png" height="350" width="800" >
+<img src="../img/chapter6/6-15.png" height="350" width="800" >
 
 <b>图6-16 常用符号</b>
 
@@ -160,7 +160,7 @@ cLongHistogram: \result\xxx.sca
 
 <div align="center">
 
-<img src="img/chapter6/map_1.png" width="600" >
+<img src="../img/chapter6/map_1.png" width="600" >
 
 <b>图6-16 常用符号</b>
 
@@ -171,13 +171,13 @@ cLongHistogram: \result\xxx.sca
 &#160; &#160; &#160; &#160;事件日志表的事件记录分为三栏，依次是事件编号、仿真时间和事件的具体细节。
 善用过滤器来减少无用内容的显示对提高工作效率很有帮助，行过滤器可以过滤特定类型的显示行。同时，事件日志表支持导航历史纪录，每个用户停留超过三秒的位置都会被记录下来作为临时数据。
 
-![avatar](./img/chapter6/6-13.png)
+![avatar](./../img/chapter6/6-13.png)
 
 ### 6.4.2 个人体会
 &#160; &#160; &#160; &#160;首先第一点，一定不要让elog文件的体积过大，因为这很可能导致处理过程中的闪退。
 然后，过滤器是我最常用的功能。除了行过滤器外，序列图和事件日志表都支持同一个Filter。
 
-![avatar](./img/chapter6/6-14.png)
+![avatar](./../img/chapter6/6-14.png)
 
 如图所示，一般包括：
 范围过滤器：过滤掉elog中的起始和结束事件，有助于减少计算时间。
