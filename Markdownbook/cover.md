@@ -8,7 +8,7 @@
 
 <div align="center">
 
-<img src="img/omnetpp-2.png" height="150" width="600" >
+<img src="../img/omnetpp-2.png" height="150" width="600" >
 
  </div>
 
@@ -31,7 +31,7 @@
  &nbsp;
  <div align="center">
 
- <img src="img/bookIndia.png" height="150" width="150" >
+ <img src="../img/bookIndia.png" height="150" width="150" >
 
   </div>
  &nbsp;

@@ -30,7 +30,7 @@
 
 <div align="center">
 
-<img src="img/chapter2/doc.png" height="520" width="700" >
+<img src="../img/chapter2/doc.png" height="520" width="700" >
 
 <b>图2-4-1 doc目录</b>
 
@@ -84,8 +84,8 @@ If you are building from command line:
 - [1] 在安装INET库之前，应先确保OMNeT++已经安装成功。进入到<b>OMNeT++</b>安装路径，找到**mingwenv.cmd**文件，双击执行，进入下图：
 
 <div align="center">
-<img src="img/chapter2/cmd.png" height="300" width="500" >
-<img src="img/chapter2/cmd2.png" height="300" width="500" >
+<img src="../img/chapter2/cmd.png" height="300" width="500" >
+<img src="../img/chapter2/cmd2.png" height="300" width="500" >
  </div>
 
 - [2] 接下来，使用命令：**cd samples/inet**，进入到samples下的inet，另可使用ls命令查看当前inet文件下各子文件。
@@ -94,9 +94,9 @@ If you are building from command line:
 - [4] 最后需要在<b>OMNeT++ IDE</b>中Project Explore窗口空白处右击, 如图，使用Import功能导入已经编译好的inet库。过程如下图：
 
 <div align="center">
-<img src="img/chapter2/import.png" height="500" width="700" >
-<img src="img/chapter2/import2.png" height="500" width="700" >
-<img src="img/chapter2/import3.png" height="500" width="700" >
+<img src="../img/chapter2/import.png" height="500" width="700" >
+<img src="../img/chapter2/import2.png" height="500" width="700" >
+<img src="../img/chapter2/import3.png" height="500" width="700" >
 
  </div>
 
@@ -143,7 +143,7 @@ Change into examples/ and type "./rundemo".
 
 <div align="center">
 
-<img src="img/图2-4-1.png" height="400" width="700" >
+<img src="../img/图2-4-1.png" height="400" width="700" >
 
 <b>图2-4-1 IDE视图</b>
 
@@ -153,7 +153,7 @@ Change into examples/ and type "./rundemo".
 
 <div align="center">
 
-<img src="img/图2-4-2.png" height="600" width="700" >
+<img src="../img/图2-4-2.png" height="600" width="700" >
 
 <b>图2-4-2 点击Import后视图</b>
 
@@ -161,7 +161,7 @@ Change into examples/ and type "./rundemo".
 
 <div align="center">
 
-<img src="img/图2-4-3.png" height="700" width="600" >
+<img src="../img/图2-4-3.png" height="700" width="600" >
 
 <b>图2-4-3 点击Existing Projects into Workspace后视图</b>
 
@@ -181,7 +181,7 @@ Change into examples/ and type "./rundemo".
 &#160; &#160; &#160; &#160;为了更好的说明以上三种文件在一个工作里边的关系，下面展示一张图：
 <div align="center">
 
-<img src="img/图2-4-5.png" height="600" width="700" >
+<img src="../img/图2-4-5.png" height="600" width="700" >
 
 <b>图2-4-4 编译与执行仿真流程</b>
 
