@@ -104,7 +104,7 @@ sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
 &#160; &#160; &#160; &#160;这里有一个问题，当采用前三个函数进行消息传输时，传输的效果为一个圆点，如图**5-1**所示：
 <div align="center">
 
-<img src="img/chapter5/图-红点.png" height="280" width="430" >
+<img src="../img/chapter5/图-红点.png" height="280" width="430" >
 
 <b>图5-1 普通传输效果图</b>
 
@@ -124,7 +124,7 @@ channel Channel extends DatarateChannel
 
 <div align="center">
 
-<img src="img/chapter5/图-帧长图.png" height="280" width="430" >
+<img src="../img/chapter5/图-帧长图.png" height="280" width="430" >
 
 <b>图5-2 设置传输延迟和持续时间</b>
 
