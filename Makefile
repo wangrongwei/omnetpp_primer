@@ -5,7 +5,8 @@ METADATA = ebook/metadata.xml
 TOC = --toc --toc-depth=2 --epub-chapter-level=2 
 COVER_IMAGE = docs/cover.png
 LATEX_CLASS = book
-PANDOC_TEX = pandoc --from="markdown_mmd+link_attributes+backtick_code_blocks+fenced_code_attributes+raw_tex+latex_macros" $(TOC) --pdf-engine=xelatex -V documentclass=book
+TOOL_TEX = multimarkdown
+FLAG = -t latex meta.txt
 TEMPLATE=./pdf
 PREFACES =  ./chapter_1.md \
 			./chapter_1.md  \
@@ -23,6 +24,7 @@ CHAPTERS =	./chapter_1.md \
 CHAPTERS_PDF = $(shell echo $(CHAPTERS) | sed 's/.md/_pdf.md/g')
 APPENDIXS =	./appendix.md
 APPENDIXS_PDF = $(shell echo $(APPENDIXS) | sed 's/.md/_pdf.md/g')
+
 PDF_IMG = xxx.pdf xxx.pdf
 
 all: book
@@ -49,11 +51,14 @@ $(PREFACES_PDF) $(CHAPTERS_PDF) $(APPENDIXS_PDF): ./%_pdf.md : ./%.md
 #	编译时把<!--(pdf)和(pdf)-->去掉，把<!--(pdf-newline)--><br>替换成\newline{}，将svg替换成pdf
 	sed -i 's/<!--(pdf)//g;s/(pdf)-->//g;s/.svg)/.pdf)/g;s/<!--(pdf-newline)--><br>/\\newline{}/g' $@
 
-
+# multimarkdown -t latex meta.txt ../Markdownbook/cover.md -o preface.tex
+# multimarkdown -t latex meta.txt ../Markdownbook/chapter_*.md -o chapters.tex
+# multimarkdown -t latex meta.txt ../Markdownbook/appendix.md -o appendix.tex
 $(BOOKNAME).pdf: $(TITLE)  $(PREFACES_PDF) $(CHAPTERS_PDF) $(APPENDIXS_PDF) $(PDF_IMG)
-	$(PANDOC_TEX) ${PREFACES_PDF} -o preface.tex
-	$(PANDOC_TEX) ${CHAPTERS_PDF} -o chapters.tex
-	$(PANDOC_TEX) ${APPENDIXS_PDF} -o appendix.tex
+	$(TOOL_TEX) ${FLAG} $(PREFACES_PDF) -o preface.tex
+	$(TOOL_TEX) ${FLAG} ${CHAPTERS_PDF} -o chapters.tex
+	$(TOOL_TEX) ${FLAG} ${APPENDIXS_PDF} -o appendix.tex
+
 	${call pdfgen}
 
 define pdfgen	
