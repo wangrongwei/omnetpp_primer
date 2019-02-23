@@ -181,6 +181,8 @@
 \&\#160; \&\#160; \&\#160; \&\#160;其实这一部分没有说明必要，姑且就当作者无聊，还是想写写，我的原则就是坚持把故事讲得透彻明白，有些时候，在阅读别人博客的时候，老是会有很多疑问，其实博主以为读者懂，但读者的专业背景不一样，导致可能很简单的问题，还得下边留个言{\ldots}{\ldots}好了，我们还是回到本节的话题上。
 \&\#160; \&\#160; \&\#160; \&\#160; 以下三张图：
 
+图2--4--1 doc目录
+
 \&\#160; \&\#160; \&\#160; \&\#160;上图文件是OMNeT++团队提供给开发者的基本帮助文档，我在写这个文档的时候，自我觉得还没有把这些文档都翻开看一遍，查阅这些文档久了，就会慢慢觉得这些资料本身已经够用了{\ldots}{\ldots}我会在后续的文档中，描述一下OMNeT++提供给我们的地图。
 
 \section{INET库}
@@ -218,20 +220,20 @@
 
 \end{itemize}
 
-\&\#160; \&\#160; \&\#160; \&\#160;其实，如果需要为OMNeT++安装新的插件或者库，都可以通过命令行的形式进行安装，甚至，你可以在命令行的环境下对编写好的网络进行编译和运行。
+\&\#160; \&\#160; \&\#160; \&\#160;其实，如果需要为omnetpp安装新的插件或者库，都可以通过命令行的形式进行安装，甚至，你可以在命令行的环境下对编写好的网络进行编译和运行。
 \&\#160; \&\#160; \&\#160; \&\#160;我编写这个学习手册的原则，就是为读者提供一个学习OMNeT++的地图，而不是特别详细的字典，可能我的水平还远远没有达到写一本学习OMNeT++的大全。首先，安装这个INET库，我们到inet文件下看看有什么有用的文件没有，当然是先看看\textbf{README.md\textbf{了，这个文件提示我们安装请看：}INSTALL}，下面是这个INSTALL的英文：
 
 \begin{verbatim}
- If you are building from command line:
- --------------------------------------
- 3. Change to the INET directory.
- 
- 4. Type "make makefiles". This should generate the makefiles for you automatically.
- 
- 5. Type "make" to build the inet executable (debug version). Use "make MODE=release"
-    to build release version.
- 
- 6. You can run specific examples by changing into the example's directory and executing "./run"
+If you are building from command line:
+--------------------------------------
+3. Change to the INET directory.
+
+4. Type "make makefiles". This should generate the makefiles for you automatically.
+
+5. Type "make" to build the inet executable (debug version). Use "make MODE=release"
+   to build release version.
+
+6. You can run specific examples by changing into the example's directory and executing "./run"
 
 \end{verbatim}
 
@@ -295,7 +297,7 @@ Change into examples/ and type "./rundemo".
 \end{itemize}
 
 本节对该库安装进行简单说明。
-\&\#160; \&\#160; \&\#160; \&\#160;TTE4INET依赖于omnetpp-4.4.1和inet-2.1.0，旧版本的OMNeT++存在许多编译或者依赖设置等各种问题，例如：每次修改代码后，需要重新编译再执行，否则会直接直接原可执行文件，不会对修改的源代码进行重新编译；链接过程不智能，需在CONFIGNAME（gcc-release或gcc-debug）中寻找依赖库，若工程为release，而依赖库使用debug，那么将会存在找不到依赖库的链接错误，这是目前在使用OMNeT++旧版本中发现的问题。
+\&\#160; \&\#160; \&\#160; \&\#160;TTE4INET依赖于omnetpp-4.4.1和inet-2.1.0，旧版本的omnetpp存在许多编译或者依赖设置等各种问题，例如：每次修改代码后，需要重新编译再执行，否则会直接直接原可执行文件，不会对修改的源代码进行重新编译；链接过程不智能，需在CONFIGNAME（gcc-release或gcc-debug）中寻找依赖库，若工程为release，而依赖库使用debug，那么将会存在找不到依赖库的链接错误，这是目前在使用OMNeT++旧版本中发现的问题。
 
 \section{常规使用}
 \label{常规使用}
@@ -535,12 +537,12 @@ cpp高亮设置
 \section{类说明}
 \label{类说明}
 
-\subsection{cModule　}
-\label{cmodule　}
+\subsection{cModule}
+\label{cmodule}
 
 \&\#160; \&\#160; \&\#160; \&\#160;为了能更好的解释这个的库的使用，程序清单4.1为类cModule原型，cModule类在OMNeT++中表示一个节点的对象，这个节点可以是复合节点或者简单节点，通过这个类，程序员可以访问描述这个节点的.ned文件中设置的参数，或者是由omnetpp.ini传入的参数。简而言之，我们最后就是面向这些类进行网络设计。
 
-\begin{lstlisting}[language=c,caption=My]
+\begin{lstlisting}[language=c]
 程序清单4.1
 class SIM_API cModule : public cComponent //implies noncopyable
 {
@@ -551,26 +553,26 @@ class SIM_API cModule : public cComponent //implies noncopyable
 
   public:
     /*
-      * 模块内的迭代器
-      * Usage:
-              * for (cModule::GateIterator it(module); !it.end(); ++it) {
-      *     cGate *gate = *it;
-      *     ...
-      * }
-      */
+     * 模块门的迭代器
+     * Usage:
+     * for (cModule::GateIterator it(module); !it.end(); ++it) {
+     *     cGate *gate = *it;
+     *     ...
+     * }
+     */
     class SIM_API GateIterator
     {
       ...
     };
 
     /*
-      * 复合模块的子模块迭代器
-      * Usage:
-      * for (cModule::SubmoduleIterator it(module); !it.end(); ++it) {
-      *     cModule *submodule = *it;
-      *     ...
-      * }
-      */
+     * 复合模块的子模块迭代器
+     * Usage:
+     * for (cModule::SubmoduleIterator it(module); !it.end(); ++it) {
+     *     cModule *submodule = *it;
+     *     ...
+     * }
+     */
     class SIM_API SubmoduleIterator
     {
       ...
@@ -595,10 +597,10 @@ class SIM_API cModule : public cComponent //implies noncopyable
     bool isRecordEvents() const  {return flags&FL_RECORD_EVENTS;}
 
   public:
- #ifdef USE_OMNETPP4x_FINGERPRINTS
+#ifdef USE_OMNETPP4x_FINGERPRINTS
     // internal: returns OMNeT++ V4.x compatible module ID
     int getVersion4ModuleId() const { return version4ModuleId; }
- #endif
+#endif
 
     // internal: may only be called between simulations, when no modules exist
     static void clearNamePools();
@@ -1001,10 +1003,10 @@ class SIM_API cPar : public cObject
     // internal
     cParImpl *copyIfShared();
 
-        #ifdef SIMFRONTEND_SUPPORT
+#ifdef SIMFRONTEND_SUPPORT
     // internal
     virtual bool hasChangedSince(int64_t lastRefreshSerial);
-        #endif
+#endif
 
   public:
     /** @name Redefined cObject methods */
@@ -1451,10 +1453,10 @@ class SIM_API cGate : public cObject, noncopyable
     // internal
     void checkChannels() const;
 
-        #ifdef SIMFRONTEND_SUPPORT
+#ifdef SIMFRONTEND_SUPPORT
     // internal
     virtual bool hasChangedSince(int64_t lastRefreshSerial);
-        #endif
+#endif
 
   public:
     /** @name Redefined cObject member functions */
@@ -1784,6 +1786,7 @@ class SIM_API cGate : public cObject, noncopyable
     void setDisplayString(const char *dispstr);
     //@}
 };
+
 
 \end{lstlisting}
 
@@ -2289,13 +2292,13 @@ class SIM_API cLogProxy
 
 \&\#160; \&\#160; \&\#160; \&\#160;影响仿真结果好理解，仿真现象呢，那我们来看看仿真模型：
 
-\begin{verbatim}
+\begin{lstlisting}[language=c,caption=My]
 channel Channel extends DatarateChannel
 {
     delay = default(uniform(20ns, 100ns));
     datarate = default(1000Mbps);
 }
-\end{verbatim}
+\end{lstlisting}
 
 以上代码是一个简单的信道模型，将这个信道加入到传输线上将会有意想不到的效果。
 
@@ -2316,9 +2319,9 @@ void Node::handleMessage(cMessage* msg)
         if(msg->getKind()==SMSG_INIT){
                 ...
                 ...
-            cMessage* cloudMsg = new cMessage("hello");
-            cloudMsg->setKind(SMSG_INIT);//设置节点类型
-            scheduleAt(simTime()+0.01,cloudMsg); //调度一个事件，发送消息给自己
+		cMessage* cloudMsg = new cMessage("hello");
+		cloudMsg->setKind(SMSG_INIT);//设置节点类型
+		scheduleAt(simTime()+0.01,cloudMsg); //调度一个事件，发送消息给自己
         }
     }
 }
@@ -2326,7 +2329,7 @@ void Node::handleMessage(cMessage* msg)
 
 \&\#160; \&\#160; \&\#160; \&\#160;通过使用scheduleAt函数使仿真时间走动，完成上一个消息的完成，这里补充一点，如果读者想使用延时来等待消息传输完成是不可行的，因为使用这种方法仿真时间是不会走动的。例如下面一段代码：
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c,caption=My]
 time1 = simTime();
 func();
 time2 = simTime();
@@ -2343,7 +2346,7 @@ time2 = simTime();
 
 \&\#160; \&\#160; \&\#160; \&\#160;上述采用scheduleAt的方法太麻烦，需要\textbf{new}一个消息，然后还需要定义一个SMSG\_INIT，另外无端增多handleMessage函数内容，这种方法的确不是特别简洁。这里再分享另一种方法：
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c,caption=My]
 cPacket *pkt = ...; // packet to be transmitted
 cChannel *txChannel = gate("out")->getTransmissionChannel();
 simtime_t txFinishTime = txChannel->getTransmissionFinishTime();
@@ -2370,17 +2373,17 @@ else
 
 \end{itemize}
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c,caption=My]
 sendDirect(cMessage *msg, cModule *mod, int gateId)
 sendDirect(cMessage *msg, cModule *mod, const char *gateName, int index=-1)
 sendDirect(cMessage *msg, cGate *gate)
 
 sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
-    cModule *mod, int gateId)
+           cModule *mod, int gateId)
 sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
-    cModule *mod, const char *gateName, int index=-1)
+           cModule *mod, const char *gateName, int index=-1)
 sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
-    cGate *gate)
+           cGate *gate)
 
 \end{lstlisting}
 
@@ -2389,14 +2392,14 @@ sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
 
 图5--1 普通传输效果图
 
-\begin{verbatim}
+\begin{lstlisting}[language=c]
 channel Channel extends DatarateChannel
 {
     delay = default(uniform(20ns, 100ns));
     datarate = default(2000Mbps);
 }
 
-\end{verbatim}
+\end{lstlisting}
 
 \&\#160; \&\#160; \&\#160; \&\#160;对于无线连接的sendDirect函数，要想达到相同的效果，就没有设置channel一说了，在使用sendDirect函数时，有三个重载函数包括有两个参数simtime\_t propagationDelay\slash simtime\_t duration，一个是传播延时时间和持续时间，通过设置这两个参数可以达到图5--2的效果。
 
@@ -2424,23 +2427,23 @@ pRCBuffer = check_and_cast<RCBuffer *>(psubmodRC);
 
 \&\#160; \&\#160; \&\#160; \&\#160;上面的代码片段主要通过getParentModule和getSubmodule两个接口得到指向目的模块的指针，得到指针相当于我们拿到了这个目的模块的所有，需要注意的是这种方式的前提是目的模块是一个简单模块，需要与复合模块区分开，在OMNeT++中复合模块只有对应的\textbf{.ned}文件，其描述方式如下：
 
-\begin{verbatim}
+\begin{lstlisting}[language=c]
 module Node{
         parameters:
-        ...
-    gates:
-    ...
+    	...
+	gates:
+	...
 }
-\end{verbatim}
+\end{lstlisting}
 
 而简单模块有三个文件：\textbf{.nde、.cc、.h}，其.ned文件中描述方式如下：
 
 \begin{verbatim}
 simple Node{
-    parameters:
-        ...
-    gates:
-    ...
+	parameters:
+    	...
+	gates:
+	...
 }
 \end{verbatim}
 
@@ -2448,23 +2451,22 @@ simple Node{
 
 \begin{lstlisting}[language=c]
 // 得到当前父模块下的所以模块
-
 for(cModule::SubmoduleIterator iter(getParentModule()); !iter.end(); iter++){
-string ES = string("ES");
-cModule *submodule = *iter;
-string ESnode = string(submodule->getFullName(),0,2);
-// 判断是否是ES节点
-if(ESnode == ES){
-        // 访问父模块参数
-        string realname = string(submodule->getFullName());
-        EScpu += submodule->par("cpu").longValue();
-        ESmem += submodule->par("mem").longValue();
+        string ES = string("ES");
+        cModule *submodule = *iter;
+        string ESnode = string(submodule->getFullName(),0,2);
+        // 判断是否是ES节点
+        if(ESnode == ES){
+                // 访问父模块参数
+                string realname = string(submodule->getFullName());
+                EScpu += submodule->par("cpu").longValue();
+                ESmem += submodule->par("mem").longValue();
 
-        cout<<EScpu<<" "<<ESmem<<endl;
-}
-else{
-        continue;
-}
+                cout<<EScpu<<" "<<ESmem<<endl;
+        }
+        else{
+                continue;
+        }
 }
 \end{lstlisting}
 
@@ -2477,8 +2479,8 @@ else{
 
 \begin{lstlisting}[language=c]
 /*
-    * 在所有节点中寻找一个ID 等于当前模块的headId号的模块
-    */
+ * 在所有节点中寻找一个ID 等于当前模块的headId号的模块
+ */
 void Node::doNext()
 {
     cModule *parent = getParentModule();
@@ -2549,8 +2551,8 @@ network simplenet
                 ...
         }
 
-        connections allowunconnected:
-                ...
+    connections allowunconnected:
+		...
                 ...
 }
 
@@ -2607,13 +2609,13 @@ else if (strcmp(name, "SimpleNetwork.Switch.SwitchPort") == 0){
 
 \begin{lstlisting}[language=c]
 /*
-    * 探测交换机网络的拓扑
-    */
+ * 探测交换机网络的拓扑
+ */
 void Router::TopoFind()
 {
     cTopology *topo = new cTopology("topo");
 
-    topo->extractByNedTypeName(cStringTokenizer("SimpleNetwork.Node.SimpleNode               SimpleNetwork.Switch.SimpleSwitch").asVector());
+    topo->extractByNedTypeName(cStringTokenizer("SimpleNetwork.Node.SimpleNode SimpleNetwork.Switch.SimpleSwitch").asVector());
 
     EV << "cTopology found " << topo->getNumNodes() << " nodes\n";
 
@@ -2710,7 +2712,7 @@ omnetpp-5.2\slash doc\slash manual\slash index.html\#sec:graphics:opp-api-for-os
 \begin{lstlisting}[language=c]
 //cMessage *msg
 if (msg->isScheduled())
-cancelEvent(msg);
+    cancelEvent(msg);
 scheduleAt(simTime() + delay, msg);
 \end{lstlisting}
 
@@ -2763,6 +2765,7 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 #  define OPP_DLLIMPORT
 #  define OPP_DLLEXPORT
 #endif
+
 \end{lstlisting}
 
 \&\#160; \&\#160; \&\#160; \&\#160;以上摘取自INET开源库中platdefs.h文件，其中比较重要的是当编译INET库时，编译默认选项会使用\_\_declspec(dllexport)，当另一个仿真工程（使用了INET库中的类）编译时，将会以\_\_declspec(dllimport)，因此工程不需要设置其他编译选项，但是需要将诸如INET编译生成的.dll或者.a拷贝一份到该工程目录下。
@@ -2778,3 +2781,242 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 \label{本章小结}
 
 \&\#160; \&\#160; \&\#160; \textbf{OMNeT++\textbf{仿真内核提供的丰富的仿真接口，使用}OMNeT++\textbf{进行仿真，在掌握一定的}C++}编程方法以后，阅读 \&\#160; \textbf{OMNeT++}相关类的描述可能有意外的收获，找到合适的接口进行仿真。
+
+\chapter{数据统计与仿真分析}
+\label{数据统计与仿真分析}
+
+\&\#160; \&\#160; \&\#160; \&\#160;OMNeT++有诸多工具对网络代码中统计的标量和矢量进行数据分析。
+\&\#160; \&\#160; \&\#160; \&\#160;本章以一个AFDX网络的RC和BE消息的仿真结果为前提，依赖OMNeT++自带的工具集对这些结果进行分析，重点主要放在如何设置需要统计的标量和矢量？如何对最后的仿真结果进行操作得到我们想要的散点图、直方图等其他便于分析的数据图形。
+
+\section{仿真结果有哪些}
+\label{仿真结果有哪些}
+
+\&\#160; \&\#160; \&\#160; \&\#160;先备注一下，每次运行完仿真后，将会产生三个文件：
+.sca .vci .vec，点击.vec文件将会生成.anf文件，这个.anf文件当我们下一次重新运行仿真程序的时候，会更新，不需要删除后执行仿真程序。
+
+\section{仿真结果的获取}
+\label{仿真结果的获取}
+
+\&\#160; \&\#160; \&\#160; \&\#160;在平常各种各样的仿真实验中，首先我们需要去获取所需的结果信息。在OMNeT++中有以下几种常用的获取仿真结果的方式，这里同时简单描述一下它们的用法。
+
+\begin{itemize}
+\item cLongHistogram：记录数据然后实现等距直方图 
+定义：cLongHistogram hopCountStats;
+我们可以对名称进行设置，如hopCountStats.setName(“hopcountStats”);
+设置上限值：hopCountStats.setRangeAutoUpper(“0,10,1.5”);
+记录数据：hopCountStats.collect(hopcount);
+一些其他的属性如getMin()、getMax()、getMean()以及getStddev()，不做赘述。
+
+\item cOutVector：获取输出向量
+定义：cOutVector hopCountVector;
+同样可以人为地对名称进行设置，比如hopCountVector.setName(“Hopcount”);
+记录数据：hopCountVector.record(hopcount);
+其中，record表示记录数据。缺少这一语句的话，不会有任何的数据输出。
+
+\item recordScalar
+输出程序中某个标量的值，直接调用即可。即
+recordScalar(“string 输出名称”, 输出变量名);
+仿真之后的result文件中会有以“string 输出名称”命名的文件。“输出变量名”为我们要输出查看的变量。recordScalar较为简单，一般在Finish()函数中使用。
+
+\end{itemize}
+
+\section{仿真结果分析}
+\label{仿真结果分析}
+
+\&\#160; \&\#160; \&\#160; \&\#160;每次仿真的结果都会存储在project下面的result文件夹中。
+cOutVector: \textbackslash{}result\textbackslash{}xxx.vec
+cLongHistogram: \textbackslash{}result\textbackslash{}xxx.sca
+
+图6--1 doc目录
+
+\&\#160; \&\#160; \&\#160; \&\#160;如图所示，Project Explorer中选中的文件就是我们的仿真结果。之后双击打开就可以查看里面的内容，这里我选择打开了vec文件。
+
+图6--2 doc目录
+
+然后会让我们建立新的分析文件。点击finish即可
+
+图6--3 doc目录
+
+点击打开Data栏中vec下属的记录。Tictoc15网络中有6个节点，可以看到仿真对它们全部进行了记录
+
+图6--4 doc目录
+
+图6--5 doc目录
+
+其实，观察选项卡就可以发现，这里我们就可以查看所有的结果了。由于笔者打开的是vec文件，所以只有输出向量。
+
+图6--6 doc目录
+
+双击打开想查看的一行，如下所示：
+
+图6--7 doc目录
+
+接下来我们打开sca文件查看直方图：
+
+图6--8 doc目录
+
+图6--9 doc目录
+
+可以看到，如前文所述，文件名是匹配的
+
+在Histogram栏中选中一条，并打开：
+
+图6--10 doc目录
+
+另外，我们也可以直接取出数据，方法如下：
+
+图5--11 doc目录
+
+\section{事件日志文件的使用}
+\label{事件日志文件的使用}
+
+\&\#160; \&\#160; \&\#160; \&\#160;事件日志文件（EventLog）所记录的内容包括用户仿真过程中各个模块发送的消息细节以及提示发送和消息接收的细节。在Tkenv界面进行仿真前，点击“Enable recording on\slash off”按钮，即可对仿真过程中的事件进行记录。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[keepaspectratio,width=\textwidth,height=0.75\textheight]{./../img/chapter6/6-12.png}
+\caption{avatar}
+\end{figure}
+
+\&\#160; \&\#160; \&\#160; \&\#160;默认情况下，相应工程的result文件夹中会出现一个后缀为“.elog”的文件，即我们本次仿真记录所得的时间日志文件。这里需要特别注意的是，记录的数据数量会直接决定elog文件的大小，不仅会影响仿真的速度，还可能在仿真结束后，omnetpp无法打开过大的日志文件，导致闪退，严重时甚至出现过黑屏等情况。因此建议在使用时不要记录过长的时间或过多无用的内容。
+
+\subsection{序列图}
+\label{序列图}
+
+\&\#160; \&\#160; \&\#160; \&\#160;打开elog文件后，里面的内容会以序列图的形式来展现，如下图所示：
+
+图6--16 常用符号
+
+\&\#160; \&\#160; \&\#160; \&\#160;序列图可分为三个部分：上沿、主区域和下沿。其中，上下沿显示的是仿真时间轴。主区域则是显示各个模块名称和周线、时间与消息的发送。
+下面是常用符号的图例：
+
+图6--16 常用符号
+
+\subsection{事件日志表}
+\label{事件日志表}
+
+\&\#160; \&\#160; \&\#160; \&\#160;事件日志表的事件记录分为三栏，依次是事件编号、仿真时间和事件的具体细节。
+善用过滤器来减少无用内容的显示对提高工作效率很有帮助，行过滤器可以过滤特定类型的显示行。同时，事件日志表支持导航历史纪录，每个用户停留超过三秒的位置都会被记录下来作为临时数据。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[keepaspectratio,width=\textwidth,height=0.75\textheight]{./../img/chapter6/6-13.png}
+\caption{avatar}
+\end{figure}
+
+\subsection{个人体会}
+\label{个人体会}
+
+\&\#160; \&\#160; \&\#160; \&\#160;首先第一点，一定不要让elog文件的体积过大，因为这很可能导致处理过程中的闪退。
+然后，过滤器是我最常用的功能。除了行过滤器外，序列图和事件日志表都支持同一个Filter。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[keepaspectratio,width=\textwidth,height=0.75\textheight]{./../img/chapter6/6-14.png}
+\caption{avatar}
+\end{figure}
+
+如图所示，一般包括：
+范围过滤器：过滤掉elog中的起始和结束事件，有助于减少计算时间。
+模块过滤器：用户可以指定特定的模块，非指定模块的事件会被全部过滤。当我们倾向于研究一个或几个特定模块时，这非常有用。
+消息过滤器：最复杂的一个过滤器。需要根据消息的C++名称、消息名称、消息id以及匹配表达式等进行选择。
+因果过滤器：通过指定特定的事件并对其愿意和结果进行过滤。
+
+\&\#160; \&\#160; \&\#160; \&\#160;同时，omnet++对filter结果的计算和显示会耗费大量的时间，一定要指定适当的范围。具体根据什么来设置范围，就要以各位各自的使用情况作为标准了。
+
+\chapter{错误记录}
+\label{错误记录}
+
+\&\#160; \&\#160; \&\#160; \&\#160;在我刚开始使用OMNeT++进行实验的时候，总是会出现一些稀奇古怪的错误，每一个错误都花了我大量的时间，所以在最后一章中总结出来，也许你正好用上。
+
+\section{在模块加入移动模块之后，仿真出现nan错误}
+\label{在模块加入移动模块之后，仿真出现nan错误}
+
+\subsection{问题描述：}
+\label{问题描述：}
+
+\begin{quote}
+对于某些工程加入移动模块以后，编译过程没有出错，但是当执行仿真程序的时候，出现一些nan错误提示。
+需要在仿真配置文件加入：
+\end{quote}
+
+\begin{lstlisting}[language=c]
+**.constraintAreaMinX = 0m
+**.constraintAreaMinY = 0m
+**.constraintAreaMinZ = 0m
+**.constraintAreaMaxX = 5000m
+**.constraintAreaMaxY = 5000m
+**.constraintAreaMaxZ = 0m
+
+\end{lstlisting}
+
+移动模块配置：
+
+\begin{lstlisting}[language=c]
+**.UAV[*].mobilityType = "MassMobility"
+**.UAV[*].mobility.initFromDisplayString = true
+**.UAV[*].mobility.changeInterval = truncnormal(2s, 0.5s)
+**.UAV[*].mobility.changeAngleBy = normal(0deg, 30deg)
+**.UAV[*].mobility.speed = truncnormal(250mps, 20mps)
+**.UAV[*].mobility.updateInterval = 100ms
+
+\end{lstlisting}
+
+\section{工程的例如cModule之类的类不能高亮显示？}
+\label{工程的例如cmodule之类的类不能高亮显示？}
+
+\subsection{问题描述：}
+\label{问题描述：}
+
+\begin{quote}
+原工程是可以高亮显示的，但是由于我在备份这个程序的时候可能方式不对，我采用的是在文件资源管理器的窗口复制原工程文件夹，没有在软件的窗口进行rename，可能是这个原因造成的。
+\end{quote}
+
+\subsection{解决办法：}
+\label{解决办法：}
+
+在软件的窗口，对工程进行rename就行，编译一次，cMdoule等等关键词就可以高亮了。
+
+\chapter{移动自组网中的路由协议}
+\label{移动自组网中的路由协议}
+
+\&emsp;\&emsp;移动自组网是由一群可以移动的、兼具终端及路由功能的移动节点，通过无线链路形成的无中心、多跳、临时性自治系统。{[1]}
+本章主要介绍移动自组网中的常见路由协议。
+
+\section{DSDV}
+\label{dsdv}
+
+\section{DSR}
+\label{dsr}
+
+\section{ADOV}
+\label{adov}
+
+\section{参考文献}
+\label{参考文献}
+
+{[1]} 潘宇航. 基于 QoS 感知的移动自组织网络路由协议设计与仿真研究. MS thesis. 西南交通大学, 2014.
+
+\chapter{TODO 待完善}
+\label{todo待完善}
+
+\begin{itemize}
+\item {[1]} 如何加快节点间消息的传输？
+
+\item {[2]} 在一个复合模块下，如何访问同一级的其他模块？
+
+\item {[3]} 如何得到某一个模块引用的ned路径？
+
+\item {[4]} 如何使用cTopology类遍历网络的拓扑来初始化路由表?
+
+\item {[5]} 如何在omnet上使用OpenSceneGraph
+
+\item {[6]} 如何从仿真场景读取节点的坐标
+
+\item {[7]} 使用sendDirect()函数
+
+\item {[8]} 复合模块初始化时，先初始化节点的顺序
+
+\item {[9]} 在initialize()中初始化类成员数组与在其他函数中的不同
+
+\end{itemize}

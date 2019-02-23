@@ -1,6 +1,6 @@
-# 1 OMNeT++仿真平台
+# OMNeT++仿真平台 #
 
-# 1.1 OMNeT++简介
+## OMNeT++简介 ##
 
 &#160; &#160; &#160; &#160;<b>OMNeT++</b>，一个基于<b>Eclipse</b>开发套件的开源网络仿真工具，目前主要在高校实验室进行一些网络仿真测试，对一些算法进行对比，它可以供使用者进行完成以下开发：</br>
 - **C/C++开发**
@@ -15,10 +15,10 @@
 - Contributed Models</br>
 完成后只推出过一次或几次版本，目前没有人在维护。</br>
 
-# 1.2 OMNeT++开源库
+## OMNeT++开源库 ##
 &#160; &#160; &#160; &#160;下面简单介绍一下几种常见的开源库。
 
-### 1.2.1 INET
+### INET ###
 
 &#160; &#160; &#160; &#160;由Simucraft公司主持开发，用于仿真有线及无线网络。
 
@@ -32,7 +32,7 @@
 
 - 官网：http://inet.omnetpp.org
 
-### 1.2.2 INETMANET
+### INETMANET ###
 
 &#160; &#160; &#160; &#160;由 Simucraft 公司主持开发，用于仿真无线、有线网络，在INET 的基础上增加了大量的 MANET 协议，INETMANET= INET+MANET，在INET的基础上增加：
 
@@ -51,19 +51,19 @@
 - 官网：http://inet.omnetpp.org
 
 
-### 1.2.3 Mobility Framework
+### Mobility Framework ###
 
 &#160; &#160; &#160; &#160;由 Simucraft 公司主持开发,是一个无线传感器仿真模型库.绝大多数协议已经被 INET 吸收
 
 - 官网：http://mobility-fw.sourceforge.net/hp/index.html
 
-### 1.2.4 SensorSimulator
+### SensorSimulator ###
 
 &#160; &#160; &#160; &#160;美国路易斯安娜州立大学开发,用于仿真无线传感器网络
 
 - 官网：http://csc.lsu.edu/sensor_web/
 
-### 1.2.5 Castalia
+### Castalia ###
 
 &#160; &#160; &#160; &#160;澳大利亚国家信息技术中心（NICTA）开发,是一个基于 OMNeT++ 的侧重于无线网络的仿真器。基于实测数据的高级 channel/radio 模型，Radio 详细的状态转移，允许多传输功率电平。
 
@@ -81,7 +81,7 @@
 
 - 官网：https://github.com/boulis/Castalia
 
-### 1.2.6 OverSim
+### OverSim ###
 
 &#160; &#160; &#160; &#160;德国卡尔斯鲁厄大学开发
 
@@ -89,7 +89,7 @@
 
 - 官网：http://www.oversim.org
 
-### 1.2.7 TTE4INET
+### TTE4INET ###
 &#160; &#160; &#160; &#160;由Communication over Real-Time Ethernet Group开发的时间触发以太网仿真模型，包括对AS6802的仿真实现。现仿真模型已改名为CoRE4INET。
 
 - 开发组主页：https://core.informatik.haw-hamburg.de/
