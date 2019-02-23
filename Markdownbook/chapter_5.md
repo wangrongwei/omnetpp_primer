@@ -19,7 +19,7 @@
 
 &#160; &#160; &#160; &#160;影响仿真结果好理解，仿真现象呢，那我们来看看仿真模型：
 
-```c
+```c,caption=My first C program,label=src-hello-c
 channel Channel extends DatarateChannel
 {
     delay = default(uniform(20ns, 100ns));
@@ -35,7 +35,7 @@ channel Channel extends DatarateChannel
 
 -   利用<b>scheduleAt</b>函数
 
-```c
+```c,caption=My first C program,label=src-hello-c
 void Node::handleMessage(cMessage* msg)
 {
     if(msg->isSelfMessage()){
@@ -52,7 +52,7 @@ void Node::handleMessage(cMessage* msg)
 
 &#160; &#160; &#160; &#160;通过使用<b>scheduleAt</b>函数使仿真时间走动，完成上一个消息的完成，这里补充一点，如果读者想使用延时来等待消息传输完成是不可行的，因为使用这种方法仿真时间是不会走动的。例如下面一段代码：
 
-```c
+```c,caption=My first C program,label=src-hello-c
 time1 = simTime();
 func();
 time2 = simTime();
@@ -65,7 +65,7 @@ $time1==time2$，
 - 一定要采用<b>send</b>函数呢？
 
 &#160; &#160; &#160; &#160;上述采用<b>scheduleAt</b>的方法太麻烦，需要**new**一个消息，然后还需要定义一个<b>SMSG_INIT</b>，另外无端增多<b>handleMessage</b>函数内容，这种方法的确不是特别简洁。这里再分享另一种方法：
-```c
+```c,caption=My first C program,label=src-hello-c
 cPacket *pkt = ...; // packet to be transmitted
 cChannel *txChannel = gate("out")->getTransmissionChannel();
 simtime_t txFinishTime = txChannel->getTransmissionFinishTime();
@@ -87,7 +87,7 @@ else
 &#160; &#160; &#160; &#160;通过这种方式，我们可以在<b>for</b>循环中发送多个消息。但是对于有些需求不得不使用<b>scheduleAt</b>函数完成。
 
 - 提一提<b>sendDirect</b>函数！
-```c
+```c,caption=My first C program,label=src-hello-c
 sendDirect(cMessage *msg, cModule *mod, int gateId)
 sendDirect(cMessage *msg, cModule *mod, const char *gateName, int index=-1)
 sendDirect(cMessage *msg, cGate *gate)

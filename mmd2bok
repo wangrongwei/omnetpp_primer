@@ -1,0 +1,24 @@
+#!/bin/bash
+cd latex
+cp -rf ../template/* .
+cp -rf ../contents/img .
+#ls -al img
+multimarkdown -t latex meta.txt ../Markdownbook/cover.md -o preface.tex
+multimarkdown -t latex meta.txt ../Markdownbook/chapter_*.md -o chapters.tex
+multimarkdown -t latex meta.txt ../Markdownbook/appendix.md -o appendix.tex
+if [ "X$OS" == "XWindows_NT" ]; then
+	echo "windows platform"
+	cp template-win.tex omnetpp_primer-zh.tex
+else
+	echo "unix platform"
+	cp template.tex omnetpp_primer-zh.tex
+fi
+#exit
+
+xelatex omnetpp_primer-zh.tex
+mv omnetpp_primer-zh.pdf ..
+
+
+echo
+echo
+echo "Done!"
