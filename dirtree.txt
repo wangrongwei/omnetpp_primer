@@ -1,15 +1,4 @@
 .
-├── appendix.md
-├── chapter_1.md
-├── chapter_2.md
-├── chapter_3.md
-├── chapter_4.md
-├── chapter_5.md
-├── chapter_6.md
-├── chapter_7.md
-├── chapter_8.md
-├── chapter_TODO.md
-├── cover.md
 ├── dirtree.txt
 ├── img
 │   ├── 1.png
@@ -39,6 +28,10 @@
 │   ├── chapter6
 │   │   ├── 6-10.png
 │   │   ├── 6-11.png
+│   │   ├── 6-12.png
+│   │   ├── 6-13.png
+│   │   ├── 6-14.png
+│   │   ├── 6-15.png
 │   │   ├── 6-1.png
 │   │   ├── 6-2.png
 │   │   ├── 6-3.png
@@ -47,7 +40,8 @@
 │   │   ├── 6-6.png
 │   │   ├── 6-7.png
 │   │   ├── 6-8.png
-│   │   └── 6-9.png
+│   │   ├── 6-9.png
+│   │   └── map_1.png
 │   ├── logo-horizontal.png
 │   ├── omnetpp-2.png
 │   ├── qe.jpg
@@ -58,6 +52,87 @@
 │   ├── 图2-4-4.png
 │   ├── 图2-4-5.png
 │   └── 模板1.png
+├── install.latex.ubuntu.sh
+├── install.multimarkdown.sh
+├── latex
+│   ├── appendix.tex
+│   ├── chapters.tex
+│   ├── img
+│   │   ├── 1.png
+│   │   ├── ͼ2-4-1.png
+│   │   ├── ͼ2-4-2.png
+│   │   ├── ͼ2-4-3.png
+│   │   ├── ͼ2-4-4.png
+│   │   ├── ͼ2-4-5.png
+│   │   ├── bookIndia.png
+│   │   ├── chapter2
+│   │   │   ├── ͼ2-2-2-1.png
+│   │   │   ├── click_import.png
+│   │   │   ├── cmd2.png
+│   │   │   ├── cmd.png
+│   │   │   ├── compile_exec.png
+│   │   │   ├── doc.png
+│   │   │   ├── ExistingProjects.png
+│   │   │   ├── file1.png
+│   │   │   ├── file2.png
+│   │   │   ├── file.png
+│   │   │   ├── IDE.png
+│   │   │   ├── import2.png
+│   │   │   ├── import3.png
+│   │   │   └── import.png
+│   │   ├── chapter3
+│   │   │   ├── ͼ3-2-3-1.png
+│   │   │   ├── ͼ3-3-1.png
+│   │   │   ├── picture3-3-2.png
+│   │   │   ├── 图3-2-3-1.png
+│   │   │   └── 图3-3-1.png
+│   │   ├── chapter5
+│   │   │   ├── ═╝-╓í│ñ═╝.png
+│   │   │   └── ═╝-║∞╡π.png
+│   │   ├── chapter6
+│   │   │   ├── 6-10.png
+│   │   │   ├── 6-11.png
+│   │   │   ├── 6-12.png
+│   │   │   ├── 6-13.png
+│   │   │   ├── 6-14.png
+│   │   │   ├── 6-15.png
+│   │   │   ├── 6-1.png
+│   │   │   ├── 6-2.png
+│   │   │   ├── 6-3.png
+│   │   │   ├── 6-4.png
+│   │   │   ├── 6-5.png
+│   │   │   ├── 6-6.png
+│   │   │   ├── 6-7.png
+│   │   │   ├── 6-8.png
+│   │   │   ├── 6-9.png
+│   │   │   └── map_1.png
+│   │   ├── logo-horizontal.png
+│   │   ├── omnetpp-2.png
+│   │   ├── qe.jpg
+│   │   ├── ─ú░σ1.png
+│   │   ├── ying.jpg
+│   │   ├── 图2-4-1.png
+│   │   ├── 图2-4-2.png
+│   │   ├── 图2-4-3.png
+│   │   ├── 图2-4-4.png
+│   │   └── 图2-4-5.png
+│   ├── meta.txt
+│   ├── omnetppp_zh.aux
+│   ├── omnetppp_zh.fot
+│   ├── omnetppp_zh.log
+│   ├── omnetppp_zh.out
+│   ├── omnetppp_zh.tex
+│   ├── omnetppp_zh.toc
+│   ├── preface.tex
+│   ├── README
+│   ├── sdcamp.aux
+│   ├── sdcamp.fot
+│   ├── sdcamp.log
+│   ├── sdcamp.out
+│   ├── sdcamp.tex
+│   ├── sdcamp.toc
+│   ├── template.tex
+│   └── template-win.tex
 ├── latexbook
 │   ├── bibliography.bib
 │   ├── chapter1.tex
@@ -80,18 +155,35 @@
 │   ├── tstextbook_se.cls
 │   ├── tstextbook.synctex.gz
 │   └── tstextbook.synctex.gz(busy)
-├── m2pdf.sh
+├── Makefile
+├── Markdownbook
+│   ├── appendix.md
+│   ├── chapter_1.md
+│   ├── chapter_2.md
+│   ├── chapter_3.md
+│   ├── chapter_4.md
+│   ├── chapter_5.md
+│   ├── chapter_6.md
+│   ├── chapter_7.md
+│   ├── chapter_8.md
+│   ├── chapter_TODO.md
+│   └── cover.md
 ├── markdown-pdf
 │   ├── footer.js
 │   └── header.js
-├── merge2pdf.py
+├── mmd2bok
 ├── pdf
-│   ├── omnetppp-zh_cover.jpg
-│   └── omnetppp-zh.pdf
-├── pm-template.latex
+│   ├── omnetpp_primer-zh.pdf
+│   └── omnetppp-zh_cover.jpg
 ├── README.md
+├── template
+│   ├── meta.txt
+│   ├── template.tex
+│   └── template-win.tex
 └── tools
+    ├── m2pdf.sh
     ├── merge2pdf.py
+    ├── missfont.log
     └── pm-template.latex
 
-10 directories, 84 files
+18 directories, 168 files
