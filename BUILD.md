@@ -24,26 +24,6 @@ You need to install related fonts for Chinese, fortunately they exist in ubuntu 
     $ sudo apt-get install fonts-wqy-microhei fonts-wqy-zenhei # from WenQuanYi
 
 
-### Fedora Platform ###
-
-Fedora 19 is verifed, it uses texlive 2013, see  [Fedora Texlive project](http://fedoraproject.org/wiki/Features/TeXLive)
-
-Below could be simplified to use collection-*
-
-    # yum install texlive-xetex
-    # yum install texlive-latex
-    # yum install texlive
-    # yum install texlive-xetex-def texlive-xltxtra texlive-tocbibind
-    # yum install texlive-euenc texlive-frame texlive-footnpag texlive-titlesec
-    # yum install texlive-appendix
-    
-You need to install related fonts for Chinese, fortunately they exist in fedora source also.
-    
-    # yum install texlive-arphic # from arphic
-    // # yum install cjkuni-uming-fonts cjkuni-ukai-fonts
-    # yum install wqy-microhei-fonts wqy-zenhei-fonts # from WenQuanYi
-    
-
 ### Generate PDF ###
 
 `multimarkdown` shall be compiled from git source，if not, maybe you can run "scripts/install.multimarkdown.sh".
