@@ -115,11 +115,13 @@ channel Channel extends DatarateChannel
 }
 
 ```
+
 对于无线连接的<b>sendDirect</b>函数，要想达到相同的效果，就没有设置<b>channel</b>一说了，在使用<b>sendDirect</b>函数时，有三个重载函数包括有两个参数<b>simtime_t propagationDelay/simtime_t duration</b>，一个是传播延时时间和持续时间，通过设置这两个参数可以达到图<b>5-2</b>的效果。
 
 ![设置传输延迟和持续时间](../img/chapter5/图-帧长图.png)
 
 ### 技巧三：如何访问同一级的其他模块 ###
+
 在设计网络拓扑时，我们有时需要在一个模块中直接访问同一级其他模块的相关参数，不再经过消息之间传输进行传输。这种接口在<b>OMNeT++</b>下也被提供了，如下一个代码示例：
 
 ```c
@@ -136,6 +138,7 @@ psubmodRC = parent->getSubmodule("rcBuffer");
 pRCBuffer = check_and_cast<RCBuffer *>(psubmodRC);
 
 ```
+
 上面的代码片段主要通过<b>getParentModule</b>和<b>getSubmodule</b>两个接口得到指向目的模块的指针，得到指针相当于我们拿到了这个目的模块的所有，需要注意的是这种方式的前提是目的模块是一个简单模块，需要与复合模块区分开，在<b>OMNeT++</b>中复合模块只有对应的**.ned**文件，其描述方式如下：
 ```c
 module Node{
@@ -146,7 +149,9 @@ module Node{
 }
 ```
 而简单模块有三个文件：**.nde、.cc、.h**，其<b>.ned</b>文件中描述方式如下：
+
 ```
+
 simple Node{
 	parameters:
     	...
@@ -154,6 +159,7 @@ simple Node{
 	...
 }
 ```
+
 因此对于没有<b>.cc/.h</b>文件的复合模块，在编写代码时就没有对应的<b>C++</b>类，因此使用上述方法就出现问题，无法事先知道指针类型，那么对于复合模块的访问，我们可以通过下面的代码实现：
 
 ```c
@@ -176,9 +182,11 @@ for(cModule::SubmoduleIterator iter(getParentModule()); !iter.end(); iter++){
         }
 }
 ```
+
 上面的代码段涉及到了<b>OMNeT++</b>下的<b>SubmoduleIterator</b>迭代器，该迭代器在较多的库中都有使用，比如：<b>INET</b>，当然这种方式可以经过简单的修改也可以对简单的模块进行访问。在上面的代码段中，<b>getParentModule()</b>指明是当前模块的父模块，该代码目的就是在当前简单模块中，得到同一父模块下的<b>ES</b>复合模块的<b>cpu/mem</b>两个参数。
 
 ### 技巧四：遍历所有模块 ###
+
 在有些场景下，我们需要遍历所有节点，甚至是复合节点内部的模块，代码示例如下：
 
 ```c
@@ -223,6 +231,7 @@ void Node::doNext()
 
 ```
 在上面的代码段中，可能有些诸如<b>“Wireless”</b>相关的过程与我实验源代码本身功能相关，本例只提供一种可参考的代码，具体运用于读者自己的项目中还需要做部分修改。为了让读者更快的掌握这种方法，下面就代码段中的重要接口做一个简单的分析：
+
 - **for(int i=1;i<=cSimulation::getActiveSimulation()->getLastComponentId();i++)**</br>
 
 这一句<b>for</b>循环遍历当前网络场景中的模块，只遍历仿真场景中的节点，不包括节点内部的模块，下面结合一个网络拓扑文件说明：
@@ -256,6 +265,7 @@ network simplenet
 }
 
 ```
+
 对于上述网络拓扑，使用上面的<b>for</b>循环只能遍历<b>node1/node2/node3</b>，对于它们内部的子模块不在其内。当最终需要寻找的模块是其中一个的子模块，需要先遍历父模块，然后使用<b>getSubmodule</b>函数遍历子模块。
 
 - <b>midmod = cSimulation::getActiveSimulation()->getModule(i)</b>
@@ -268,8 +278,8 @@ $$getSubmodule(“node_name”,j)$$
 
 该接口似乎使用频率较高，如何得到一个复合模块的指针，即可通过该接口得到内部子模块的指针，然后访问相关数据。
 
-
 ### 技巧五：如何得到某一个模块引用的ned路径 ###
+
 为什么需要在一个程序中得到该<b>".ned"</b>引用的路径呢？因为在<b>OMNeT++</b>中，我们在设计一个复合模块的内部结构时，可以直接采用图形的方式编辑，相当于我们可以直接拖动设计好的简单模块到复合模块中，而有些简单模块在不同的复合模块中其功能还有所不同，因此在为该简单模块编写<b>.cc</b>文件时，我们需要检测一下当前本模块在什么模块下使用的，比如是在端系统还是交换机。得到一个模块的引用路径，其实就是一个接口函数的事，如下代码段：
 
 ```c
@@ -290,10 +300,11 @@ else if (strcmp(name, "SimpleNetwork.Switch.SwitchPort") == 0){
 }
 
 ```
+
 该接口函数便是<b>getNedTypeName</b>，得到完整的路径后，使用<b>c</b>库函数<b>strcmp</b>进行判断即可。
 
-
 ### 技巧六：使用cTopology类遍历拓扑初始化路由表 ###
+
 这是个好东西，其实在<b>OMNeT++</b>中其实提供的大量的接口函数，只是在不知道的前提下写相似的功能函数比较麻烦，这个接口函数完美解决我们寻找路由的门问题，在使用<b>send</b>函数传输消息的时候只要知道我们传输的目的节点便可，直接利用一个路由表即可，代码示例如下：
 
 ```c
@@ -331,7 +342,9 @@ void Router::TopoFind()
 }
 
 ```
+
 该函数有三个比较重要的步骤：
+
 - [1] **extractByNedTypeName**
 
 为了得到一个路由表，我们需要指明需要遍历的节点类型。该函数便是指明遍历哪些节点。
@@ -364,8 +377,8 @@ virtual void calculateUnweightedSingleShortestPathsTo(Node *target);
 virtual void calculateWeightedSingleShortestPathsTo(Node *target);
 
 ```
-代入参数就是目的节点地址，其他内容读者可自行探索。
 
+代入参数就是目的节点地址，其他内容读者可自行探索。
 
 - [3] **topo->getNode(i)->getModule()->par("address");**
 
@@ -383,24 +396,24 @@ virtual void calculateWeightedSingleShortestPathsTo(Node *target);
 ### 技巧八：如何多次利用同一个<b>msg</b> ###
 
 在<b>OMNeT++</b>中，凡是使用<b>scheduleAt</b>调度的消息属于<b>Self-Messages</b>，其作用是用在模块本身调度事件使用的。有时需要利用同一个msg，但是中间必须使用<b>cancelEvent</b>函数取消掉上次，如下片段：
+
 ```c
+
 //cMessage *msg
 if (msg->isScheduled())
     cancelEvent(msg);
 scheduleAt(simTime() + delay, msg);
 ```
-该代码段没有什么特别大的功能，主要是重复利用已经定义好的<b>msg</b>变量。
 
+该代码段没有什么特别大的功能，主要是重复利用已经定义好的<b>msg</b>变量。
 
 ### 技巧九：initialize函数的不同 #####
 
 在每一个简单模块对应的<b>.cc/.h</b>文件中会有一个initialize函数，其功能是在仿真程序开始执行前将会执行的函数，与类的构造函数不同，引出的问题就是：
 >如果在其他成员函数中给一个指针数组成员赋值，当离开这个函数后，该指针数组值将会回到原来的值，该函数赋的值没有任何作用，但是如果在initialize函数中初始化这个指针数组，将会达到我们想要的结果。
 
-
-
-
 ### 技巧十：如何从仿真场景读取节点坐标 ###
+
 也许作者的用词不明，这里的仿真场景指的是运行仿真后出现的仿真界面。必须提到的是这个<b>OMNeT++</b>的仿真场景，节点在该场景上的位置，不一定是它的属性里边的地址，它们可以不同，感觉似乎是<b>OMNeT++</b>开发者提供的缺口，不知这个是好还是坏，但是好消息就是这些开发者提供了读取场景上节点属性的坐标和在程序中设置该坐标（目的就是让这个显示坐标更新），简而言之，你的节点坐标更新需要你自己在程序中完成，<b>OMNeT++</b>不会自动帮你完成。程序5.2.9-1是关于读取坐标和更新场景坐标的显示的代码段：
 
 ```c
@@ -413,13 +426,16 @@ coord_X.setDoubleValue(this->xpos); //将仿真界面上的xpos改变
 coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 
 ```
+
 需要再次提示的是这个坐标读取的是显示的节点的坐标，与节点在仿真场景上显示的位置可能没有关系。
 
 ### 技巧十一：如何调用INET中的类 ###
+
 有时候在仿真程序中有种需求：
 >需要在一个仿真程序中调用其他库中的函数，例如需要使用<b>INET</b>中相关类，那这时候的逻辑是什么？
 
 与在某一个工程下需要<b>import INET</b>中的NED模型，我们需要在工程的属性中<b>Project References</b>中勾上我们需要<b>import</b>的库，然后在工程的ned文件中添加ned模型路径。同时当我们设置了工程<b>Project References</b>，当编译该工程时，将会链接<b>Project References</b>中勾上的工程编译生成的库文件，其中涉及以下编译设置：
+
 ```c
 // macros needed for building Windows DLLs
 #if defined(_WIN32)
@@ -431,15 +447,45 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 #endif
 
 ```
+
 以上摘取自INET开源库中<b>platdefs.h</b>文件，其中比较重要的是当编译INET库时，编译默认选项会使用<b>__declspec(dllexport)</b>，当另一个仿真工程（使用了INET库中的类）编译时，将会以<b>__declspec(dllimport)</b>，因此工程不需要设置其他编译选项，但是需要将诸如<b>INET</b>编译生成的<b>.dll</b>或者<b>.a</b>拷贝一份到该工程目录下。
 
 - 注意：
 
-如果以上关系都满足了，再出现在链接工程的错误可能其其他导致的。
+如果以上关系皆满足，再出现在链接工程的错误可能其其他导致的。
+
+## 调试技巧 ##
+
+### gdb调试 ###
+
+OMNeT++支持gdb调试，与其他IDE调试方式相似，不同之处在于，若在网络仿真原型中设有统计参数，需在配置文件**omnetpp.ini**中设置：
+
+```c
+
+check-signals = false
+
+```
+
+若仿真过程中，未关闭**check-signals**，调试过程将会发生统计参数内存分配问题。
+
+### log日志类 ###
+
+由于OMNeT++所提供**EV**显示信息在关闭仿真程序后，无法查看，可采用日志类将仿真信息打印到文本文件（亦可将**cout**重定向到文件）。在这里分享一个作者在调试OMNeT++仿真程序时编写的日志类**log**。
+使用方法如下：
+
+```c
+/* 声明 */
+using namespace tinylog
+
+flog logger("path to file","filename"); 
+
+/* 使用 */
+logger<<"current simulation time = "<<simTime()<<endl;
+
+```
+
+下载地址：[](xxx "tinylog")
 
 ## 本章小结 ##
 
 &#160; &#160; &#160; **OMNeT++**仿真内核提供的丰富的仿真接口，使用**OMNeT++**进行仿真，在掌握一定的**C++**编程方法以后，阅读 &#160; **OMNeT++**相关类的描述可能有意外的收获，找到合适的接口进行仿真。
-
-
-
