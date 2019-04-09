@@ -34,3 +34,30 @@
 
 ### 解决办法： ###
 在软件的窗口，对工程进行rename就行，编译一次，cMdoule等等关键词就可以高亮了。
+
+
+## 在建立工程时，需要实时显示节点的移动坐标时，编译出错##
+### 问题描述： ###
+>在对节点的坐标进行实时的显示的过程中，编写如下的函数：
+
+```c
+
+void node::initialize()
+{
+    cModule *host = getContainingNode(this);
+    IMobility *mobility = check_and_cast<IMobility *>(host->getSubmodule("mobility"));
+    Coord selfPosition = mobility->getCurrentPosition();
+}
+
+```
+
+同时以 "inet/mobility/contract/IMobility.h"的形式引用头文件，但是在编译的过程中，会报出如下的错误：
+../out/clang-release/src/node.o:(.text[_ZN7omnetpp14check_and_castIPN4inet9IMobilityENS_7cModuleEEET_PT0_]+0x18): undefined reference to `__imp__ZTIN4inet9IMobilityE'
+../out/clang-release/src/node.o:(.rdata[_ZTIPN4inet9IMobilityE]+0x18): undefined reference to `typeinfo for inet::IMobility'
+
+### 解决办法： ###
+方法一：
+在inet中将IMobility.h中第一行将 "INet_API" 删除后，重新对inet进行编译，然后在对所建立的工程进行编译，编译既可以通过。
+方法二：
+打开当初安装OMNET++ 的文件夹，找到configure.user的文本，打开后，找到CC==gcc，将前面的“#”注释符号去掉；然后打开mingwenv.cmd
+，按顺序先后执行"./configure" and "make"命令，编译完成后，重新对工程进行编译即可。
