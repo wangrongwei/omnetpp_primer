@@ -73,7 +73,7 @@
 
 ![cpp高亮设置](../img/chapter3/图3-3-1.png)
 
-从上图也可以看出，我们需要选择<b>c/c++》》Syntax Coloring</b>，根据图中的窗口选择我们需要修改的高亮块设置。其中包括以下五种：
+从上图也可以看出，我们需要选择<b>c/c++》》Editor》》Syntax Coloring</b>，根据图中的窗口选择我们需要修改的高亮块设置。其中包括以下五种：
 
 - <font color="#FF33AD" face="黑体">Code:代码块</font>
 - <font color="#FF33AD" face="黑体">Assembly: 汇编块</font>
