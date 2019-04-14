@@ -36,5 +36,4 @@ Then it should work perfectly
 
 the latex template is `template/template.tex`, it contains the style and include the `preface`,`chapters`,`appendix` latex files, which are generated from source chapters.
 
-    
 [texlive]: http://www.tug.org/texlive/
