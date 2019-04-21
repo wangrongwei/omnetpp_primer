@@ -33,7 +33,7 @@ channel Channel extends DatarateChannel
 
 不知道读者有时候有没有感觉到<b>send</b>函数很麻烦，<b>send</b>函数用于两个模块之间的消息传输，但是当我们需要发送多条消息的时候，我们不能使用<b>for</b>循环直接就上，其主要原因就上我们使用<b>send</b>函数发送的消息还没有到达目的节点，此时我们不能使用<b>send</b>函数发送下一条消息，那么怎么办呢？这里有两种方案：
 
--   利用<b>scheduleAt</b>函数
+- 利用<b>scheduleAt</b>函数
 
 ```c
 void Node::handleMessage(cMessage* msg)
@@ -42,9 +42,9 @@ void Node::handleMessage(cMessage* msg)
         if(msg->getKind()==SMSG_INIT){
                 ...
                 ...
-		cMessage* cloudMsg = new cMessage("hello");
-		cloudMsg->setKind(SMSG_INIT);//设置节点类型
-		scheduleAt(simTime()+0.01,cloudMsg); //调度一个事件，发送消息给自己
+            cMessage* cloudMsg = new cMessage("hello");
+            cloudMsg->setKind(SMSG_INIT);//设置节点类型
+            scheduleAt(simTime()+0.01,cloudMsg); //调度一个事件，发送消息给自己
         }
     }
 }
@@ -65,6 +65,7 @@ $time1==time2$，
 - 一定要采用<b>send</b>函数呢？
 
 上述采用<b>scheduleAt</b>的方法太麻烦，需要**new**一个消息，然后还需要定义一个<b>SMSG_INIT</b>，另外无端增多<b>handleMessage</b>函数内容，这种方法的确不是特别简洁。这里再分享另一种方法：
+
 ```c
 cPacket *pkt = ...; // packet to be transmitted
 cChannel *txChannel = gate("out")->getTransmissionChannel();
@@ -83,6 +84,7 @@ else
 }
 
 ```
+
 上面的代码用于通过<b>out</b>门发送一个<b>pkt</b>包，但是在传输前需要得到该门上传输的消息的完成时间，需要注意的是当<b>txFinishTime</b>为<b>-1</b>时，说明该门没有消息传输，可以直接发送，如果<b>txFinishTime</b>为一个大于0的值，说明有消息正在传输，需要等待。所以在判断时我们采用$txFinishTime <= simTime()$。</br>
 通过这种方式，我们可以在<b>for</b>循环中发送多个消息。但是对于有些需求不得不使用<b>scheduleAt</b>函数完成。
 
@@ -260,8 +262,8 @@ network simplenet
         }
 
     connections allowunconnected:
-		...
-                ...
+        ...
+        ...
 }
 
 ```
@@ -448,11 +450,44 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 
 ```
 
-以上摘取自INET开源库中<b>platdefs.h</b>文件，其中比较重要的是当编译INET库时，编译默认选项会使用<b>__declspec(dllexport)</b>，当另一个仿真工程（使用了INET库中的类）编译时，将会以<b>__declspec(dllimport)</b>，因此工程不需要设置其他编译选项，但是需要将诸如<b>INET</b>编译生成的<b>.dll</b>或者<b>.a</b>拷贝一份到该工程目录下。
+以上摘取自INET开源库中**platdefs.h**文件，其中比较重要的是当编译INET库时，编译默认选项会使用**__declspec(dllexport)**，当另一个仿真工程（使用了**INET**库中的类）编译时，将会以**__declspec(dllimport)**，因此工程不需要设置其他编译选项，但是需要将诸如**INET**编译生成的**dll**或者**a**拷贝一份到该工程目录下。
 
 - 注意：
 
 如果以上关系皆满足，再出现在链接工程的错误可能其其他导致的。
+
+## 可视化接口 ##
+
+### 设置消息传输颜色 ###
+
+### 设置节点 ###
+
+在设置节点前，先阅读以下代码：
+
+```c,caption=an example for setting display,label=getDisplayString()
+this->getDisplayString().setTagArg("i",1,"red");
+```
+
+由以上代码函数名基本可以猜想到该行代码可能是设置显示相关标记，但具体设置哪一种标记可能需要知道**setTagArg()**函数的参数意义。其中**i**代表所设置**Tags**类型，在**OMNeT++**中**Tags**类型包括：
+
+- p -- positioning and layout
+- p -- positioning and layout
+- b -- shape (box, oval, etc.)
+- i -- icon
+- is -- icon size
+- i2 -- auxiliary or status icon
+- r -- range indicator 
+- q -- queue information text
+- t -- text
+- tt -- tooltip
+
+所以，根据以上列表得知prog-5.x将设置图标相关属性，接下来我们需要知道紧接着的两个参数含义：
+
+```c
+@display("i=block/source,red,20")
+```
+
+从**ned**文件中节点显示设置可以看出，属性**i**后第1个参数为**red**（从0开始数），那么prog-5.x便是将**i**后第**i**个参数设置为**red**，到这里我们对**setTagArg()**函数的使用便掌握了。
 
 ## 调试技巧 ##
 
