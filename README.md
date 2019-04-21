@@ -30,19 +30,15 @@
 
 # 下载地址
 
-本书不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/pdf](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新的omnetpp_primer-zh.pdf，如果你想自己编译生成PDF文件，可按照BUILD.md说明搭建编译环境并通过执行make all生成文档。</br>
+本文档不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/pdf](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新的omnetpp_primer-zh.pdf，如果你想自己编译生成PDF文件，可按照BUILD.md说明搭建编译环境并通过执行make all生成文档。</br>
 
 # TODO
 
-- [1] 如何加快节点间消息的传输？
-- [2] 在一个复合模块下，如何访问同一级的其他模块？
-- [3] 如何得到某一个模块引用的ned路径？
-- [4] 如何使用cTopology类遍历网络的拓扑来初始化路由表?
-- [5] 如何在omnet上使用OpenSceneGraph
-- [6] 如何从仿真场景读取节点的坐标
-- [7] 使用sendDirect()函数
-- [8] 复合模块初始化时，先初始化节点的顺序
-- [9] 在initialize()中初始化类成员数组与在其他函数中的不同
+- [1] 如何使用cTopology类遍历网络的拓扑来初始化路由表?
+- [2] 如何在OMNeT++上使用OpenSceneGraph
+- [3] 如何从仿真场景读取节点的坐标
+- [4] 复合模块初始化时，先初始化节点的顺序
+- [5] 在initialize()中初始化类成员数组与在其他函数中的不同
 
 # 贡献者
 
@@ -61,7 +57,6 @@
 # 授权许可
 
 GNU FDL 1.3 （GNU 自由文档许可证）
-
 
 [travis-image]: https://api.travis-ci.org/wangrongwei/omnetpp_primer.svg
 [travis-url]: https://travis-ci.org/wangrongwei/omnetpp_primer
