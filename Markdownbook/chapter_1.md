@@ -31,7 +31,7 @@
 
 - 传输层协议：TCP、UDP、RTP ( RealtimeTransport Protocol )；
 
-- 网络层协议：IPv4、IPv6、ICMP、ARP、MPLS、LDP、RSVP、OSPF、Mobile IPV6、AODV、DSDV、DSR；
+- 网络层协议：IPv4、IPv6、OSPF、AODV、DSDV、DSR等；
 
 - 数据链路层协议：Ethernet、PPP、IEEE 802.11、FDDI、Token Ring；
 
@@ -41,7 +41,7 @@
 
 由 Simucraft 公司主持开发，用于仿真无线、有线网络，在INET 的基础上增加了大量的 MANET 协议，INETMANET= INET+MANET，在INET的基础上增加：
 
-- [1]  802.11a,g:Ieee80211aMac, Ieee80211gMac, Ieee80211aRadioModel, Ieee80211gRadioModel
+- 802.11a
 
 - Ieee80211Mesh,Ieee80211MeshMgmt
 
