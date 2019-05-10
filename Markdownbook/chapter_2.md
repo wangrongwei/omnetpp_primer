@@ -59,7 +59,7 @@
 其实，如果需要为**omnetpp**安装新的插件或者库，都可以通过命令行的形式进行安装，甚至，你可以在命令行的环境下对编写好的网络进行编译和运行。
 我编写这个学习手册的原则，就是为读者提供一个学习**OMNeT++**的地图，而不是特别详细的字典，可能我的水平还远远没有达到写一本学习**OMNeT++**的大全。首先，安装这个**INET**库，我们到**inet**文件下看看有什么有用的文件没有，当然是先看看**README.md**了，这个文件提示我们安装请看：**INSTALL**，内容如下：
 
-```txt
+```text
 
 If you are building from command line:
 --------------------------------------
@@ -99,7 +99,7 @@ If you are building from command line:
 
 一样的，在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个**IDE**的使用方式就是将**INET**库使用**OMNeT++**打开，当然此时库文件**inet**已经在**samples**文件下，我们需要做的就是打开**OMNeT++ IDE** ，然后导入整个**inet**工程。
 
-```txt
+```text
 
 If you are using the IDE:
 -------------------------
@@ -135,6 +135,7 @@ Change into examples/ and type "./rundemo".
 在安装**INETMANET**库前，也许你可以在**OMNeT++**中，将**INET**工程关掉，接下来，你可以按照以下步骤进行：
 
 ```bash
+#!bin/bash
 
 $ git clone git@github.com:aarizaq/inetmanet-3.x.git
 $ git submodule update --init
