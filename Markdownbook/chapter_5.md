@@ -421,12 +421,12 @@ scheduleAt(simTime() + delay, msg);
 ```c
 程序5.2.9-1
 // 按照最开始的网络拓扑（按圆形分布），得到每一个节点的坐标
+auto parentdispStr = parents->getDisplayString();
 this->xpos = atof(parentdispStr.getTagArg("p", 0));
 this->ypos = atof(parentdispStr.getTagArg("p", 1));
 
 coord_X.setDoubleValue(this->xpos); //将仿真界面上的xpos改变
 coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
-
 ```
 
 需要再次提示的是这个坐标读取的是显示的节点的坐标，与节点在仿真场景上显示的位置可能没有关系。
