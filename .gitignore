@@ -17,6 +17,6 @@ latexbook/*.gz
 latexbook/*.synctex.gz
 latexbook/*.bib
 
-/.autogit/
+.autogit/
 
 
