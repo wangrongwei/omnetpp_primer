@@ -429,6 +429,22 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 
 需要再次提示的是这个坐标读取的是显示的节点的坐标，与节点在仿真场景上显示的位置可能没有关系。
 
+对于一个复合模块中的一个简单节点想获符合节点中的坐标以及该节点的移动速度时，可以利用inet中自带的iMobility模块即可以实现完成。具体的实现程序如下所示：
+
+```c
+程序5.2.9-1
+// 按照最开始的网络拓扑（按圆形分布），得到每一个节点的坐标
+cModule *temp_NodeModule=this->getParentModule();
+inet::IMobility *node_Mobility=check_and_cast<IMobility *>(temp_NodeModule->getSubmodule("mobility"));
+Coord coord_Node=node_Mobility->getCurrentPosition();//获取节点的位置
+double NodeX=coord_Node.x;
+double NodeY=coord_Node.y;
+Coord speed_Node=node_Mobility->getCurrentVelocity();//获取节点的速度
+double  NodeVv=speed_Node.x;
+double NodeVy=speed_Node.y;
+```
+
+
 ### 技巧十一：如何调用INET中的类 ###
 
 有时候在仿真程序中有种需求：
@@ -518,6 +534,60 @@ logger<<"current simulation time = "<<simTime()<<endl;
 ```
 
 下载地址：[tinylog](https://github.com/wangrongwei/lazytools)
+
+
+### 技巧十二：如何实现跨模块进行调用函数或参数 ###
+
+
+在进行仿真的过程中，难免用到跨模块的函数调用或者参数调用，本部分主要对这部分进行简单的介绍：
+其大致思路如下：
+1）从复合模块中的一个简单模块退到该简单模块的上一层，也就是其父模块；
+```c
+
+cModule *temp_Module=this->getParentModule();
+
+```
+2） 从父模块中找到你所要找到包含你需要的函数的子模块，也就是简单模块；
+```c
+
+App *temp_mobility=check_and_cast<App *>(temp_Module->getSubmodule("app"));
+/* App表示子模块的类名称 ，app表示你所需要的模块*/
+
+```
+3）找到你所需要的模块之后，然后就可以获得你所需要的函数或参数变量；
+
+```c
+
+if(this->mClusterHead==app->myAddress){
+    if(!app->mIsClusterHead){//这就是获得其他模块中的参数
+        app->mIsClusterHead=true;
+    }
+}
+
+```
+
+### 技巧十三：如何实现节点消息的同时显示 ###
+
+当一个节点对多个节点进行发送消息时，为了在视觉上看到消息同时从一个端口发出，只需要利用一个函数就可以解决：
+```c
+
+simtime_t txFinishTime = gate("line$o")->getTransmissionChannel()->getTransmissionFinishTime();
+if((txFinishTime == -1) || (txFinishTime < simTime())){
+    //通过修改延迟可以使节点能够同时发送消息
+    sendDirect(pk,0.001,0,allUAV[(int)pk->getDestAddr()],"port$i",address);
+}
+else{
+        sendDirect(pk,txFinishTime-simTime(),0.5,allUAV[(int)pk->getDestAddr()],"port$i",address);
+    }
+
+```
+需要注意：
+1）该函数一定放在与外界相连接的简单模块，不然时看不到的；
+
+最终的显示效果入下图所示
+![avatar](./../img/chapter5/5-1.png)
+
+
 
 ## 本章小结 ##
 
