@@ -69,3 +69,41 @@ void node::initialize()
 方法二：
 打开当初安装OMNET++ 的文件夹，找到configure.user的文本，打开后，找到CC==gcc，将前面的“#”注释符号去掉；然后打开mingwenv.cmd
 ，按顺序先后执行"./configure" and "make"命令，编译完成后，重新对工程进行编译即可。
+
+
+## 在进行移动模型的构建时，如何可以看到移动轨迹##
+
+### 问题描述 ###
+当节点进行移动的时候，想观察节点的移动轨迹，那么如何进行操作？
+
+### 解决办法： ###
+完成这个问题，需要进行两步操作，分别在.ned .ini文件中：
+1）在整个网络拓扑ned文件中，需要添加必要的路径和模块：
+```c
+/*调用inet中的库函数*/
+import inet.visualizer.integrated.IntegratedCanvasVisualizer;
+import inet.visualizer.contract.IIntegratedVisualizer;
+
+//添加visualizer模块
+visualizer: <default("IntegratedCanvasVisualizer")> like IIntegratedVisualizer if hasVisualizer() {
+    parameters:
+        @display("p=50103.34,27751.85");
+}
+```
+2）然后在.ini文件中进行配置
+```c
+
+*.visualizertype = "IntegratedOsgVisualizer"
+*.hasVisualizer = true
+*.visualizer.mobilityVisualizer.moduleFilter = "**"
+*.visualizer.mobilityVisualizer.displayMovementTrails = true
+*.visualizer.mobilityVisualizer.movementTrailLineColor = "dark"
+*.visualizer.mobilityVisualizer.movementTrailLineStyle = "solid"
+*.visualizer.mobilityVisualizer.movementTrailLineWidth =  2
+*.visualizer.mobilityVisualizer.trailLength = 100000
+*.visualizer.mobilityVisualizer.displayOrientations = true
+*.visualizer.mobilityVisualizer.displayVelocities = true
+
+```
+
+通过以上两步就可以实现完成轨迹的显示
