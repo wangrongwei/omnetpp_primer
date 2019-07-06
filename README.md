@@ -12,7 +12,6 @@
   <a href="https://github.com/wangrongwei/omnetpp_primer/stargazers"><img src="https://img.shields.io/github/stars/wangrongwei/omnetpp_primer.svg?style=flat&label=Star"></a>
   <a href="https://github.com/wangrongwei/omnetpp_primer/fork"><img src="https://img.shields.io/github/forks/wangrongwei/omnetpp_primer.svg?style=flat&label=Fork"></a>
   <a href="https://github.com/wangrongwei/omnetpp_primer/watchers"><img src="https://img.shields.io/github/watchers/wangrongwei/omnetpp_primer.svg?style=flat&label=Watch"></a>
-
 </p>
 
 # 文档说明
@@ -34,21 +33,23 @@
 
 # TODO
 
-- [1] 如何使用cTopology类遍历网络的拓扑来初始化路由表?
-- [2] 如何在OMNeT++上使用OpenSceneGraph
-- [3] 如何从仿真场景读取节点的坐标
-- [4] 复合模块初始化时，先初始化节点的顺序
-- [5] 在initialize()中初始化类成员数组与在其他函数中的不同
+- 如何使用cTopology类遍历网络的拓扑来初始化路由表?
+- 如何在OMNeT++上使用OpenSceneGraph
+- 如何从仿真场景读取节点的坐标
+- 复合模块初始化时，先初始化节点的顺序
+- 在initialize()中初始化类成员数组与在其他函数中的不同
 
 # 贡献者
 
 | 贡献者 | 贡献内容 |
 | ------ | -------- |
-| @Zackary | 编写第一、二到七部分以及其他一些文章，并完善 pdf 格式排版|
+| @Zackary | 编写第一、二到七部分以及其他一些文章，并完善 pdf 格式排版 |
+| @Stephenhua | 维护chapter_7.md |
 | @Kmtalexwang | 维护omnetpp_primer-zh.pdf的LaTeX排版 |
-| @Stephenhua| 添加appendix中网络性能初版|
-| @Ericsyoung| 维护chapter_6.md仿真结果分析|
-| @hjtczyj| 文档修改|
+| @Ericsyoung | 维护chapter_6.md仿真结果分析 |
+| @hjtczyj | 文档修改 |
+
+欢迎小伙伴门加入:-)
 
 # 勘误
 
