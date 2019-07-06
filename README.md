@@ -43,13 +43,13 @@
 
 | 贡献者 | 贡献内容 |
 | ------ | -------- |
-| @Zackary | 编写第一、二到七部分以及其他一些文章，并完善 pdf 格式排版 |
+| @rongwei | 编写第一、二到七部分以及其他一些文章、完善 pdf 格式排版 |
 | @Stephenhua | 维护chapter_7.md |
 | @Kmtalexwang | 维护omnetpp_primer-zh.pdf的LaTeX排版 |
 | @Ericsyoung | 维护chapter_6.md仿真结果分析 |
 | @hjtczyj | 文档修改 |
 
-欢迎小伙伴门加入:-)
+欢迎小伙伴们加入:-)
 
 # 勘误
 
