@@ -519,58 +519,53 @@ check-signals = false
 
 ### log日志类 ###
 
-由于OMNeT++所提供**EV**显示信息在关闭仿真程序后，无法查看，可采用日志类将仿真信息打印到文本文件（亦可将**cout**重定向到文件）。在这里分享一个作者在调试OMNeT++仿真程序时编写的日志类**log**。
+由于OMNeT++所提供**EV**显示信息在关闭仿真程序后，无法查看，可采用日志类将仿真信息打印到文本文件（亦可将**cout**重定向到文件）。在这里分享一个作者在调试OMNeT++仿真程序时编写的日志类**logging**。
 使用方法如下：
 
 ```c
 /* 声明 */
-using namespace tinylog
+using namespace logging
 
-flog logger("path to file","filename"); 
+logger variablename("path to file","filename"); 
 
 /* 使用 */
 logger<<"current simulation time = "<<simTime()<<endl;
-
 ```
 
-下载地址：[tinylog](https://github.com/wangrongwei/lazytools)
-
+下载地址：[logging-class](https://github.com/wangrongwei/lazytools)
 
 ### 技巧十二：如何实现跨模块进行调用函数或参数 ###
-
 
 在进行仿真的过程中，难免用到跨模块的函数调用或者参数调用，本部分主要对这部分进行简单的介绍：
 其大致思路如下：
 1）从复合模块中的一个简单模块退到该简单模块的上一层，也就是其父模块；
-```c
 
+```c
 cModule *temp_Module=this->getParentModule();
-
 ```
-2） 从父模块中找到你所要找到包含你需要的函数的子模块，也就是简单模块；
-```c
 
+2） 从父模块中找到你所要找到包含你需要的函数的子模块，也就是简单模块；
+
+```c
 App *temp_mobility=check_and_cast<App *>(temp_Module->getSubmodule("app"));
 /* App表示子模块的类名称 ，app表示你所需要的模块*/
-
 ```
+
 3）找到你所需要的模块之后，然后就可以获得你所需要的函数或参数变量；
 
 ```c
-
 if(this->mClusterHead==app->myAddress){
     if(!app->mIsClusterHead){//这就是获得其他模块中的参数
         app->mIsClusterHead=true;
     }
 }
-
 ```
 
 ### 技巧十三：如何实现节点消息的同时显示 ###
 
 当一个节点对多个节点进行发送消息时，为了在视觉上看到消息同时从一个端口发出，只需要利用一个函数就可以解决：
-```c
 
+```c
 simtime_t txFinishTime = gate("line$o")->getTransmissionChannel()->getTransmissionFinishTime();
 if((txFinishTime == -1) || (txFinishTime < simTime())){
     //通过修改延迟可以使节点能够同时发送消息
@@ -579,16 +574,15 @@ if((txFinishTime == -1) || (txFinishTime < simTime())){
 else{
         sendDirect(pk,txFinishTime-simTime(),0.5,allUAV[(int)pk->getDestAddr()],"port$i",address);
     }
-
 ```
+
 需要注意：
 1）该函数一定放在与外界相连接的简单模块，不然时看不到的；
 
 最终的显示效果入下图所示
 ![avatar](./../img/chapter5/5-1.png)
 
-
-
 ## 本章小结 ##
 
 **OMNeT++**仿真内核提供的丰富的仿真接口，使用**OMNeT++**进行仿真，在掌握一定的**C++**编程方法以后，阅读 &#160; **OMNeT++**相关类的描述可能有意外的收获，找到合适的接口进行仿真。
+
