@@ -10,7 +10,7 @@
 
 ```c
 程序清单4.1
-class SIM_API cModule : public cComponent //implies noncopyable
+class SIM_API cModule : public cComponent
 {
     friend class cGate;
     friend class cSimulation;
@@ -18,9 +18,9 @@ class SIM_API cModule : public cComponent //implies noncopyable
     friend class cChannelType;
 
   public:
-    /********************************************************************************
+    /**********************************************************************
      * 迭代器
-     *******************************************************************************/
+     *********************************************************************/
     GateIterator; /* 门迭代器 */
     SubmoduleIterator; /* 复合模块的子模块迭代器 */
     ChannelIterator; /* 模块信道迭代器 */
@@ -31,10 +31,12 @@ class SIM_API cModule : public cComponent //implies noncopyable
     virtual std::string getFullPath(); /* 获取模块路径（绝对路径） */
     virtual bool isSimple();
 
-    virtual cModule *getParentModule(); /* 返回模块的父模块，对于系统模块，返回nullptr */
+    /* 返回模块的父模块，对于系统模块，返回nullptr */
+    virtual cModule *getParentModule();
     bool isVector(); /* 如何模块是使用向量的形式定义的，返回true */
     int getIndex(); /*返回模块在向量中的索引 */
-    int getVectorSize(); /*返回这个模块向量的大小，如何该模块不是使用向量的方式定义的，返回true */
+    /*返回这个模块向量的大小，如何该模块不是使用向量的方式定义的，返回true */
+    int getVectorSize(); 
 
     _OPPDEPRECATED int size(); /* 与getVectorSize()功能相似 */
     virtual bool hasSubmodules(); /* 检测该模块是否有子模块 */
@@ -50,25 +52,31 @@ class SIM_API cModule : public cComponent //implies noncopyable
     /* 一个更强大的获取模块指针的接口，通过路径获取 */
     virtual cModule *getModuleByPath(const char *path);
 
-    /********************************************************************************
+    /**********************************************************************
      * 门的相关函数
-     *******************************************************************************/
+     *********************************************************************/
     virtual bool hasGate(const char *gatename, int index=-1); /* 检测是否有门 */
-    virtual int findGate(const char *gatename, int index=-1); /* 寻找门，如果没有返回-1，找到返回门ID */
+    /* 寻找门，如果没有返回-1，找到返回门ID */
+    virtual int findGate(const char *gatename, int index=-1); 
     const cGate *gate(int id); /* 通过ID得到门地址，目前我还没有用到过 */
     virtual void deleteGate(const char *gatename); /*删除一个门（很少用） */
-    virtual std::vector<const char *> getGateNames(); /* 返回模块门的名字，只是基本名字(不包括向量门的索引, "[]" or the "$i"/"$o"） */ 
-    virtual cGate::Type gateType(const char *gatename); /* 检测门（向量门）类型，可以标明"$i","$o" */
+    /* 返回模块门的名字，只是基本名字(不包括向量门的索引, "[]" or the "$i"/"$o"） */ 
+    virtual std::vector<const char *> getGateNames();
+    /* 检测门（向量门）类型，可以标明"$i","$o" */
+    virtual cGate::Type gateType(const char *gatename);
     virtual bool isGateVector(const char *gatename); /* 检测是否是向量门，可以标明"$i","$o" */
     virtual int gateSize(const char *gatename); /* 得到门的大小，可以指明"$i","$o" */
 
     /*******************************************************************************
      * 公用
      *******************************************************************************/
-    virtual cPar& getAncestorPar(const char *parname); /* 在父模块中寻找某个参数，没找到抛出cRuntimeError */
-    virtual void setBuiltinAnimationsAllowed(bool enabled); /* 设置是否在此模块的图形检查器上请求内置动画 */
+     /* 在父模块中寻找某个参数，没找到抛出cRuntimeError */
+    virtual cPar& getAncestorPar(const char *parname);
+    /* 设置是否在此模块的图形检查器上请求内置动画 */
+    virtual void setBuiltinAnimationsAllowed(bool enabled);
     virtual void deleteModule(); /* 删除自己 */
-    virtual void changeParentTo(cModule *mod); /* 移动该模块到另一个父模块下，一般用于移动场景。规则较复杂，可到原头文件查看使用说明 */
+    /* 移动该模块到另一个父模块下，一般用于移动场景。规则较复杂，可到原头文件查看使用说明 */
+    virtual void changeParentTo(cModule *mod);
 };
 ```
 
