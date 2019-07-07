@@ -18,99 +18,61 @@ class SIM_API cModule : public cComponent //implies noncopyable
     friend class cChannelType;
 
   public:
-    /* 门迭代器 */
-    GateIterator
-
-    /* 复合模块的子模块迭代器 */
-    SubmoduleIterator
-
-    /* 模块信道迭代器 */
-    ChannelIterator
+    /********************************************************************************
+     * 迭代器
+     *******************************************************************************/
+    GateIterator; /* 门迭代器 */
+    SubmoduleIterator; /* 复合模块的子模块迭代器 */
+    ChannelIterator; /* 模块信道迭代器 */
 
   public:
-    virtual void callRefreshDisplay() override;
+    virtual void callRefreshDisplay();
+    virtual const char *getFullName(); /* 获取模块全名（绝对名） */
+    virtual std::string getFullPath(); /* 获取模块路径（绝对路径） */
+    virtual bool isSimple();
 
-    virtual const char *getFullName() const override;
+    virtual cModule *getParentModule(); /* 返回模块的父模块，对于系统模块，返回nullptr */
+    bool isVector(); /* 如何模块是使用向量的形式定义的，返回true */
+    int getIndex(); /*返回模块在向量中的索引 */
+    int getVectorSize(); /*返回这个模块向量的大小，如何该模块不是使用向量的方式定义的，返回true */
 
-    virtual std::string getFullPath() const override;
-
-    virtual bool isSimple() const;
-
-    // 返回模块的父模块，对于系统模块，返回nullptr
-    virtual cModule *getParentModule() const override;
-
-    // 如何模块是使用向量的形式定义的，返回true
-    bool isVector() const  {return vectorSize>=0;}
-
-    // 返回模块在向量中的索引
-    int getIndex() const  {return vectorIndex;}
-
-    // 返回这个模块向量的大小，如何该模块不是使用向量的方式定义的，返回1
-    int getVectorSize() const  {return vectorSize<0 ? 1 : vectorSize;}
-
-    // 与getVectorSize()功能相似
-    _OPPDEPRECATED int size() const  {return getVectorSize();}
-
-    // 检测该模块是否有子模块
-    virtual bool hasSubmodules() const {return firstSubmodule!=nullptr;}
+    _OPPDEPRECATED int size(); /* 与getVectorSize()功能相似 */
+    virtual bool hasSubmodules(); /* 检测该模块是否有子模块 */
 
     // 寻找子模块name，找到返回模块ID，否则返回-1
     // 如何模块采用向量形式定义，那么需要指明index
-    virtual int findSubmodule(const char *name, int index=-1) const;
+    virtual int findSubmodule(const char *name, int index=-1);
 
     // 直接得到子模块name的指针，没有这个子模块返回nullptr
     // 如何模块采用向量形式定义，那么需要指明index
-    virtual cModule *getSubmodule(const char *name, int index=-1) const;
+    virtual cModule *getSubmodule(const char *name, int index=-1);
 
     /* 一个更强大的获取模块指针的接口，通过路径获取 */
-    virtual cModule *getModuleByPath(const char *path) const;
+    virtual cModule *getModuleByPath(const char *path);
 
-    /*
-     * 门的相关操作
-     */
+    /********************************************************************************
+     * 门的相关函数
+     *******************************************************************************/
+    virtual bool hasGate(const char *gatename, int index=-1); /* 检测是否有门 */
+    virtual int findGate(const char *gatename, int index=-1); /* 寻找门，如果没有返回-1，找到返回门ID */
+    const cGate *gate(int id); /* 通过ID得到门地址，目前我还没有用到过 */
+    virtual void deleteGate(const char *gatename); /*删除一个门（很少用） */
+    virtual std::vector<const char *> getGateNames(); /* 返回模块门的名字，只是基本名字(不包括向量门的索引, "[]" or the "$i"/"$o"） */ 
+    virtual cGate::Type gateType(const char *gatename); /* 检测门（向量门）类型，可以标明"$i","$o" */
+    virtual bool isGateVector(const char *gatename); /* 检测是否是向量门，可以标明"$i","$o" */
+    virtual int gateSize(const char *gatename); /* 得到门的大小，可以指明"$i","$o" */
 
-    // 检测是否有门
-    virtual bool hasGate(const char *gatename, int index=-1) const;
-
-    // 寻找门，如果没有返回-1，找到返回门ID
-    virtual int findGate(const char *gatename, int index=-1) const;
-
-    // 通过ID得到门地址，目前我还没有用到过
-    const cGate *gate(int id) const {return const_cast<cModule *>(this)->gate(id);}
-
-    // 删除一个门（很少用）
-    virtual void deleteGate(const char *gatename);
-
-    //返回模块门的名字，只是基本名字(不包括向量门的索引, "[]" or the "$i"/"$o"）
-    virtual std::vector<const char *> getGateNames() const;
-
-    // 检测门（向量门）类型，可以标明"$i","$o"
-    virtual cGate::Type gateType(const char *gatename) const;
-
-    // 检测是否是向量门，可以标明"$i","$o"
-    virtual bool isGateVector(const char *gatename) const;
-
-    // 得到门的大小，可以指明"$i","$o"
-    virtual int gateSize(const char *gatename) const;
-
-    /*
-     * 公用的
-     */
-    // 在父模块中寻找某个参数，没找到抛出cRuntimeError
-    virtual cPar& getAncestorPar(const char *parname);
-
-    // 设置是否在此模块的图形检查器上请求内置动画。
-    virtual void setBuiltinAnimationsAllowed(bool enabled) {setFlag(FL_BUILTIN_ANIMATIONS, enabled);}
-
-    // 删除自己
-    virtual void deleteModule();
-
-    // 移动该模块到另一个父模块下，一般用于移动场景。规则较复杂，可到原头文件查看使用说明
-    virtual void changeParentTo(cModule *mod);
+    /*******************************************************************************
+     * 公用
+     *******************************************************************************/
+    virtual cPar& getAncestorPar(const char *parname); /* 在父模块中寻找某个参数，没找到抛出cRuntimeError */
+    virtual void setBuiltinAnimationsAllowed(bool enabled); /* 设置是否在此模块的图形检查器上请求内置动画 */
+    virtual void deleteModule(); /* 删除自己 */
+    virtual void changeParentTo(cModule *mod); /* 移动该模块到另一个父模块下，一般用于移动场景。规则较复杂，可到原头文件查看使用说明 */
 };
 ```
 
-**cModule**是<b>OMNeT++</b>中用于代表一个模块的对象实体，如果你在编写网络仿真代码时，这个模块可以是简单模块或者复合模块，当需要得到这个模块相关属性时可以考虑到这个**cModule**类里边找找，说不定有意外的惊喜，也许有现成的函数实现你需要的功能。下面将这个类原型解剖看看：
+**cModule**是**OMNeT++**中用于代表一个模块的对象实体，如果你在编写网络仿真代码时，这个模块可以是简单模块或者复合模块，当需要得到这个模块相关属性时可以考虑到这个**cModule**类里边找找，说不定有意外的惊喜，也许有现成的函数实现你需要的功能。下面将这个类原型解剖看看：
 
 - **迭代器：GateIterator**
 
