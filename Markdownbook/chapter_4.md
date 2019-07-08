@@ -17,66 +17,69 @@ class SIM_API cModule : public cComponent
     friend class cModuleType;
     friend class cChannelType;
 
-  public:
-    /**********************************************************************
-     * 迭代器
-     *********************************************************************/
-    GateIterator; /* 门迭代器 */
-    SubmoduleIterator; /* 复合模块的子模块迭代器 */
-    ChannelIterator; /* 模块信道迭代器 */
+    public:
+        /***************************************************************
+        * 迭代器
+        ***************************************************************/
+        GateIterator; /* 门迭代器 */
+        SubmoduleIterator; /* 复合模块的子模块迭代器 */
+        ChannelIterator; /* 模块信道迭代器 */
 
-  public:
-    virtual void callRefreshDisplay();
-    virtual const char *getFullName(); /* 获取模块全名（绝对名） */
-    virtual std::string getFullPath(); /* 获取模块路径（绝对路径） */
-    virtual bool isSimple();
+    public:
+        virtual void callRefreshDisplay();
+        virtual const char *getFullName(); /* 获取模块全名（绝对名） */
+        virtual std::string getFullPath(); /* 获取模块路径（绝对路径） */
+        virtual bool isSimple();
 
-    /* 返回模块的父模块，对于系统模块，返回nullptr */
-    virtual cModule *getParentModule();
-    bool isVector(); /* 如何模块是使用向量的形式定义的，返回true */
-    int getIndex(); /*返回模块在向量中的索引 */
-    /*返回这个模块向量的大小，如何该模块不是使用向量的方式定义的，返回true */
-    int getVectorSize(); 
+        /* 返回模块的父模块，对于系统模块，返回nullptr */
+        virtual cModule *getParentModule();
+        bool isVector(); /* 如何模块是使用向量的形式定义的，返回true */
+        int getIndex(); /*返回模块在向量中的索引 */
+        /*返回这个模块向量的大小，如何该模块不是使用向量的方式定义的，返回true */
+        int getVectorSize();
 
-    _OPPDEPRECATED int size(); /* 与getVectorSize()功能相似 */
-    virtual bool hasSubmodules(); /* 检测该模块是否有子模块 */
+        _OPPDEPRECATED int size(); /* 与getVectorSize()功能相似 */
+        virtual bool hasSubmodules(); /* 检测该模块是否有子模块 */
 
-    // 寻找子模块name，找到返回模块ID，否则返回-1
-    // 如何模块采用向量形式定义，那么需要指明index
-    virtual int findSubmodule(const char *name, int index=-1);
+        // 寻找子模块name，找到返回模块ID，否则返回-1
+        // 如何模块采用向量形式定义，那么需要指明index
+        virtual int findSubmodule(const char *name, int index=-1);
 
-    // 直接得到子模块name的指针，没有这个子模块返回nullptr
-    // 如何模块采用向量形式定义，那么需要指明index
-    virtual cModule *getSubmodule(const char *name, int index=-1);
+        // 直接得到子模块name的指针，没有这个子模块返回nullptr
+        // 如何模块采用向量形式定义，那么需要指明index
+        virtual cModule *getSubmodule(const char *name, int index=-1);
 
-    /* 一个更强大的获取模块指针的接口，通过路径获取 */
-    virtual cModule *getModuleByPath(const char *path);
+        /* 一个更强大的获取模块指针的接口，通过路径获取 */
+        virtual cModule *getModuleByPath(const char *path);
 
-    /**********************************************************************
-     * 门的相关函数
-     *********************************************************************/
-    virtual bool hasGate(const char *gatename, int index=-1); /* 检测是否有门 */
-    /* 寻找门，如果没有返回-1，找到返回门ID */
-    virtual int findGate(const char *gatename, int index=-1); 
-    const cGate *gate(int id); /* 通过ID得到门地址，目前我还没有用到过 */
-    virtual void deleteGate(const char *gatename); /*删除一个门（很少用） */
-    /* 返回模块门的名字，只是基本名字(不包括向量门的索引, "[]" or the "$i"/"$o"） */ 
-    virtual std::vector<const char *> getGateNames();
-    /* 检测门（向量门）类型，可以标明"$i","$o" */
-    virtual cGate::Type gateType(const char *gatename);
-    virtual bool isGateVector(const char *gatename); /* 检测是否是向量门，可以标明"$i","$o" */
-    virtual int gateSize(const char *gatename); /* 得到门的大小，可以指明"$i","$o" */
+        /***************************************************************
+        * 门的相关函数
+        ***************************************************************/
+        /* 检测是否有门 */
+        virtual bool hasGate(const char *gatename, int index=-1); 
+        /* 寻找门，如果没有返回-1，找到返回门ID */
+        virtual int findGate(const char *gatename, int index=-1); 
+        const cGate *gate(int id); /* 通过ID得到门地址，目前我还没有用到过 */
+        virtual void deleteGate(const char *gatename); /*删除一个门（很少用） */
+        /* 返回模块门的名字，只是基本名字(不包括向量门的索引, "[]" or the "$i"/"$o"） */
+        virtual std::vector<const char *> getGateNames();
+        /* 检测门（向量门）类型，可以标明"$i","$o" */
+        virtual cGate::Type gateType(const char *gatename);
+        /* 检测是否是向量门，可以标明"$i","$o" */
+        virtual bool isGateVector(const char *gatename);
+        /* 得到门的大小，可以指明"$i","$o" */
+        virtual int gateSize(const char *gatename);
 
-    /*******************************************************************************
-     * 公用
-     *******************************************************************************/
-     /* 在父模块中寻找某个参数，没找到抛出cRuntimeError */
-    virtual cPar& getAncestorPar(const char *parname);
-    /* 设置是否在此模块的图形检查器上请求内置动画 */
-    virtual void setBuiltinAnimationsAllowed(bool enabled);
-    virtual void deleteModule(); /* 删除自己 */
-    /* 移动该模块到另一个父模块下，一般用于移动场景。规则较复杂，可到原头文件查看使用说明 */
-    virtual void changeParentTo(cModule *mod);
+        /*******************************************************************************
+        * 公用
+        *******************************************************************************/
+        /* 在父模块中寻找某个参数，没找到抛出cRuntimeError */
+        virtual cPar& getAncestorPar(const char *parname);
+        /* 设置是否在此模块的图形检查器上请求内置动画 */
+        virtual void setBuiltinAnimationsAllowed(bool enabled);
+        virtual void deleteModule(); /* 删除自己 */
+        /* 移动该模块到另一个父模块下，一般用于移动场景。规则较复杂，可到原头文件查看使用说明 */
+        virtual void changeParentTo(cModule *mod);
 };
 ```
 
@@ -126,62 +129,61 @@ for (cModule::ChannelIterator it(module); !it.end(); ++it) {
 class SIM_API cPar : public cObject
 {
     friend class cComponent;
-  public:
-    // 返回参数的名字
-    virtual const char *getName() const override;
+    public:
+        // 返回参数的名字
+        virtual const char *getName();
 
-    // 以字符串的形式返回参数
-    virtual std::string str() const override;
+        // 以字符串的形式返回参数
+        virtual std::string str();
 
-    virtual cObject *getOwner() const override; // note: cannot return cComponent* (covariant return type) due to declaration order
+        virtual cObject *getOwner();
+        Type getType();
 
-    Type getType() const;
+        static const char *getTypeName(Type t);
 
-    static const char *getTypeName(Type t);
+        bool isNumeric();
 
-    bool isNumeric() const;
+        bool isVolatile();
 
-    bool isVolatile() const;
+        bool isExpression();
 
-    bool isExpression() const;
+        bool isShared();
 
-    bool isShared() const;
+        bool isSet();
 
-    bool isSet() const;
+        cPar& setBoolValue(bool b);
 
-    cPar& setBoolValue(bool b);
+        cPar& setLongValue(long l);
 
-    cPar& setLongValue(long l);
+        cPar& setDoubleValue(double d);
 
-    cPar& setDoubleValue(double d);
+        cPar& setStringValue(const char *s);
 
-    cPar& setStringValue(const char *s);
+        cPar& setStringValue(const std::string& s);
 
-    cPar& setStringValue(const std::string& s)  {setStringValue(s.c_str()); return *this;}
+        cPar& setXMLValue(cXMLElement *node);
 
-    cPar& setXMLValue(cXMLElement *node);
+        bool boolValue();
 
-    bool boolValue() const;
+        long longValue();
 
-    long longValue() const;
+        double doubleValue();
 
-    double doubleValue() const;
+        const char *getUnit();
 
-    const char *getUnit() const;
+        const char *stringValue();
 
-    const char *stringValue() const;
+        std::string stdstringValue();
 
-    std::string stdstringValue() const;
+        cXMLElement *xmlValue();
 
-    cXMLElement *xmlValue() const;
+        void parse(const char *text);
 
-    void parse(const char *text);
+        /* 与stdstringValue()功能一样 */
+        operator std::string() const  {return stdstringValue();}
 
-    // 与stdstringValue()功能一样
-    operator std::string() const  {return stdstringValue();}
-
-    // 与xmlVlaue()等同。注意：返回对象树的生命周期被限制了，具体看xmlValue说明。
-    operator cXMLElement *() const  {return xmlValue();}
+        // 与xmlVlaue()等同。注意：返回对象树的生命周期被限制了，具体看xmlValue说明。
+        operator cXMLElement *() const  {return xmlValue();}
 };
 ```
 
@@ -196,78 +198,71 @@ class SIM_API cGate : public cObject, noncopyable
     friend class cModuleGates;
     friend class cPlaceholderModule;
 
-  public:
-    cGate *prevGate;    // previous and next gate in the path
-    cGate *nextGate;
+    public:
+        cGate *prevGate;
+        cGate *nextGate;
 
-    static int lastConnectionId;
+        static int lastConnectionId;
 
-    static void clearFullnamePool();
+        static void clearFullnamePool();
 
-    // internal
-    void installChannel(cChannel *chan);
+        // internal
+        void installChannel(cChannel *chan);
 
-    // internal
-    void checkChannels() const;
+        // internal
+        void checkChannels() const;
 
-    /* 例如返回门out */
-    virtual const char *getName() const override;
+        /* 例如返回门out */
+        virtual const char *getName() const override;
 
-    /* 与getName()不同，需要返回门索引，例如out[4] */
-    virtual const char *getFullName() const override;
+        /* 与getName()不同，需要返回门索引，例如out[4] */
+        virtual const char *getFullName() const override;
 
-    /**
-     * This function is called internally by the send() functions and
-     * channel classes' deliver() to deliver the message to its destination.
-     * A false return value means that the message object should be deleted
-     * by the caller. (This is used e.g. with parallel simulation, for
-     * messages leaving the partition.)
-     */
-    virtual bool deliver(cMessage *msg, simtime_t at);
+        virtual bool deliver(cMessage *msg, simtime_t at);
 
-    cChannel *connectTo(cGate *gate, cChannel *channel=nullptr, bool leaveUninitialized=false);
+        cChannel *connectTo(cGate *gate, cChannel *channel=nullptr, bool leaveUninitialized=false);
 
-    void disconnect();
+        void disconnect();
 
-    cChannel *reconnectWith(cChannel *channel, bool leaveUninitialized=false);
+        cChannel *reconnectWith(cChannel *channel, bool leaveUninitialized=false);
 
-    const char *getBaseName() const;
+        const char *getBaseName();
 
-    const char *getNameSuffix() const;
+        const char *getNameSuffix();
 
-    cProperties *getProperties() const;
+        cProperties *getProperties();
 
-    Type getType() const  {return desc->getTypeOf(this);}
+        Type getType();
 
-    static const char *getTypeName(Type t);
+        static const char *getTypeName(Type t);
 
-    cModule *getOwnerModule() const;
+        cModule *getOwnerModule();
 
-    int getId() const;
+        int getId();
 
-    bool isVector() const  {return desc->isVector();}
+        bool isVector();
 
-    int getIndex() const  {return desc->indexOf(this);}
+        int getIndex();
 
-    int getVectorSize() const  {return desc->gateSize();}
+        int getVectorSize();
 
-    cChannel *getChannel() const  {return channel;}
+        cChannel *getChannel();
 
-    cChannel *getTransmissionChannel() const;
+        cChannel *getTransmissionChannel();
 
-    cChannel *findTransmissionChannel() const;
+        cChannel *findTransmissionChannel();
 
-    cChannel *getIncomingTransmissionChannel() const;
+        cChannel *getIncomingTransmissionChannel();
 
-    cChannel *findIncomingTransmissionChannel() const;
-  
-    cGate *getPreviousGate() const {return prevGate;}
+        cChannel *findIncomingTransmissionChannel();
 
-    cGate *getNextGate() const   {return nextGate;}
+        cGate *getPreviousGate();
 
-    cDisplayString& getDisplayString();
+        cGate *getNextGate();
 
-    void setDisplayString(const char *dispstr);
+        cDisplayString& getDisplayString();
+
+        void setDisplayString(const char *dispstr);
 };
 ```
 
@@ -282,12 +277,12 @@ class SIM_API cGate : public cObject, noncopyable
 ```c
 class SIM_API cLog
 {
-  public:
-    static LogLevel logLevel;
+    public:
+        static LogLevel logLevel;
 
-    static const char *getLogLevelName(LogLevel logLevel);
+        static const char *getLogLevelName(LogLevel logLevel);
 
-    static LogLevel resolveLogLevel(const char *name);
+        static LogLevel resolveLogLevel(const char *name);
 };
 
 #define EV_LOG(logLevel, category) OPP_LOGPROXY(getThisPtr(), logLevel, category).getStream()
