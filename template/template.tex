@@ -28,15 +28,38 @@
 \definecolor{colorsubsection}{RGB}{139,0,0} % DarkRed
 \definecolor{colorheader}{RGB}{70,130,180} % SteelBlue
 
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+
 \lstset{
-%language=C++,
-basicstyle=\small\ttfamily,
-numbers=left,
-numbersep=5pt,
-xleftmargin=20pt,
-frame=tb,
-framexleftmargin=20pt
+ backgroundcolor=\color{lightgray}, 
+ basicstyle = \footnotesize,       
+ breakatwhitespace = false,        
+ breaklines = true,                 
+ captionpos = b,                    
+ commentstyle = \color{mygreen}\bfseries,
+ extendedchars = false,             
+ frame = shadowbox, 
+ framerule=0.5pt,
+ keepspaces=true,
+ keywordstyle=\color{blue}\bfseries, % keyword style
+ language = C++,                     % the language of code
+ otherkeywords={string}, 
+ numbers=left, 
+ numbersep=5pt,
+ numberstyle=\tiny\color{mygray},
+ rulecolor=\color{black},         
+ showspaces=false,  
+ showstringspaces=false, 
+ showtabs=false,    
+ stepnumber=1,         
+ stringstyle=\color{mymauve},        % string literal style
+ tabsize=2,          
+ title=\lstname                      
 }
+
 
 \titleformat{\section}
 {\color{colorsection}\normalfont\Large\bfseries}

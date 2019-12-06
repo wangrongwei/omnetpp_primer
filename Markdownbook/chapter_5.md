@@ -202,14 +202,14 @@ void Node::doNext()
     cModule *parent = getParentModule();
     cModule *mod,*Head,*midmod;
 
-    //网络中的所有节点都遍历一次，包括复合模块下的子模块
+    /* 网络中的所有节点都遍历一次，包括复合模块下的子模块 */
     for(int i=1;i<=cSimulation::getActiveSimulation()->getLastComponentId();i++){
         int number_of_Bees = cSimulation::getActiveSimulation()->getLastComponentId();
         cSimulation *simobj = cSimulation::getActiveSimulation();
-        //这里需要优化
+        /* TODO优化 */
         mod = cSimulation::getActiveSimulation()->getModule(i);
         if(strcmp(mod->getName(),"CenController") == 0){
-            //如果遍历到一个模块名为CenController的节点
+            /* 如果遍历到一个模块名为CenController的节点 */
             continue;
         }
         else{
@@ -219,7 +219,7 @@ void Node::doNext()
                 midmod=cSimulation::getActiveSimulation()->getModule(i);
                 Head=midmod->getSubmodule(this->clustername.c_str(),j)->getSubmodule("Wireless");
                 if(((Node*)Head)->myId == this->headId){
-                    //找到簇头节点,退出while循环
+                    /* 找到簇头节点,退出while循环 */
                     break;
                 }
                 j++;
@@ -232,9 +232,9 @@ void Node::doNext()
         }
     }
 }
-
 ```
-在上面的代码段中，可能有些诸如<b>“Wireless”</b>相关的过程与我实验源代码本身功能相关，本例只提供一种可参考的代码，具体运用于读者自己的项目中还需要做部分修改。为了让读者更快的掌握这种方法，下面就代码段中的重要接口做一个简单的分析：
+
+在上面的代码段中，可能有些诸如**Wireless**相关的过程与我实验源代码本身功能相关，本例只提供一种可参考的代码，具体运用于读者自己的项目中还需要做部分修改。为了让读者更快的掌握这种方法，下面就代码段中的重要接口做一个简单的分析：
 
 - **for(int i=1;i<=cSimulation::getActiveSimulation()->getLastComponentId();i++)**</br>
 
@@ -274,9 +274,7 @@ network simplenet
 
 - <b>midmod = cSimulation::getActiveSimulation()->getModule(i)</b>
 
-紧接着上面的<b>for</b>循环，得到第**i**个模块的地址，如果该模块在网络中描述是用向量的方式需要使用：
-$$getSubmodule(“node_name”,j)$$
-即可得到<b>node_name[j]</b>所代表的模块。
+紧接着上面的<b>for</b>循环，得到第**i**个模块的地址，如果该模块在网络中描述是用向量的方式需要使用：$$getSubmodule(“node_name”,j)$$，即可得到<b>node_name[j]</b>所代表的模块。
 
 - <b>getSubmodule("modname")</b>
 
@@ -284,7 +282,7 @@ $$getSubmodule(“node_name”,j)$$
 
 ### 技巧五：如何得到某一个模块引用的ned路径 ###
 
-为什么需要在一个程序中得到该<b>".ned"</b>引用的路径呢？因为在<b>OMNeT++</b>中，我们在设计一个复合模块的内部结构时，可以直接采用图形的方式编辑，相当于我们可以直接拖动设计好的简单模块到复合模块中，而有些简单模块在不同的复合模块中其功能还有所不同，因此在为该简单模块编写<b>.cc</b>文件时，我们需要检测一下当前本模块在什么模块下使用的，比如是在端系统还是交换机。得到一个模块的引用路径，其实就是一个接口函数的事，如下代码段：
+为什么需要在一个程序中得到该<b>"ned"</b>引用的路径呢？因为在<b>OMNeT++</b>中，我们在设计一个复合模块的内部结构时，可以直接采用图形的方式编辑，相当于我们可以直接拖动设计好的简单模块到复合模块中，而有些简单模块在不同的复合模块中其功能还有所不同，因此在为该简单模块编写<b>cc</b>文件时，我们需要检测一下当前本模块在什么模块下使用的，比如是在端系统还是交换机。得到一个模块的引用路径，其实就是一个接口函数的事，如下代码段：
 
 ```C++
 cModule *parent = getParentModule();
@@ -305,11 +303,11 @@ else if (strcmp(name, "SimpleNetwork.Switch.SwitchPort") == 0){
 
 ```
 
-该接口函数便是<b>getNedTypeName</b>，得到完整的路径后，使用<b>c</b>库函数<b>strcmp</b>进行判断即可。
+该接口函数便是**getNedTypeName**，得到完整的路径后，使用**c**库函数**strcmp**进行判断即可。
 
 ### 技巧六：使用cTopology类遍历拓扑初始化路由表 ###
 
-这是个好东西，其实在<b>OMNeT++</b>中其实提供的大量的接口函数，只是在不知道的前提下写相似的功能函数比较麻烦，这个接口函数完美解决我们寻找路由的门问题，在使用<b>send</b>函数传输消息的时候只要知道我们传输的目的节点便可，直接利用一个路由表即可，代码示例如下：
+这是个好东西，其实在**OMNeT++**中其实提供的大量的接口函数，只是在不知道的前提下写相似的功能函数比较麻烦，这个接口函数完美解决我们寻找路由的门问题，在使用**send**函数传输消息的时候只要知道我们传输的目的节点便可，直接利用一个路由表即可，代码示例如下：
 
 ```C++
 /*
@@ -576,13 +574,13 @@ else{
     }
 ```
 
-需要注意：
-1）该函数一定放在与外界相连接的简单模块，不然时看不到的；
+需要注意该函数一定放在与外界相连接的简单模块，不然是看不到的；
 
-最终的显示效果入下图所示
+最终的显示效果入下图所示：
+
 ![avatar](./../img/chapter5/5-1.png)
 
 ## 本章小结 ##
 
-**OMNeT++**仿真内核提供的丰富的仿真接口，使用**OMNeT++**进行仿真，在掌握一定的**C++**编程方法以后，阅读 &#160; **OMNeT++**相关类的描述可能有意外的收获，找到合适的接口进行仿真。
+**OMNeT++**仿真内核提供的丰富的仿真接口，使用**OMNeT++**进行仿真，在掌握一定的**C++**编程方法以后，阅读**OMNeT++**相关类的描述可能有意外的收获，找到合适的接口进行仿真。
 
