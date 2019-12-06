@@ -33,7 +33,7 @@
 
 在模块的**initialize**函数中，利用**registerSignal**函数对信号进行注册。代码示例如下：
 
-```c
+```cpp
     ThroughputSignal = registerSignal("TaskThroughput_Network");
 ```
 
@@ -48,7 +48,7 @@
     @statistic[endToEndDelay_Packet](title="end-to-end delay of arrived packets";unit=s;record=vector,mean,max;interpolationmode=none);
 ```
 
-```c
+```cpp
     end2endSignal = registerSignal("endToEndDelay_Packet");
 ```
 
