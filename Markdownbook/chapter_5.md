@@ -511,7 +511,7 @@ this->getDisplayString().setTagArg("i",1,"red");
 
 OMNeT++支持gdb调试，与其他IDE调试方式相似，不同之处在于，若在网络仿真原型中设有统计参数，需在配置文件**omnetpp.ini**中设置：
 
-```text
+```C++
 check-signals = false
 ```
 
