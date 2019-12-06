@@ -43,7 +43,7 @@
 
 与标量的操作方式相似，都需要在ned文件中添加相应变量和注册。唯一不同，主要在ned文件中**record**的值存在差异，详细如下：
 
-```ned
+```C++
     @signal[endToEndDelay_Packet](type="simtime_t");
     @statistic[endToEndDelay_Packet](title="end-to-end delay of arrived packets";unit=s;record=vector,mean,max;interpolationmode=none);
 ```
@@ -87,7 +87,7 @@ recordScalar(“string 输出名称”, 输出变量名)
 
 仿真的结果存储在project下result文件夹中。例如：
 
-```text
+```C++
 cOutVector: \result\**.vec
 cLongHistogram: \result\**.sca
 ```
