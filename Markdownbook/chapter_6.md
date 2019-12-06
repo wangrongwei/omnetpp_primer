@@ -26,7 +26,7 @@
 
 在**OMNeT++**中，操作标量统计接口主要包括两个步骤：在模块的**ned**文件中添加需统计标量，在模块**cc**文件中对标量进行注册。**ned**文件添加如下：
 
-```ned
+```C++
     @signal[TaskThroughput_Network](type=long);
     @statistic[TaskThroughput_Network](title="Task throughput of network";unit=long;record=mean,max;interpolationmode=none);
 ```
