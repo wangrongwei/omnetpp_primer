@@ -9,7 +9,7 @@
 >对于某些工程加入移动模块以后，编译过程没有出错，但是当执行仿真程序的时候，出现一些nan错误提示。
 需要在仿真配置文件加入：
 
-```txt
+```text
 **.constraintAreaMinX = 0m
 **.constraintAreaMinY = 0m
 **.constraintAreaMinZ = 0m
@@ -20,7 +20,7 @@
 
 移动模块配置：
 
-```txt
+```text
 **.UAV[*].mobilityType = "MassMobility"
 **.UAV[*].mobility.initFromDisplayString = true
 **.UAV[*].mobility.changeInterval = truncnormal(2s, 0.5s)
@@ -45,7 +45,7 @@
 
 在对节点的坐标进行实时的显示的过程中，编写如下的函数：
 
-```cpp
+```C++
 void node::initialize()
 {
     cModule *host = getContainingNode(this);
@@ -56,7 +56,7 @@ void node::initialize()
 
 同时以 "inet/mobility/contract/IMobility.h"的形式引用头文件，但是在编译的过程中，会报出如下的错误：
 
-```txt
+```text
 ../out/clang-release/src/node.o:(.text[_ZN7omnetpp14check_and_castIPN4inet9IMobilityENS_7cModuleEEET_PT0_]+0x18): undefined reference to `__imp__ZTIN4inet9IMobilityE'
 ../out/clang-release/src/node.o:(.rdata[_ZTIPN4inet9IMobilityE]+0x18): undefined reference to `typeinfo for inet::IMobility'
 ```
@@ -82,7 +82,7 @@ void node::initialize()
 
 1）在整个网络拓扑ned文件中，需要添加必要的路径和模块：
 
-```txt
+```text
 /*调用inet中的库函数*/
 import inet.visualizer.integrated.IntegratedCanvasVisualizer;
 import inet.visualizer.contract.IIntegratedVisualizer;
@@ -96,7 +96,7 @@ visualizer: <default("IntegratedCanvasVisualizer")> like IIntegratedVisualizer i
 
 2）然后在.ini文件中进行配置
 
-```txt
+```text
 *.visualizertype = "IntegratedOsgVisualizer"
 *.hasVisualizer = true
 *.visualizer.mobilityVisualizer.moduleFilter = "**"

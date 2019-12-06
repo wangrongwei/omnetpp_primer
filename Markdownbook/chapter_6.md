@@ -33,7 +33,7 @@
 
 在模块的**initialize**函数中，利用**registerSignal**函数对信号进行注册。代码示例如下：
 
-```cpp
+```C++
     ThroughputSignal = registerSignal("TaskThroughput_Network");
 ```
 
@@ -48,7 +48,7 @@
     @statistic[endToEndDelay_Packet](title="end-to-end delay of arrived packets";unit=s;record=vector,mean,max;interpolationmode=none);
 ```
 
-```cpp
+```C++
     end2endSignal = registerSignal("endToEndDelay_Packet");
 ```
 
@@ -58,7 +58,7 @@
 
 - cLongHistogram：记录数据然后实现等距直方图
 
-```cpp
+```C++
 cLongHistogram hopCountStats;
 hopCountStats.setName("hopcountStats"); /* 设置名称 */
 hopCountStats.setRangeAutoUpper("0,10,1.5"); /* 设置上限值 */
@@ -69,7 +69,7 @@ hopCountStats.collect(hopcount); /* 记录数据 */
 
 - cOutVector：获取输出向量
 
-```cpp
+```C++
 cOutVector hopCountVector;
 hopCountVector.setName("Hopcount"); /* 设置名称 */
 hopCountVector.record(hopcount); /* 记录数据 */
@@ -77,7 +77,7 @@ hopCountVector.record(hopcount); /* 记录数据 */
 
 - recordScalar
 
-```cpp
+```C++
 recordScalar(“string 输出名称”, 输出变量名)
 ```
 

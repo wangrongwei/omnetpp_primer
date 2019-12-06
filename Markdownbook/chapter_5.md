@@ -19,7 +19,7 @@
 
 影响仿真结果好理解，仿真现象呢，那我们来看看仿真模型：
 
-```c
+```C++
 channel Channel extends DatarateChannel
 {
     delay = default(uniform(20ns, 100ns));
@@ -35,7 +35,7 @@ channel Channel extends DatarateChannel
 
 - 利用<b>scheduleAt</b>函数
 
-```cpp
+```C++
 void Node::handleMessage(cMessage* msg)
 {
     if(msg->isSelfMessage()){
@@ -52,7 +52,7 @@ void Node::handleMessage(cMessage* msg)
 
 通过使用<b>scheduleAt</b>函数使仿真时间走动，完成上一个消息的完成，这里补充一点，如果读者想使用延时来等待消息传输完成是不可行的，因为使用这种方法仿真时间是不会走动的。例如下面一段代码：
 
-```cpp
+```C++
 time1 = simTime();
 func();
 time2 = simTime();
@@ -66,7 +66,7 @@ $time1==time2$，
 
 上述采用<b>scheduleAt</b>的方法太麻烦，需要**new**一个消息，然后还需要定义一个<b>SMSG_INIT</b>，另外无端增多<b>handleMessage</b>函数内容，这种方法的确不是特别简洁。这里再分享另一种方法：
 
-```cpp
+```C++
 cPacket *pkt = ...; // packet to be transmitted
 cChannel *txChannel = gate("out")->getTransmissionChannel();
 simtime_t txFinishTime = txChannel->getTransmissionFinishTime();
@@ -89,6 +89,7 @@ else
 通过这种方式，我们可以在<b>for</b>循环中发送多个消息。但是对于有些需求不得不使用<b>scheduleAt</b>函数完成。
 
 - 提一提<b>sendDirect</b>函数！
+
 ```c,caption=My first C program,label=src-hello-c
 sendDirect(cMessage *msg, cModule *mod, int gateId)
 sendDirect(cMessage *msg, cModule *mod, const char *gateName, int index=-1)
@@ -109,7 +110,7 @@ sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
 
 如果在设计网络时，需要将包传输效果设置成图<b>5-2</b>所示，对于有线连接和无线连接的两个节点方法不同，对于有线连接的<b>send</b>函数无法在函数的参数上设置。需要在网络拓扑连接时设置好信道，如代码段<b>5-1</b>所示：
 
-```c
+```C++
 channel Channel extends DatarateChannel
 {
     delay = default(uniform(20ns, 100ns));
@@ -126,7 +127,7 @@ channel Channel extends DatarateChannel
 
 在设计网络拓扑时，我们有时需要在一个模块中直接访问同一级其他模块的相关参数，不再经过消息之间传输进行传输。这种接口在<b>OMNeT++</b>下也被提供了，如下一个代码示例：
 
-```cpp
+```C++
 cModule *parent = getParentModule();
 
 // 取出父模块下的beBuffer模块
@@ -142,7 +143,8 @@ pRCBuffer = check_and_cast<RCBuffer *>(psubmodRC);
 ```
 
 上面的代码片段主要通过<b>getParentModule</b>和<b>getSubmodule</b>两个接口得到指向目的模块的指针，得到指针相当于我们拿到了这个目的模块的所有，需要注意的是这种方式的前提是目的模块是一个简单模块，需要与复合模块区分开，在<b>OMNeT++</b>中复合模块只有对应的**.ned**文件，其描述方式如下：
-```c
+
+```C++
 module Node{
         parameters:
     	...
@@ -152,8 +154,7 @@ module Node{
 ```
 而简单模块有三个文件：**.nde、.cc、.h**，其<b>.ned</b>文件中描述方式如下：
 
-```
-
+```C++
 simple Node{
 	parameters:
     	...
@@ -164,7 +165,7 @@ simple Node{
 
 因此对于没有<b>.cc/.h</b>文件的复合模块，在编写代码时就没有对应的<b>C++</b>类，因此使用上述方法就出现问题，无法事先知道指针类型，那么对于复合模块的访问，我们可以通过下面的代码实现：
 
-```cpp
+```C++
 // 得到当前父模块下的所以模块
 for(cModule::SubmoduleIterator iter(getParentModule()); !iter.end(); iter++){
         string ES = string("ES");
@@ -191,7 +192,7 @@ for(cModule::SubmoduleIterator iter(getParentModule()); !iter.end(); iter++){
 
 在有些场景下，我们需要遍历所有节点，甚至是复合节点内部的模块，代码示例如下：
 
-```cpp
+```C++
 /*
  * 在所有节点中寻找一个ID 等于当前模块的headId号的模块
  */
@@ -238,7 +239,7 @@ void Node::doNext()
 
 这一句<b>for</b>循环遍历当前网络场景中的模块，只遍历仿真场景中的节点，不包括节点内部的模块，下面结合一个网络拓扑文件说明：
 
-```cpp
+```C++
 network simplenet
 {
     parameters:
@@ -284,7 +285,7 @@ $$getSubmodule(“node_name”,j)$$
 
 为什么需要在一个程序中得到该<b>".ned"</b>引用的路径呢？因为在<b>OMNeT++</b>中，我们在设计一个复合模块的内部结构时，可以直接采用图形的方式编辑，相当于我们可以直接拖动设计好的简单模块到复合模块中，而有些简单模块在不同的复合模块中其功能还有所不同，因此在为该简单模块编写<b>.cc</b>文件时，我们需要检测一下当前本模块在什么模块下使用的，比如是在端系统还是交换机。得到一个模块的引用路径，其实就是一个接口函数的事，如下代码段：
 
-```cpp
+```C++
 cModule *parent = getParentModule();
 const char *name = parent->getNedTypeName();
 
@@ -309,7 +310,7 @@ else if (strcmp(name, "SimpleNetwork.Switch.SwitchPort") == 0){
 
 这是个好东西，其实在<b>OMNeT++</b>中其实提供的大量的接口函数，只是在不知道的前提下写相似的功能函数比较麻烦，这个接口函数完美解决我们寻找路由的门问题，在使用<b>send</b>函数传输消息的时候只要知道我们传输的目的节点便可，直接利用一个路由表即可，代码示例如下：
 
-```cpp
+```C++
 /*
  * 探测交换机网络的拓扑
  */
@@ -355,7 +356,7 @@ void Router::TopoFind()
 
 得到路由表也涉及到路由算法的选择，在**ctopology.h**文件中有以下两个路由算法可供选择：
 
-```cpp
+```C++
 /** @name Algorithms to find shortest paths. */
 /*
 * To be implemented:
@@ -398,7 +399,7 @@ virtual void calculateWeightedSingleShortestPathsTo(Node *target);
 
 在<b>OMNeT++</b>中，凡是使用<b>scheduleAt</b>调度的消息属于<b>Self-Messages</b>，其作用是用在模块本身调度事件使用的。有时需要利用同一个msg，但是中间必须使用<b>cancelEvent</b>函数取消掉上次，如下片段：
 
-```cpp
+```C++
 //cMessage *msg
 if (msg->isScheduled())
     cancelEvent(msg);
@@ -416,7 +417,7 @@ scheduleAt(simTime() + delay, msg);
 
 也许作者的用词不明，这里的仿真场景指的是运行仿真后出现的仿真界面。必须提到的是这个<b>OMNeT++</b>的仿真场景，节点在该场景上的位置，不一定是它的属性里边的地址，它们可以不同，感觉似乎是<b>OMNeT++</b>开发者提供的缺口，不知这个是好还是坏，但是好消息就是这些开发者提供了读取场景上节点属性的坐标和在程序中设置该坐标（目的就是让这个显示坐标更新），简而言之，你的节点坐标更新需要你自己在程序中完成，<b>OMNeT++</b>不会自动帮你完成。程序5.2.9-1是关于读取坐标和更新场景坐标的显示的代码段：
 
-```cpp
+```C++
 程序5.2.9-1
 // 按照最开始的网络拓扑（按圆形分布），得到每一个节点的坐标
 auto parentdispStr = parents->getDisplayString();
@@ -431,7 +432,7 @@ coord_Y.setDoubleValue(this->ypos); //将仿真界面上的ypos改变
 
 对于一个复合模块中的一个简单节点想获符合节点中的坐标以及该节点的移动速度时，可以利用inet中自带的iMobility模块即可以实现完成。具体的实现程序如下所示：
 
-```cpp
+```C++
 程序5.2.9-1
 // 按照最开始的网络拓扑（按圆形分布），得到每一个节点的坐标
 cModule *temp_NodeModule=this->getParentModule();
@@ -452,7 +453,7 @@ double NodeVy=speed_Node.y;
 
 与在某一个工程下需要<b>import INET</b>中的NED模型，我们需要在工程的属性中<b>Project References</b>中勾上我们需要<b>import</b>的库，然后在工程的ned文件中添加ned模型路径。同时当我们设置了工程<b>Project References</b>，当编译该工程时，将会链接<b>Project References</b>中勾上的工程编译生成的库文件，其中涉及以下编译设置：
 
-```cpp
+```C++
 // macros needed for building Windows DLLs
 #if defined(_WIN32)
 #  define OPP_DLLEXPORT  __declspec(dllexport)
@@ -509,10 +510,8 @@ this->getDisplayString().setTagArg("i",1,"red");
 
 OMNeT++支持gdb调试，与其他IDE调试方式相似，不同之处在于，若在网络仿真原型中设有统计参数，需在配置文件**omnetpp.ini**中设置：
 
-```c
-
+```text
 check-signals = false
-
 ```
 
 若仿真过程中，未关闭**check-signals**，调试过程将会发生统计参数内存分配问题。
@@ -522,7 +521,7 @@ check-signals = false
 由于OMNeT++所提供**EV**显示信息在关闭仿真程序后，无法查看，可采用日志类将仿真信息打印到文本文件（亦可将**cout**重定向到文件）。在这里分享一个作者在调试OMNeT++仿真程序时编写的日志类**logging**。
 使用方法如下：
 
-```c
+```C++
 /* 声明 */
 using namespace logging
 
@@ -540,20 +539,20 @@ logger<<"current simulation time = "<<simTime()<<endl;
 其大致思路如下：
 1）从复合模块中的一个简单模块退到该简单模块的上一层，也就是其父模块；
 
-```c
+```C++
 cModule *temp_Module=this->getParentModule();
 ```
 
 2） 从父模块中找到你所要找到包含你需要的函数的子模块，也就是简单模块；
 
-```c
+```C++
 App *temp_mobility=check_and_cast<App *>(temp_Module->getSubmodule("app"));
 /* App表示子模块的类名称 ，app表示你所需要的模块*/
 ```
 
 3）找到你所需要的模块之后，然后就可以获得你所需要的函数或参数变量；
 
-```c
+```C++
 if(this->mClusterHead==app->myAddress){
     if(!app->mIsClusterHead){//这就是获得其他模块中的参数
         app->mIsClusterHead=true;
@@ -565,7 +564,7 @@ if(this->mClusterHead==app->myAddress){
 
 当一个节点对多个节点进行发送消息时，为了在视觉上看到消息同时从一个端口发出，只需要利用一个函数就可以解决：
 
-```c
+```C++
 simtime_t txFinishTime = gate("line$o")->getTransmissionChannel()->getTransmissionFinishTime();
 if((txFinishTime == -1) || (txFinishTime < simTime())){
     //通过修改延迟可以使节点能够同时发送消息

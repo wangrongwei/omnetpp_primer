@@ -8,7 +8,7 @@
 
 为了能更好的解释这个的库的使用，程序清单<b>4.1</b>为类<b>cModule</b>原型，<b>cModule</b>类在<b>OMNeT++</b>中表示一个节点的对象，这个节点可以是复合节点或者简单节点，通过这个类，程序员可以访问描述这个节点的<b>.ned</b>文件中设置的参数，或者是由<b>omnetpp.ini</b>传入的参数。简而言之，我们最后就是面向这些类进行网络设计。
 
-```c
+```C++
 程序清单4.1
 class SIM_API cModule : public cComponent
 {
@@ -87,7 +87,7 @@ class SIM_API cModule : public cComponent
 
 - **迭代器：GateIterator**
 
-```c
+```C++
 usage：
 for (cModule::GateIterator it(module); !it.end(); ++it) {
         cGate *gate = *it;
@@ -99,7 +99,7 @@ for (cModule::GateIterator it(module); !it.end(); ++it) {
 
 - **迭代器：SubmoduleIterator**
 
-```c
+```C++
 usage:
 for (cModule::SubmoduleIterator it(module); !it.end(); ++it) {
         cModule *submodule = *it;
@@ -111,7 +111,7 @@ for (cModule::SubmoduleIterator it(module); !it.end(); ++it) {
 
 - **迭代器：ChannelIterator**
 
-```c
+```C++
 usage:
 for (cModule::ChannelIterator it(module); !it.end(); ++it) {
         cChannel *channel = *it;
@@ -125,7 +125,7 @@ for (cModule::ChannelIterator it(module); !it.end(); ++it) {
 
 **cPar**同样是我们设置网络时不可避免的类，通过<b>cPar</b>得到节点在网络拓扑文件和配置文件中设置的参数，浏览完<b>cPar</b>所有成员函数，可以看出<b>cPar</b>基本提供了网络设计者想要的所有数据转换接口。
 
-```c
+```C++
 class SIM_API cPar : public cObject
 {
     friend class cComponent;
@@ -191,7 +191,7 @@ class SIM_API cPar : public cObject
 
 如果你需要在网络仿真运行时，动态实现两个节点之间的连接或者断开，那么你就需要在程序中用到这个类。
 
-```c
+```C++
 class SIM_API cGate : public cObject, noncopyable
 {
     friend class cModule;
@@ -274,7 +274,7 @@ class SIM_API cGate : public cObject, noncopyable
 
 一个对调试程序有帮助的类。
 
-```c
+```C++
 class SIM_API cLog
 {
     public:
