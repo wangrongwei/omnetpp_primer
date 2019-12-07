@@ -16,6 +16,7 @@
 \usepackage{indentfirst}
 \usepackage{framed,color}
 \usepackage{footnpag}
+\usepackage{fontspec}
 \usepackage{listings}
 \usepackage{array}
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
@@ -86,9 +87,9 @@
 
 \definecolor{shadecolor}{gray}{0.90}
 
+\setmainfont{Courier New Bold}
 \setromanfont[Mapping=tex-text,BoldFont=WenQuanYi Micro Hei]{AR PL SungtiL GB}
 \setmonofont{WenQuanYi Zen Hei Mono}
-{\setmainfont{Courier New Bold}
 
 \XeTeXlinebreaklocale{zh}
 \XeTeXlinebreakskip=0em plus 0.1em minus 0.01em
@@ -98,7 +99,7 @@
 \setcounter{footnote}{0}
 
 \title{{OMNeT++入门指南}}
-\author{Zackary Wang}
+\author{wangrongwei}
 
 \makeatletter
 \let\savedauthor=\@author
