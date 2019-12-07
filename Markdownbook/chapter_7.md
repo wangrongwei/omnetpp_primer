@@ -29,7 +29,7 @@
 **.UAV[*].mobility.updateInterval = 100ms
 ```
 
-## 工程的例如cModule之类的类不能高亮显示？ ##
+## 高亮显示cModule等类 ##
 
 ### 问题描述 ###
 
@@ -39,7 +39,7 @@
 
 在软件的窗口，对工程进行rename就行，编译一次，cMdoule等等关键词就可以高亮了。
 
-## 在建立工程时，需要实时显示节点的移动坐标时，编译出错 ##
+## 调用INET类 ##
 
 ### 问题描述 ###
 
@@ -64,13 +64,13 @@ void node::initialize()
 ### 解决办法 ###
 
 方法一：
-在inet中将IMobility.h中第一行将 "INet_API" 删除后，重新对inet进行编译，然后在对所建立的工程进行编译，编译既可以通过。
+在inet中将IMobility.h中第一行将 "INET_API" 删除后，重新对inet进行编译，然后在对所建立的工程进行编译，编译既可以通过。
 
 方法二：
 打开当初安装OMNET++ 的文件夹，找到configure.user的文本，打开后，找到CC==gcc，将前面的“#”注释符号去掉；然后打开mingwenv.cmd
 ，按顺序先后执行"./configure" and "make"命令，编译完成后，重新对工程进行编译即可。
 
-## 在进行移动模型的构建时，如何可以看到移动轨迹##
+## 节点移动轨迹 ##
 
 ### 问题描述 ###
 
@@ -87,7 +87,7 @@ void node::initialize()
 import inet.visualizer.integrated.IntegratedCanvasVisualizer;
 import inet.visualizer.contract.IIntegratedVisualizer;
 
-//添加visualizer模块
+/* 添加visualizer模块 */
 visualizer: <default("IntegratedCanvasVisualizer")> like IIntegratedVisualizer if hasVisualizer() {
     parameters:
         @display("p=50103.34,27751.85");

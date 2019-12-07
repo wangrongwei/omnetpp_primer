@@ -90,7 +90,7 @@ else
 
 - 提一提<b>sendDirect</b>函数！
 
-```c,caption=My first C program,label=src-hello-c
+```C++
 sendDirect(cMessage *msg, cModule *mod, int gateId)
 sendDirect(cMessage *msg, cModule *mod, const char *gateName, int index=-1)
 sendDirect(cMessage *msg, cGate *gate)
@@ -101,8 +101,8 @@ sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
            cModule *mod, const char *gateName, int index=-1)
 sendDirect(cMessage *msg, simtime_t propagationDelay, simtime_t duration,
            cGate *gate)
-
 ```
+
 对于其他<b>send</b>类似的函数都是有线的传输方式，需要我们将节点连接才能发送消息，那么如何实现无线的发送方式呢？这个也正是<b>OMNeT++</b>中<b>wireless</b>仿真程序中使用的函数，该函数的参数与其他<b>send</b>函数不同，它需要指定目的节点，以及目的节点的门。相关详细可以阅读<b>INET</b>库代码。</br>
 这里有一个问题，当采用前三个函数进行消息传输时，传输的效果为一个圆点，如图**5-1**所示：
 

@@ -18,9 +18,7 @@ class SIM_API cModule : public cComponent
     friend class cChannelType;
 
     public:
-        /***************************************************************
-        * 迭代器
-        ***************************************************************/
+        /* 迭代器 */
         GateIterator; /* 门迭代器 */
         SubmoduleIterator; /* 复合模块的子模块迭代器 */
         ChannelIterator; /* 模块信道迭代器 */
@@ -52,11 +50,8 @@ class SIM_API cModule : public cComponent
         /* 一个更强大的获取模块指针的接口，通过路径获取 */
         virtual cModule *getModuleByPath(const char *path);
 
-        /***************************************************************
-        * 门的相关函数
-        ***************************************************************/
-        /* 检测是否有门 */
-        virtual bool hasGate(const char *gatename, int index=-1); 
+        /* 门的相关函数 */
+        virtual bool hasGate(const char *gatename, int index=-1); /* 检测是否有门 */
         /* 寻找门，如果没有返回-1，找到返回门ID */
         virtual int findGate(const char *gatename, int index=-1); 
         const cGate *gate(int id); /* 通过ID得到门地址，目前我还没有用到过 */
@@ -70,9 +65,6 @@ class SIM_API cModule : public cComponent
         /* 得到门的大小，可以指明"$i","$o" */
         virtual int gateSize(const char *gatename);
 
-        /*******************************************************************************
-        * 公用
-        *******************************************************************************/
         /* 在父模块中寻找某个参数，没找到抛出cRuntimeError */
         virtual cPar& getAncestorPar(const char *parname);
         /* 设置是否在此模块的图形检查器上请求内置动画 */
@@ -130,11 +122,8 @@ class SIM_API cPar : public cObject
 {
     friend class cComponent;
     public:
-        // 返回参数的名字
-        virtual const char *getName();
-
-        // 以字符串的形式返回参数
-        virtual std::string str();
+        virtual const char *getName(); /* 返回参数的名字 */
+        virtual std::string str(); /* 以字符串的形式返回参数 */
 
         virtual cObject *getOwner();
         Type getType();
@@ -182,7 +171,7 @@ class SIM_API cPar : public cObject
         /* 与stdstringValue()功能一样 */
         operator std::string() const  {return stdstringValue();}
 
-        // 与xmlVlaue()等同。注意：返回对象树的生命周期被限制了，具体看xmlValue说明。
+        /* 与xmlVlaue()等同。注意：返回对象树的生命周期被限制了，具体看xmlValue说明。 */
         operator cXMLElement *() const  {return xmlValue();}
 };
 ```
