@@ -478,7 +478,7 @@ double NodeVy=speed_Node.y;
 
 在设置节点前，先阅读以下代码：
 
-```c,caption=an example for setting display,label=getDisplayString()
+```C++
 this->getDisplayString().setTagArg("i",1,"red");
 ```
 
@@ -583,4 +583,3 @@ else{
 ## 本章小结 ##
 
 **OMNeT++**仿真内核提供的丰富的仿真接口，使用**OMNeT++**进行仿真，在掌握一定的**C++**编程方法以后，阅读**OMNeT++**相关类的描述可能有意外的收获，找到合适的接口进行仿真。
-
