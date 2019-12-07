@@ -36,9 +36,16 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \definecolor{CPPViolet}{HTML}{7040A0}
 
+\setmainfont{Courier New Bold}
+\setmonofont[Mapping={}]{Monaco}
+\setsansfont{Monaco}
+\setmainfont{Monaco}
+\setromanfont[Mapping=tex-text,BoldFont=WenQuanYi Micro Hei]{AR PL SungtiL GB}
+%\setmonofont{WenQuanYi Zen Hei Mono}
+
 \lstset{
     backgroundcolor = \color[RGB]{245,245,244},
-    basicstyle = \footnotesize,
+    basicstyle = \footnotesize\ttfamily,
     breakatwhitespace = false,
     breaklines = true,       
     captionpos = b,                    
@@ -86,10 +93,6 @@
 {\color{colorsubsection}\thesubsection}{1em}{}
 
 \definecolor{shadecolor}{gray}{0.90}
-
-\setmainfont{Courier New Bold}
-\setromanfont[Mapping=tex-text,BoldFont=WenQuanYi Micro Hei]{AR PL SungtiL GB}
-\setmonofont{WenQuanYi Zen Hei Mono}
 
 \XeTeXlinebreaklocale{zh}
 \XeTeXlinebreakskip=0em plus 0.1em minus 0.01em
