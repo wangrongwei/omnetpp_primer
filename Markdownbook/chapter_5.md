@@ -474,7 +474,15 @@ double NodeVy=speed_Node.y;
 
 ### 设置消息传输颜色 ###
 
-### 设置节点 ###
+以下为将消息传输设置为红绿黄三种颜色的代码示例，其他颜色可自行测试。
+
+```C++
+msg->setDisplayString("b=b=,,,red,,");      /* 红色 */
+msg->setDisplayString("b=b=,,,green,,");    /* 绿色 */
+msg->setDisplayString("b=b=,,,yellow,,");   /* 黄色 */
+```
+
+### 设置节点属性 ###
 
 在设置节点前，先阅读以下代码：
 
@@ -497,7 +505,7 @@ this->getDisplayString().setTagArg("i",1,"red");
 
 所以，根据以上列表得知prog-5.x将设置图标相关属性，接下来我们需要知道紧接着的两个参数含义：
 
-```c
+```C++
 @display("i=block/source,red,20")
 ```
 
@@ -517,17 +525,13 @@ check-signals = false
 
 ### log日志类 ###
 
-由于OMNeT++所提供**EV**显示信息在关闭仿真程序后，无法查看，可采用日志类将仿真信息打印到文本文件（亦可将**cout**重定向到文件）。在这里分享一个作者在调试OMNeT++仿真程序时编写的日志类**logging**。
+由于**OMNeT++**所提供**EV**显示信息在关闭仿真程序后，无法查看，可采用日志类将仿真信息打印到文本文件（亦可将**cout**重定向到文件）。在这里分享一个作者在调试OMNeT++仿真程序时编写的日志类**logging**。
 使用方法如下：
 
 ```C++
-/* 声明 */
 using namespace logging
-
-logger variablename("path to file","filename"); 
-
-/* 使用 */
-logger<<"current simulation time = "<<simTime()<<endl;
+logger variablename("path to file","filename"); /* 声明 */
+variablename<<"current simulation time = "<<simTime()<<endl; /* 使用 */
 ```
 
 下载地址：[logging-class](https://github.com/wangrongwei/lazytools)
@@ -566,12 +570,12 @@ if(this->mClusterHead==app->myAddress){
 ```C++
 simtime_t txFinishTime = gate("line$o")->getTransmissionChannel()->getTransmissionFinishTime();
 if((txFinishTime == -1) || (txFinishTime < simTime())){
-    //通过修改延迟可以使节点能够同时发送消息
+    /* 通过修改延迟可以使节点能够同时发送消息 */
     sendDirect(pk,0.001,0,allUAV[(int)pk->getDestAddr()],"port$i",address);
 }
 else{
-        sendDirect(pk,txFinishTime-simTime(),0.5,allUAV[(int)pk->getDestAddr()],"port$i",address);
-    }
+    sendDirect(pk,txFinishTime-simTime(),0.5,allUAV[(int)pk->getDestAddr()],"port$i",address);
+}
 ```
 
 需要注意该函数一定放在与外界相连接的简单模块，不然是看不到的；
