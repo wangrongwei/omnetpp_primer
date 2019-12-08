@@ -48,6 +48,7 @@
 
 ### INET库的安装 ###
 
+<<<<<<< HEAD
 通常有两种方法安装INET，在安装之前，首先需要到<https://inet.omnetpp.org>下载合适的版本，由于前面的**OMNeT++**使用的**5.2**的版本，这里我们可以选择**inet-3.6.2**，下载结束以后，将inet解压到omnetpp的安装路径下的samples文件下，此时**inet**文件的路径可能是：**<path>/omnetpp-5.2/samples/inet**(解压**INET-3.6.2**文件后只有一个**inet**文件)。
 
 接下来，开始安装INET库，有以下两种方法安装：
@@ -59,6 +60,21 @@
 首先，安装**INET**库，需要到**inet**文件下看看有什么有用的文件没有，当然是先看看**README.md**了，这个文件提示我们安装请看：**INSTALL**，内容如下：
 
 ```C++
+=======
+通常有两种方法安装INET，在安装之前，首先需要到<https://inet.omnetpp.org>下载合适的版本，由于前面的**OMNeT++**使用的**5.2**的版本，这里我们可以选择**inet-3.6.2**，下载结束以后，将inet解压到omnetpp的安装路径下的samples文件下，此时**inet**文件的路径可能是：
+**xxx/omnetpp-5.2/samples/inet**
+(解压**INET-3.6.2**文件后只有一个**inet**文件)。
+
+ &#160; &#160; 接下来，开始安装INET库，有以下两种方法安装：
+
+- 方法一：命令窗口安装INET
+
+其实，如果需要为**omnetpp**安装新的插件或者库，都可以通过命令行的形式进行安装，甚至，你可以在命令行的环境下对编写好的网络进行编译和运行。
+我编写这个学习手册的原则，就是为读者提供一个学习**OMNeT++**的地图，而不是特别详细的字典，可能我的水平还远远没有达到写一本学习**OMNeT++**的大全。首先，安装这个**INET**库，我们到**inet**文件下看看有什么有用的文件没有，当然是先看看**README.md**了，这个文件提示我们安装请看：**INSTALL**，内容如下：
+
+```
+
+>>>>>>> upstream/master
 If you are building from command line:
 --------------------------------------
 1. Change to the INET directory.
@@ -97,7 +113,11 @@ If you are building from command line:
 
 一样的，在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个**IDE**的使用方式就是将**INET**库使用**OMNeT++**打开，当然此时库文件**inet**已经在**samples**文件下，我们需要做的就是打开**OMNeT++ IDE** ，然后导入整个**inet**工程。
 
+<<<<<<< HEAD
 ```C++
+=======
+```
+>>>>>>> upstream/master
 
 If you are using the IDE:
 -------------------------
@@ -134,8 +154,15 @@ Change into examples/ and type "./rundemo".
 
 ```bash
 #!bin/bash
+<<<<<<< HEAD
 git clone git@github.com:aarizaq/inetmanet-3.x.git
 git submodule update --init
+=======
+
+$ git clone git@github.com:aarizaq/inetmanet-3.x.git
+$ git submodule update --init
+
+>>>>>>> upstream/master
 ```
 
 以上得到完整**INETMANET**库文件并非唯一的方法，作者尝试过直接下载**inetmanet**包，然后单独下载**showcases**和**tutorials**两个文件与**inetmanet**包进行合并，也可以得到完整的**inetmanet**源文件。到此，**INETMANET**安装包已经准备就绪，后续你可以参照INET安装步骤进行安装。
