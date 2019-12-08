@@ -110,6 +110,44 @@ visualizer: <default("IntegratedCanvasVisualizer")> like IIntegratedVisualizer i
 ```
 
 通过以上两步就可以实现完成轨迹的显示
+## 在新构建模块,函数调用##
+
+### 问题描述 ###
+当构建新的Ned模块时，如何调用inet中的指定模块？
+
+### 解决办法###
+完成这个问题，需要完成下面的操作：
+1）在调用inet模块时，首先利用import函数从inet中导入指定模块即可，而对应的.cc文件和.h文件并不需要进行调用，直接利用既可以完成；
+
+
+## 文件引用##
+
+### 问题描述 ###
+在新建.h和.cc文件时，如果引用调用同一个文件的其他.cc文件，该如何解决该问题
+
+### 解决办法###
+完成这个问题，需要完成下面的操作：
+1）工程文件的perpetual的设置中，将文件的路径添加进去即可实现相邻文件的调用；
+
+
+## .msg文件调用外部函数#
+
+### 问题描述 ###
+当在.msg文件中调用其他消息时，
+```C++
+import inet.common.INETDefs;
+```
+将会提示下面的错误：
+```C++
+Error: syntax error, unexpected NAME, expecting $end
+```
+### 解决办法###
+完成这个问题，需要完成下面的操作：
+1）工程文件的properties中，选择oment++/Makemake/src floder /options/ Custom,
+2）添加下面的程序：
+```C++
+MSGC:=$(MSGC) --msg6
+```
 
 ## 本章小结 ##
 
