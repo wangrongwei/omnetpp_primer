@@ -42,30 +42,32 @@
 %\setmainfont{Monaco}
 \setromanfont[Mapping=tex-text,BoldFont=WenQuanYi Micro Hei]{AR PL SungtiL GB}
 \setmonofont{WenQuanYi Zen Hei Mono}
+\newfontfamily\courier{Courier New}
 
 \lstset{
     backgroundcolor = \color[RGB]{245,245,244},
-    basicstyle = \footnotesize\ttfamily,
+    basicstyle = \small\courier,
     breakatwhitespace = false,
     breaklines = true,       
     captionpos = b,                    
-    commentstyle = \color{mygreen}\bfseries,
+    commentstyle = \color{mygreen}\courier,
+    %escapeinside=``, 
     extendedchars = false,             
     frame = shadowbox,
     framerule = 0.5pt,
     keepspaces = true,
-    keywordstyle = \color{blue}\bfseries,     % keyword style
+    keywordstyle = \color{blue}\courier,     % keyword style
     language = C++, % the language of code
     otherkeywords = {string}, 
     numbers = left, 
     numbersep = 5pt,
-    numberstyle = \footnotesize\color{darkgray},
+    numberstyle = \small\color{darkgray}\courier,
     rulecolor = \color{black}, 
     showspaces = false, 
     showstringspaces = false, 
     showtabs = false,
     stepnumber = 1,         
-    stringstyle = \color{mymauve},    % string literal style
+    stringstyle = \color{mymauve}\courier,    % string literal style
     tabsize = 2,          
     title = \lstname
     morekeywords = {alignas,continute,friend,register,true,alignof,decltype,goto,
