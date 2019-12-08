@@ -755,7 +755,7 @@ if(this->mClusterHead==app->myAddress){
 ```C++
 simtime_t txFinishTime = gate("line$o")->getTransmissionChannel()->getTransmissionFinishTime();
 if((txFinishTime == -1) || (txFinishTime < simTime())){
-    /* 通过修改延迟可以使节点能够同时发送消息 */
+    /* `通过修改延迟可以使节点能够同时发送消息` */
     sendDirect(pk,0.001,0,allUAV[(int)pk->getDestAddr()],"port$i",address);
 }
 else{
