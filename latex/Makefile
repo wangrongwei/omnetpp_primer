@@ -6,6 +6,7 @@ COVER_IMAGE = docs/cover.png
 
 TOOL_TEX = multimarkdown
 FLAG = -t latex meta.txt
+
 TEMPLATE = ../template
 
 PREFACES =  ../Markdownbook/preface*.md

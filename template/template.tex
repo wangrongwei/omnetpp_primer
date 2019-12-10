@@ -19,6 +19,7 @@
 \usepackage{fontspec}
 \usepackage{listings}
 \usepackage{array}
+\usepackage{ctex}
 \usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
 
 \usepackage{titlesec} % texlive-latex-extra package
@@ -37,13 +38,14 @@
 \definecolor{CPPViolet}{HTML}{7040A0}
 
 %\setmainfont{Courier New Bold}
-%\setmonofont[Mapping={}]{Monaco}
-\setsansfont{Monaco}
-%\setmainfont{Monaco}
-\setromanfont[Mapping=tex-text,BoldFont=WenQuanYi Micro Hei]{AR PL SungtiL GB}
-\setmonofont{WenQuanYi Zen Hei Mono}
-%\newfontfamily\courier{Courier New}
-\newfontfamily\courier{WenQuanYi Zen Hei Mono}
+%\setsansfont{Monaco}
+\setmainfont{NSimSun}
+%\setromanfont[Mapping=tex-text,BoldFont=WenQuanYi Micro Hei]{AR PL SungtiL GB}
+\setromanfont[Mapping=tex-text,BoldFont=NSimSun]{AR PL SungtiL GB}
+%\setmonofont{WenQuanYi Zen Hei Mono}
+\setmonofont{NSimSun}
+\newfontfamily\courier{Courier New}
+%\newfontfamily\courier{WenQuanYi Zen Hei Mono}
 
 \lstset{
     linewidth=1.1\textwidth,

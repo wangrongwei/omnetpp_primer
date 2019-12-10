@@ -157,13 +157,13 @@ git submodule update --init
 其实我觉得还是有必要把这一小节的内容加入其中，考虑了一下，这个软件的有些操作还是不太一样，可能初学者自己去找需要花大量的时间。</br>
 在学习如何导入工程前，先观察一张图：
 
-![IDE视图](../img/图2-4-1.png)
+![IDE视图](../img/2-4-1.png)
 
 图2-4-1中，左边窗口为**Project Explorer**，在软件安装首次打开**IDE**时，**Project Explorer**中已经默认有相关的**samples**目录下的工程，如果开发者想要打开已有的工程，需要在**Project Explorer**窗口空白处右击鼠标，进行**Import | General | Existing Projects into Workspace**，最后选择工程文件即可，不需要任何设置直接**finish**即可。其中相关的中间过程如下：
 
-![点击Import后视图](../img/图2-4-2.png)
+![点击Import后视图](../img/2-4-2.png)
 
-![点击Existing Projects into Workspace后视图](../img/图2-4-3.png)
+![点击Existing Projects into Workspace后视图](../img/2-4-3.png)
 
 前面已经描述了相关过程，需要注意的是保证工程文件**不要放在有中文名的路径**下，如果包括的中文路径，在后期编译工程时，可能在**ned**文件下出现大量错误，无法识别**ned**文件路径。
 
@@ -178,7 +178,7 @@ git submodule update --init
 
 为了更好的说明以上三种文件在一个工作里边的关系，下面展示一张图：
 
-![编译与执行仿真流程](../img/图2-4-5.png)
+![编译与执行仿真流程](../img/2-4-5.png)
 
 这张图还是比较重要的，尤其是当你发现你的ned或者ini文件不启作用的时候，可以根据上面的仿真程序流程思考一下找到bug所在。再这张图中，可以看出**Simulation program**就是我们工程生成的可执行文件**exe**，也许你会发现在我们执行程序的时候有两种选择：
 

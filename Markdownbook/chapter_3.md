@@ -46,9 +46,11 @@
 ### tictoc指导手册 ###
 
 **tictoc**相当于程序中的**hello world**级别的例子，初学**OMNeT++**一般通过仿真修改**tictoc**例子，其路径在软件的安装路径下，点击该路径下的**index.html**：
+
 - **路径：omnetpp-5.2/doc/tictoc-tutorial/index.html**
 
 包括的内容如下：
+
 - 开始：一个简单的仿真模型（**tictoc1.ned txc1.cc omnetpp.ini**）
 - 仿真程序的执行和仿真
 - 改进两个节点仿真模型（**tictoc9.ned txc9.cc omnetpp.ini**）
@@ -67,7 +69,7 @@
 
 入口如下<font color="#0099FF" face="黑体">（绿色部分标出）</font>
 
-![手册](../img/chapter3/图3-2-3-1.png)
+![手册](../img/chapter3/3-2-3-1.png)
 
  <font color="#0099FF" face="黑体">Simulation Manual</font>仿真手册提供了设计一个**OMNeT++**工程各方面详细的介绍，从某种意义上来说，本手册也许就是<font color="#0099FF" face="黑体">Simulation Manual</font>手册的一个子集，但是为了使本手册的意义更大，我将结合自己的几个月使用**OMNeT++**的经验，提供一些在设计网络时可能会出现的问题，以及解决办法。
 
@@ -79,7 +81,7 @@
 
 首先，进入到**IDE**设置界面：**Window 》》 Preferences**，如图：
 
-![cpp高亮设置](../img/chapter3/图3-3-1.png)
+![cpp高亮设置](../img/chapter3/3-3-1.png)
 
 从上图也可以看出，我们需要选择**c/c++》》Editor》》Syntax Coloring**，根据图中的窗口选择我们需要修改的高亮块设置。其中包括以下五种：
 
@@ -105,5 +107,3 @@
 ## 本章小结 ##
 
 **OMNeT++**仿真平台基于Eclipse，相关编译、工程设置与其他软件不同，且难找，本章列出仿真时读者可能需要用到的相关设置。
-
-
