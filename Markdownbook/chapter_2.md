@@ -58,7 +58,7 @@
 
 首先，安装**INET**库，需要到**inet**文件下看看有什么有用的文件没有，当然是先看看**README.md**了，这个文件提示我们安装请看：**INSTALL**，内容如下：
 
-```C++
+```bash
 If you are building from command line:
 --------------------------------------
 1. Change to the INET directory.
@@ -69,7 +69,6 @@ If you are building from command line:
    to build release version.
 
 4. You can run specific examples by changing into the example's directory and executing "./run"
-
 ```
 
 当然，你可以选择**mingwenv.cmd**命令窗口，输入以上指令进行编译安装。上面的英文安装较为简洁，下面是我使用命令窗口安装的过程：
@@ -95,29 +94,27 @@ If you are building from command line:
 
 - 方法二：**OMNeT++**窗口安装
 
-一样的，在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个**IDE**的使用方式就是将**INET**库使用**OMNeT++**打开，当然此时库文件**inet**已经在**samples**文件下，我们需要做的就是打开**OMNeT++ IDE** ，然后导入整个**inet**工程。
+在**INSTALL**下命令行安装方式下面就是使用IDE的安装方式，这个**IDE**的使用方式就是首先将**inet**文件放置在**samples**目录下，并将**INET**库使用**OMNeT++**打开，我们需要做的就是打开**OMNeT++ IDE** ，然后导入整个**inet**工程。
 
-```C++
-
+```bash
 If you are using the IDE:
 -------------------------
-3. Open the OMNeT++ IDE and choose the workspace where you have extracted the inet directory.
+1. Open the OMNeT++ IDE and choose the workspace where you have extracted the inet directory.
    The extracted directory must be a subdirectory of the workspace dir.
 
-4. Import the project using: File | Import | General | Existing projects into Workspace.
+2. Import the project using: File | Import | General | Existing projects into Workspace.
    Then select the workspace dir as the root directory, and be sure NOT to check the
    "Copy projects into workspace" box. Click Finish.
 
-5. Open the project (if already not open) and wait until the indexer finishes.
+3. Open the project (if already not open) and wait until the indexer finishes.
    Now you can build the project by pressing CTRL-B (Project | Build all)
 
-6. To run an example from the IDE open the example's directory in the Project Explorer view,
+4. To run an example from the IDE open the example's directory in the Project Explorer view,
    find the corresponding omnetpp.ini file. Right click on it and select Run As / Simulation.
    This should create a Launch Configuration for this example.
 
 If the build was successful, you may try running the demo simulations.
 Change into examples/ and type "./rundemo".
-
 ```
 
 根据上面的步骤，需要点击：**File | Import | General | Existing projects into Workspace** ，导入inet整个工程文件，对整个工程进行编译即可。
@@ -130,7 +127,7 @@ Change into examples/ and type "./rundemo".
 
 ### INETMANET安装 ###
 
-在安装**INETMANET**库前，也许你可以在**OMNeT++**中，将**INET**工程关掉，接下来，你可以按照以下步骤进行：
+在安装**INETMANET**库前，安装可按照以下步骤进行：
 
 ```bash
 #!bin/bash
