@@ -18,5 +18,5 @@ latexbook/*.synctex.gz
 latexbook/*.bib
 
 .autogit/
-
+pdf/*.pdf
 

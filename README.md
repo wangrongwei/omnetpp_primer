@@ -30,7 +30,7 @@
 
 # 下载地址 #
 
-本文档不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/pdf](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新的omnetpp_primer-zh.pdf，如果你想自己编译生成PDF文件，可按照**BUILD.md**说明搭建编译环境并通过执行**make all**生成文档。
+本文档不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/release](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新的omnetpp_primer-zh.pdf，如果你想自己编译生成PDF文件，可按照**BUILD.md**说明搭建编译环境并通过执行**make all**生成文档。
 
 # TODO #
 
