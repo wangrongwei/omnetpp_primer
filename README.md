@@ -32,14 +32,6 @@
 
 本文档不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/release](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新的omnetpp_primer-zh.pdf，如果你想自己编译生成PDF文件，可按照**BUILD.md**说明搭建编译环境并通过执行**make all**生成文档。
 
-# TODO #
-
-- 如何使用cTopology类遍历网络的拓扑来初始化路由表?
-- 如何在OMNeT++上使用OpenSceneGraph
-- 如何从仿真场景读取节点的坐标
-- 复合模块初始化时，先初始化节点的顺序
-- 在initialize()中初始化类成员数组与在其他函数中的不同
-
 # 贡献者 #
 
 | 贡献者 | 贡献内容 |
