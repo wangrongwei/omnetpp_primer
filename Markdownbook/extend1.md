@@ -8,25 +8,25 @@
 
    打开tictoc2.ned文件，切换到Design模式下，单击边框，边框变红，此时可以进行画布大小的调整和拖拽。
 
-![tictoc2](E:\GIT\front-end\fig\tictoc2.PNG)
+![手册](../img/extend1/tictoc2.PNG)
 
 2. 画布背景图调整
 
    在画布区域任意位置右键，选择Properties，进入属性页，选择Background，可以进行定制化修改。
 
-![background](E:\GIT\front-end\fig\background.PNG)
+![手册](../img/extend1/background.PNG)
 
 ## 网络对外显示的调整
 
 在画布区域任意位置右键，选择Properties，进入属性页。
 
-![](E:\GIT\front-end\fig\properties.PNG)
+![手册](../img/extend1/properties.PNG)
 
 可以在appearance属性下，定制整个网络对外的显示效果。
 
 例如可以选择调整为如下图所示。
 
-![appear](E:\GIT\front-end\fig\appear.PNG)
+![手册](../img/extend1/appear.PNG)
 
 ## 网络模块的显示调整
 
@@ -34,7 +34,7 @@
 
 如图所示，对tictoc2工程中的tic进行修改。
 
-![showori](E:\GIT\front-end\fig\showori.PNG)
+![手册](../img/extend1/showori.PNG)
 
 ```
 tic:Txc2{
@@ -62,7 +62,7 @@ toc: Txc2 {
 
 显示效果如下：
 
-![showChange](E:\GIT\front-end\fig\showChange.PNG)
+![手册](../img/extend1/showChange.PNG)
 
 ## 网络中连接的显示调整
 
@@ -89,4 +89,4 @@ connections:
 
 效果：
 
-![showchann](E:\GIT\front-end\fig\showchann.PNG)
+![手册](../img/extend1/showchann.PNG)
