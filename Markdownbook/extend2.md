@@ -6,9 +6,44 @@
 
 ![手册](../img/extend2/struct.PNG)
 
-如图所示，TSAlg提供了一个公用模块接口，CBS 和SPQ 分别为两种不同的子模块类型。在使用时，可通过使用关键字<font color="#FF0000" face="黑体">（like）</font>，以类型为string的模块参数来对子模块的类型进行指定。
+如图所示，TSAlg提供了一个公用模块接口，CBS 和SPQ 分别为两种不同的子模块类型。在使用时，可通过使用关键字<font color="#FF0000" face="黑体">（like）</font>，以类型为string的模块参数来对子模块的类型进行指定。在.cc和.h文件中，将TSAlg作为父类，CBS和SPQ分别对父类TSAlg进行继承。 注意，以下的CBS可替换为SPQ。
+
+例如在CBS.h中
+
+```
+...
+#include "../TSAlgorithm.h"
+...
+class CBS:public TSAlgorithm{
+...
+}
+```
+
+在CBS.cc中
+
+```
+...
+#include "CBS.h"
+...
+
+void CBS::initialize() {
+    TSAlgorithm::initialize();
+	...
+}
+
+void CBS::handleMessage(cMessage* msg) {
+  ...
+  TSAlgorithm::handleMessage(msg);
+  ...
+}
+...
+```
+
+注意：需要对TSAlgorithm也进行初始化，即TSAlgorithm::initialize()。
 
 ## 使用方法一
+
+Queuing是一个复合模块，两种不同的方法CBS和SPQ将在该复合模块中进行使用，在Queuing.ned文件中描述，
 
 ```
 module Queuing
@@ -31,7 +66,7 @@ module Queuing
 }
 ```
 
-以上是在Queuing.ned文件中描述，Queuing为一个复合模块，TSAlg为公用模块接口，CBS和SPQ为可替换的子模块。在上述代码中，通过使用关键字like来实现参数化子模块类型。like后 TSAlgorithm为公用接口，like前使用 <>，<>内以string类型的模块参数指定所使用的模块，注意，以上的CBS可替换为SPQ。
+TSAlg为公用模块接口，CBS和SPQ为可替换的子模块。在上述代码中，通过使用关键字like来实现参数化子模块类型。like后 TSAlgorithm为公用接口，like前使用 <>，<>内以string类型的模块参数指定所使用的模块。
 
 ## 使用方法二
 
@@ -64,8 +99,6 @@ module Queuing
 **.switch*.eth[*].queuing.tsAlgorithms[*].typename = "CBS"
 ```
 
-注意，以上的CBS可替换为SPQ。
-
 ## 使用方法三
 
 可以在使用中，也可以指定一个默认的子模块类型。通过使用default关键字来实现。具体代码如下所示。
@@ -90,8 +123,6 @@ module Queuing
     ...
 }
 ```
-
-注意，以上的CBS可替换为SPQ。
 
 ## 本章小结 ##
 
