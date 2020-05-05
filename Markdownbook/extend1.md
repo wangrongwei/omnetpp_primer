@@ -90,3 +90,7 @@ connections:
 效果：
 
 ![手册](../img/extend1/showchann.PNG)
+
+## 本章小结 ##
+
+本章主要对OMNeT++中网络拓扑个性化显示进行了简要说明。
