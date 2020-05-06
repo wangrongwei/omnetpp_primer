@@ -36,8 +36,9 @@
 
 | 贡献者 | 贡献内容 |
 | ------ | -------- |
-| @rongwei | 编写第一、二到七部分以及其他一些文章、完善 pdf 格式排版 |
+| @Rongwei | 编写第一、二到七部分以及其他一些文章、完善 pdf 格式排版 |
 | @Stephenhua | 维护chapter_7.md |
+| @Etherly | 维护extend扩展系列 |
 | @Kmtalexwang | 维护omnetpp_primer-zh.pdf的LaTeX排版 |
 | @Ericsyoung | 维护chapter_6.md仿真结果分析 |
 | @hjtczyj | 文档修改 |
