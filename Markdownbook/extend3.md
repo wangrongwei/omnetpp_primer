@@ -70,32 +70,46 @@ simple EtherTrafGen
 
 其中伽马分布的密度函数：
 
-<img src="../img/extend3/伽马分布密度函数.PNG" style="zoom:50%;" />
-
+$$
+f(x)=\begin{cases}
+{x^{\alpha-1} \beta^{\alpha} e^{-\beta x} \over \Gamma(\alpha)} & x\geq0 \\
+0 & x<0 \\
+\end{cases}
+$$
 令α=1，β=λ，则有：
-
-<img src="../img/extend3/伽马.PNG" style="zoom:50%;" />
-
+$$
+\Gamma(\alpha)=(1-1)!=1
+$$
 转化为以下指数分布的密度函数：
 
-<img src="../img/extend3/指数分布.PNG" style="zoom:50%;" />
-
+$$
+f(x)=\begin{cases}
+{e^{- \lambda x}} & x\geq0 \\
+0 & x<0 \\
+\end{cases}
+$$
 由伽马分布的可加性，而指数分布是伽马分布的特例，故同样具备该性质。指数分布的随机变量是表示前后两个消息的时间间隔，产生期望为1/μ的指数分布的随机变量Xi 至    
 
-<img src="../img/extend3/停止.PNG" style="zoom: 50%;" />
-
+$$
+\sum_1^m X_i \geq 1
+$$
 停止。这时m-1就是就是泊松分布在l=1 时间内的随机变量，由伽马分布的可加性，
 
-<img src="../img/extend3/可加性.PNG" style="zoom: 30%;" />
-
+$$
+\sum_1^m X_i
+$$
 的概率即服从α=m时伽马分布的随机变量≥μ的概率。
 
-<img src="../img/extend3/结果1.PNG" style="zoom:60%;" />
-
+$$
+\int_{\mu}^{+\infty}{x^{m-1} \lambda^{m} \beta^{-\lambda x} \over \Gamma(m)}dx = \int_{\mu}^{+\infty}{x^{m-1} e^{-x}  \over (m-1)!}dx
+$$
 令n=m-1该伽马分布的随机变量=μ的概率就是：
 
-<img src="../img/extend3/结果2.PNG" style="zoom:60%;" />
-
+$$
+\begin{align}
+&\int_{\mu}^{+\infty}{x^{n} e^{-x}  \over n!}dx - \int_{\mu}^{+\infty}{x^{n-1} e^{-x}  \over (n-1)!}dx\\ &={\mu^{n} e^{-\mu}  \over n!} + \int_{\mu}^{+\infty}{x^{n-1} e^{-x}  \over (n-1)!}dx - \int_{\mu}^{+\infty}{x^{n-1} e^{-x}  \over (n-1)!}dx \\ &={\mu^{n} e^{-\mu}  \over n!}
+\end{align}
+$$
 由上式结果，可以看出是服从泊松分布的。
 
 由于在目前自己的工程实践中以上两种使用的较频繁所以提出以上两种到达模型。OMNeT++还提供了其他分布模型，此处就不进行一一列举了。
