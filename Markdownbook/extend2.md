@@ -99,6 +99,41 @@ module Queuing
 **.switch*.eth[*].queuing.tsAlgorithms[*].typename = "CBS"
 ```
 
+<font color="#FF0000" face="黑体">（在使用该方法时，注意要保证路径的正确性，才能有效读取参数，否则可能导致错误。）</font>
+
+注：在进行仿真时，可以通过使用参数化子模块类型的方法进行子模块的替换。在我所做的工程中，涉及到不同的算法的替换，为了能够简化仿真统计过程，可以在.ini文件中，使用[Config  xxx]命令来进行多种算法的切换，通过使用result-dir来指定运行结果的存储路径。
+
+如下，以自建工程的 NetSim.ini为例进行简要说明
+
+```
+[General]
+network = NetSim
+...
+[Config SPQ]
+result-dir = results/SPQ
+
+**.N*.port.tsAlgorithms[*].typename = "StrictPriority"
+
+**.SW*.port[*].tsAlgorithms[*].typename = "StrictPriority"
+
+[Config CBS]
+result-dir = results/CBS
+
+**.N*.port.tsAlgorithms[*].typename = "CreditBasedShaper"
+**.N*.port.tsAlgorithms[*].idleSlopeFactor = 0.25 
+
+**.SW*.port[*].tsAlgorithms[*].typename = "CreditBasedShaper"
+**.SW*.port[*].tsAlgorithms[*].idleSlopeFactor = 0.25 
+```
+
+运行NetSim.ini，进入仿真界面。
+
+在出现的配置选择对话框中进行自主选择，实现不同算法的切换。
+
+![手册](../img/extend2/config.PNG)
+
+当一种配置下的仿真结束后，可点击![手册](../img/extend2/restart.PNG)进行再次配置选择和运行。统计结果将自动保存到在NetSim.ini文件中分别指定的路径下。
+
 ## 使用方法三
 
 可以在使用中，也可以指定一个默认的子模块类型。通过使用default关键字来实现。具体代码如下所示。
