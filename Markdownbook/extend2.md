@@ -130,9 +130,9 @@ result-dir = results/CBS
 
 在出现的配置选择对话框中进行自主选择，实现不同算法的切换。
 
-![](C:\Users\MRFBW\Documents\GitHub\omnetpp_primer\img\extend2\config.PNG)
+![手册](../img/extend2/config.PNG)
 
-当一种配置下的仿真结束后，可点击![](C:\Users\MRFBW\Documents\GitHub\omnetpp_primer\img\extend2\restart.PNG)进行再次配置选择和运行。统计结果将自动保存到在NetSim.ini文件中分别指定的路径下。
+当一种配置下的仿真结束后，可点击![手册](../img/extend2/restart.PNG)进行再次配置选择和运行。统计结果将自动保存到在NetSim.ini文件中分别指定的路径下。
 
 ## 使用方法三
 
