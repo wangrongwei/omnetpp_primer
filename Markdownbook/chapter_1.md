@@ -101,6 +101,12 @@
 
 - 开发组主页：<https://core.informatik.haw-hamburg.de/>
 
-其他更多的OMNeT++开源仿真模型可浏览以下网站：
+- [8] Result Analysis with Python
 
-<https://omnetpp.org/download/models-and-tools>
+如何使用Python分析OMNeT++仿真结果
+
+- 主页：<https://docs.omnetpp.org/tutorials/pandas/>
+
+其他更多的OMNeT++开源仿真模型可浏览以下网站：<https://omnetpp.org/download/models-and-tools>
+
+
