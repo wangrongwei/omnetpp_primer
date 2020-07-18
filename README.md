@@ -14,7 +14,8 @@
   <a href="https://github.com/wangrongwei/omnetpp_primer/watchers"><img src="https://img.shields.io/github/watchers/wangrongwei/omnetpp_primer.svg?style=flat&label=Watch"></a>
 </p>
 
-# 文档说明 #
+文档说明
+=========
 
 <b>omnetpp_primer-zh.pdf</b>记录了我在设计无人机蜂群网络仿真过程中，从初学<b>OMNeT++</b>软件到能灵活使用各种接口所遇到的各种问题，其中也从官方提供的手册中提取出较为常用的接口进行说明，提供一些实用的接口使用方法，最后将其总结成文档回馈开源。</br>
 由于我水平有限，难免会存在理解错误的地方，欢迎读者发邮件指出，如果有其他宝贵的建议，也欢迎发邮件交流，希望这个文档能帮助更多的开发者。</br>
@@ -28,11 +29,13 @@
 - BUILD.md：构建生成pdf环境（Ubuntu18.04）
 - Makefile：生成pdf
 
-# 下载地址 #
+下载地址
+========
 
 本文档不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/release](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新的omnetpp_primer-zh.pdf，如果你想自己编译生成PDF文件，可按照**BUILD.md**说明搭建编译环境并通过执行**make all**生成文档。
 
-# 贡献者 #
+贡献者
+=======
 
 | 贡献者 | 贡献内容 |
 | ------ | -------- |
@@ -45,11 +48,13 @@
 
 欢迎小伙伴们加入:-)
 
-# 勘误 #
+勘误
+=====
 
 如果您发现有关技术上的错误或有必要纠正的内容，欢迎发邮件指出。目前文档正在组织中，借鉴了网上相关资料，在这里表示感谢！后续在慢慢加上相关引用。
 
-# 授权许可 #
+授权许可
+=========
 
 GNU FDL 1.3 （GNU 自由文档许可证）
 
@@ -59,3 +64,4 @@ GNU FDL 1.3 （GNU 自由文档许可证）
 [npm-url]: https://npmjs.org/package/omnetpp_primer
 [downloads-image]: https://img.shields.io/npm/dm/omnetpp_primer.svg
 [downloads-url]: https://npmjs.org/package/omnetpp_primer
+
