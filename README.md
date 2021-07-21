@@ -14,12 +14,19 @@
   <a href="https://github.com/wangrongwei/omnetpp_primer/watchers"><img src="https://img.shields.io/github/watchers/wangrongwei/omnetpp_primer.svg?style=flat&label=Watch"></a>
 </p>
 
-文档说明
-=========
 
-<b>omnetpp_primer-zh.pdf</b>记录了我在设计无人机蜂群网络仿真过程中，从初学<b>OMNeT++</b>软件到能灵活使用各种接口所遇到的各种问题，其中也从官方提供的手册中提取出较为常用的接口进行说明，提供一些实用的接口使用方法，最后将其总结成文档回馈开源。</br>
-由于我水平有限，难免会存在理解错误的地方，欢迎读者发邮件指出，如果有其他宝贵的建议，也欢迎发邮件交流，希望这个文档能帮助更多的开发者。</br>
-部分文件说明如下：
+*实用OMNeT++5编程手册* 是一本适用于网络仿真初学者的学习手册，本书记录了笔者在使用<b>OMNeT++</b>软件设计无人机蜂群网络仿真过程中遇到的各种问题。为使本书更具有参考性，笔者也从官方手册中挑选出了一些较为常用的接口，按照其功能和特点进行了说明，并提供了相应的使用方法。</br>
+由于笔者水平有限，难免会存在理解错误的地方，欢迎读者通过邮件向我们反馈。如果有其他宝贵的建议，也欢迎来信交流。我们希望本书能够成为OMNeT++广大开发者、在校学生的交流平台，在相互学习中共同进步。
+
+下载地址
+========
+
+本书将不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/release](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新版本。如果你想自己编译并生成PDF文件，可按照**BUILD.md**说明搭建编译环境来生成文档。
+
+自定义文档指南
+========
+
+本项目的部分文件说明如下：
 
 - dirtree：工程目录树文件，陈列了当前工程各目录下子文件结构
 - img：omnetpp_primer-zh文档所需图片
@@ -29,11 +36,6 @@
 - BUILD.md：构建生成pdf环境（Ubuntu18.04）
 - Makefile：生成pdf
 
-下载地址
-========
-
-本文档不定时更新，欢迎到[https://github.com/wangrongwei/omnetpp_primer/release](<https://github.com/wangrongwei/omnetpp_primer/tree/master/pdf>)下载最新的omnetpp_primer-zh.pdf，如果你想自己编译生成PDF文件，可按照**BUILD.md**说明搭建编译环境并通过执行**make all**生成文档。
-
 贡献者
 =======
 
@@ -42,16 +44,16 @@
 | @Rongwei | 编写第一、二到七部分以及其他一些文章、完善 pdf 格式排版 |
 | @Stephenhua | 维护chapter_7.md |
 | @Etherly | 维护extend扩展系列 |
-| @Kmtalexwang | 维护omnetpp_primer-zh.pdf的LaTeX排版 |
+| @ruoxu-wang | 内容校对，维护LaTeX排版 |
 | @Ericsyoung | 维护chapter_6.md仿真结果分析 |
 | @hjtczyj | 文档修改 |
 
-欢迎小伙伴们加入:-)
+欢迎读者们踊跃加入:-)
 
 勘误
 =====
 
-如果您发现有关技术上的错误或有必要纠正的内容，欢迎发邮件指出。目前文档正在组织中，借鉴了网上相关资料，在这里表示感谢！后续在慢慢加上相关引用。
+如果您发现本书中有明显错误或有必要纠正的内容，欢迎通过邮件向我们反馈。目前，本书正在紧锣密鼓的编撰中，我们从多种渠道借鉴了相关资料，在此表示由衷的感谢！笔者将在后期添加相关的引用。
 
 授权许可
 =========
